@@ -20,7 +20,7 @@ Each id matches the `fonts` field in `assets/palettes.json`.
 | `scholarly-warm` | **Fraunces** 600/700 (opsz, soft) | **Figtree** 400/500/600 | warm, literate, optimistic | schools, libraries, tutoring, publishers |
 | `institutional-serif` | **Source Serif 4** 600/700 | **IBM Plex Sans** 400/500/600 | serious, credible, established | universities, law, consulting, government |
 | `playful-rounded` | **Fredoka** 600/700 | **Nunito** 400/600/800 | friendly, bouncy, safe | preschool, kids, toys, camps |
-| `accessible-clean` | **Lexend** 600/700 | **Atkinson Hyperlegible** 400/700 | clear, calm, inclusive | healthcare, public services, accessibility-first |
+| `accessible-clean` | **Lexend** 600/700 | **Source Sans 3** 400/600/700 | clear, calm, inclusive | healthcare, public services, accessibility-first |
 | `product-geometric` | **Geist** 600/700 | **Geist** 400/500 + **Geist Mono** 400 | precise, technical | SaaS, devtools, fintech, AI |
 | `warm-serif` | **Young Serif** 400 | **Instrument Sans** 400/500/600 | appetizing, crafted, homey | restaurants, cafés, bakeries, farms |
 | `bold-condensed` | **Anton** 400 (uppercase) | **Archivo** 400/500/700 | loud, athletic, industrial | gyms, sports, construction, trades |
@@ -43,7 +43,7 @@ Each id matches the `fonts` field in `assets/palettes.json`.
 | scholarly-warm | `https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Figtree:wght@400;500;600&display=swap` |
 | institutional-serif | `https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap` |
 | playful-rounded | `https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600;800&display=swap` |
-| accessible-clean | `https://fonts.googleapis.com/css2?family=Lexend:wght@600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap` |
+| accessible-clean | `https://fonts.googleapis.com/css2?family=Lexend:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap` |
 | product-geometric | `https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400&display=swap` |
 | warm-serif | `https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;500;600&display=swap` |
 | bold-condensed | `https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&display=swap` |
@@ -88,4 +88,5 @@ p, li { text-wrap: pretty; }
 - **Typographic numerals:** Set big stats ("1,200+ students", "98% pass rate") at `--step-4` in the display face with tabular-nums. Add a small muted label below.
 - **Use ALL CAPS only with tracking** (≥ 0.06em) and only on short labels.
 - **Never justify text on the web.** Never center body paragraphs longer than 2 lines.
+- **Watch for quirky numerals.** Atkinson Hyperlegible and many mono fonts draw slashed zeros ("2Ø09"). That's fine in code and data UIs but wrong for marketing copy, prices, and dates.
 - **Optical sizes:** Fraunces, Bodoni Moda, Source Serif 4, and Bricolage support `opsz`. Use `font-optical-sizing: auto`.
