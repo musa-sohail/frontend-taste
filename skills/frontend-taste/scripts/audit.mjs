@@ -159,7 +159,7 @@ const d = await page.evaluate(() => {
     emoji, lorem: /lorem ipsum/i.test(text),
     year: new Date().getFullYear(), hasYear: text.includes(String(new Date().getFullYear())),
     sections: document.querySelectorAll("section").length,
-    alert: /\balert\(/.test([...document.scripts].map((s) => s.textContent).join("\n")),
+    alert: /(^|[^.\w])alert\s*\(/m.test([...document.scripts].map((s) => s.textContent).join("\n").replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1")),
   };
 });
 
