@@ -1,0 +1,969 @@
+<!doctype html>
+<!--
+  BRIEF
+  Domain & audience: B2B project management SaaS ("Plotline"); audience = team leads, ops & delivery managers
+    at 20–500 person companies (28–45), secondary = the ICs who live in the tool every day.
+  Tone: calm, capable, optimistic.
+  Primary conversion: Start a free 14-day trial (secondary: book a demo).
+  Signature moment: hero headline with a hand-drawn coral underline that draws in under "move", over an
+    HTML-built board mock where one task card gently floats and a "Sprint 24 · 86% on track" card overlaps the edge.
+  Palette: fresh-mint (light default, dark tokens included). Fonts: startup-grotesk (Plus Jakarta Sans).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plotline — Project planning that keeps itself up to date</title>
+<meta name="description" content="Plotline brings boards, timelines, workload and automations into one calm workspace. Used by 12,000+ teams. Start a free 14-day trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- 0. Tokens: Fresh Mint + startup-grotesk ---------- */
+:root {
+  color-scheme: light dark;
+  --bg: #F7FBF9;
+  --surface: #FFFFFF;
+  --surface2: #E8F4EF;
+  --ink: #0D1F1A;
+  --muted: #4B6159;
+  --border: #D6E7E0;
+  --primary: #0B7A5A;
+  --on-primary: #FFFFFF;
+  --accent: #FF6B4A;
+  --on-accent: #1F0802;
+  --danger: #B42318;
+
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-text: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.90rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.125rem);
+  --step-1:  clamp(1.25rem, 1.16rem + 0.45vw, 1.50rem);
+  --step-2:  clamp(1.56rem, 1.40rem + 0.80vw, 2.00rem);
+  --step-3:  clamp(1.95rem, 1.66rem + 1.45vw, 2.67rem);
+  --step-4:  clamp(2.44rem, 1.95rem + 2.45vw, 3.55rem);
+  --step-5:  clamp(2.6rem, 1.9rem + 4.20vw, 5.0rem);
+
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.5rem;
+  --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem;
+
+  /* Crisp personality: 8 / 14, hairline borders + faint shadows */
+  --radius: 8px; --radius-lg: 14px; --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent), 0 1px 3px color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow-lg: 0 2px 4px color-mix(in oklab, var(--ink) 4%, transparent), 0 18px 44px -14px color-mix(in oklab, var(--ink) 24%, transparent);
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --dur-1: 120ms; --dur-2: 200ms; --dur-3: 320ms; --dur-4: 600ms;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #08130F;
+    --surface: #0E1C17;
+    --surface2: #13251F;
+    --ink: #E7F5EF;
+    --muted: #9CB8AD;
+    --border: #1E3830;
+    --primary: #4ADE9E;
+    --on-primary: #06130D;
+    --accent: #FF8A6E;
+    --on-accent: #1F0802;
+    --danger: #FF8A80;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #08130F;
+  --surface: #0E1C17;
+  --surface2: #13251F;
+  --ink: #E7F5EF;
+  --muted: #9CB8AD;
+  --border: #1E3830;
+  --primary: #4ADE9E;
+  --on-primary: #06130D;
+  --accent: #FF8A6E;
+  --on-accent: #1F0802;
+  --danger: #FF8A80;
+}
+
+/* ---------- 1. Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { min-height: 100svh; background: var(--bg); color: var(--ink); font: 400 var(--step-0)/1.65 var(--font-text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, svg, video, picture { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+a { color: inherit; }
+p, h1, h2, h3, h4, li { overflow-wrap: break-word; }
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- 2. Type ---------- */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; text-wrap: balance; }
+h1 { font-size: var(--step-5); line-height: 1.02; }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); font-weight: 700; line-height: 1.25; letter-spacing: -0.015em; }
+p, li { text-wrap: pretty; }
+.eyebrow { display: inline-block; font: 500 var(--step--1)/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--primary); margin-bottom: var(--s-4); }
+.lead { font-size: var(--step-1); line-height: 1.5; color: var(--muted); max-width: 46ch; }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- 3. Layout ---------- */
+.container { width: min(100% - 2rem, 1200px); margin-inline: auto; }
+.container--narrow { width: min(100% - 2rem, 760px); margin-inline: auto; }
+.section { padding-block: clamp(3.5rem, 8vw, 7rem); }
+.section--alt { background: var(--surface2); }
+.section__head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.section__head p { color: var(--muted); margin-top: var(--s-4); max-width: 54ch; }
+.cluster { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+.skip { position: absolute; left: var(--s-4); top: -100px; z-index: 100; background: var(--primary); color: var(--on-primary); padding: var(--s-2) var(--s-4); border-radius: var(--radius); }
+.skip:focus { top: var(--s-4); }
+
+/* ---------- 4. Header & nav ---------- */
+.site-header { position: sticky; top: 0; z-index: 50; padding-block: 1rem; transition: padding var(--dur-3) var(--ease-out), background-color var(--dur-3), box-shadow var(--dur-3); }
+.site-header.is-scrolled { padding-block: .6rem; background: color-mix(in oklab, var(--bg) 85%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); box-shadow: 0 1px 0 var(--border); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); }
+.logo { display: inline-flex; align-items: center; gap: .55rem; font: 800 1.2rem/1 var(--font-display); letter-spacing: -0.03em; text-decoration: none; min-height: 44px; }
+.logo svg { width: 30px; height: 30px; color: var(--primary); }
+.logo .dot { color: var(--accent); }
+.header-actions { display: flex; align-items: center; gap: var(--s-3); }
+.header-actions .btn { display: none; }
+.nav-links { display: none; }
+.nav-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius); position: relative; z-index: 51; }
+.burger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform var(--dur-3) var(--ease-out), opacity var(--dur-2); }
+.burger span + span { margin-top: 5px; }
+[aria-expanded="true"] .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+[aria-expanded="true"] .burger span:nth-child(2) { opacity: 0; }
+[aria-expanded="true"] .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav { position: fixed; inset: 0 0 0 auto; z-index: 49; width: min(85vw, 360px); padding: 6rem var(--s-6) var(--s-6); background: var(--surface); box-shadow: var(--shadow-lg); transform: translateX(105%); visibility: hidden; transition: transform var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3); display: flex; flex-direction: column; gap: var(--s-6); }
+.mobile-nav.is-open { transform: none; visibility: visible; transition: transform var(--dur-3) var(--ease-out), visibility 0s; }
+.mobile-nav ul { list-style: none; padding: 0; display: grid; gap: var(--s-1); }
+.mobile-nav ul a { display: block; padding: .8rem 0; font-size: var(--step-1); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-nav.is-open li { animation: slide-in var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 50ms + 80ms); }
+@keyframes slide-in { from { opacity: 0; transform: translateX(16px); } }
+@media (min-width: 900px) {
+  .nav-links { display: flex; gap: var(--s-6); list-style: none; padding: 0; }
+  .nav-links a { text-decoration: none; font-weight: 500; display: inline-block; padding-block: .6rem; }
+  .header-actions .btn { display: inline-flex; }
+  .nav-toggle, .mobile-nav { display: none; }
+}
+
+/* ---------- 5. Components ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; min-height: 48px; padding: .8em 1.35em; border-radius: var(--radius); font-weight: 700; line-height: 1.1; text-decoration: none; background: var(--primary); color: var(--on-primary);
+  box-shadow: 0 6px 16px -6px color-mix(in oklab, var(--primary) 60%, transparent);
+  transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), background-color var(--dur-2); }
+.btn svg { width: 1.1em; height: 1.1em; transition: transform var(--dur-2) var(--ease-out); }
+.btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ink) 22%, transparent); }
+.btn--sm { min-height: 44px; padding: .6em 1.1em; }
+.btn:active { transform: scale(.98); transition-duration: var(--dur-1); }
+.link { text-decoration: none; background: linear-gradient(currentColor 0 0) 0 100% / 0 2px no-repeat; transition: background-size var(--dur-3) var(--ease-out); }
+.link:hover, .link:focus-visible { background-size: 100% 2px; }
+.badge { display: inline-flex; align-items: center; gap: .4em; padding: .35em .8em; border-radius: var(--radius-pill); font-size: var(--step--1); font-weight: 700; background: color-mix(in oklab, var(--primary) 12%, var(--surface)); color: var(--primary); }
+.icon-tile { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius); background: color-mix(in oklab, var(--primary) 12%, var(--surface)); color: var(--primary); flex: none; }
+.icon-tile svg { width: 22px; height: 22px; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px color-mix(in oklab, var(--primary) 55%, transparent); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn--ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+}
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- 6. Hero ---------- */
+.hero { padding-block: clamp(2rem, 6vw, 4.5rem) clamp(3.5rem, 8vw, 6rem); position: relative; overflow: clip; }
+.hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: min(70vw, 760px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in oklab, var(--primary) 14%, transparent), transparent); pointer-events: none; }
+.hero__grid { position: relative; display: grid; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
+@media (min-width: 1000px) { .hero__grid { grid-template-columns: 5fr 6fr; } }
+.hero h1 { margin-block: var(--s-2) var(--s-5); }
+.accent-word { position: relative; display: inline-block; white-space: nowrap; }
+.accent-word svg { position: absolute; left: -2%; bottom: -.16em; width: 104%; height: .32em; color: var(--accent); overflow: visible; }
+.accent-word path { stroke-dasharray: 260; stroke-dashoffset: 260; animation: draw 900ms var(--ease-out) 500ms forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.hero__ctas { margin-top: var(--s-6); }
+.hero__proof { margin-top: var(--s-6); display: flex; align-items: center; gap: var(--s-3); color: var(--muted); font-size: var(--step--1); }
+.avatars { display: flex; }
+.avatar { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; font: 700 .7rem/1 var(--font-text); border: 2px solid var(--bg); background: var(--surface2); color: var(--ink); flex: none; }
+.avatars .avatar + .avatar { margin-left: -9px; }
+.avatar--p { background: var(--primary); color: var(--on-primary); }
+.avatar--a { background: var(--accent); color: var(--on-accent); }
+.avatar--i { background: var(--ink); color: var(--bg); }
+.stars { display: flex; gap: 2px; color: var(--accent); }
+.stars svg { width: 14px; height: 14px; }
+
+/* Product mock */
+.mock { position: relative; }
+.window { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; }
+.window__bar { display: flex; align-items: center; gap: var(--s-2); padding: .65rem var(--s-4); border-bottom: 1px solid var(--border); font-size: var(--step--1); color: var(--muted); }
+.window__bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+.window__bar strong { margin-left: var(--s-2); color: var(--ink); font-weight: 700; }
+.window__bar .badge { margin-left: auto; font-size: .72rem; }
+.board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); padding: var(--s-4); background: color-mix(in oklab, var(--surface2) 55%, var(--surface)); }
+@media (min-width: 600px) { .board { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.col { display: grid; align-content: start; gap: var(--s-2); }
+.col:nth-child(3) { display: none; }
+@media (min-width: 600px) { .col:nth-child(3) { display: grid; } }
+.col__head { display: flex; justify-content: space-between; font: 500 .74rem/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); padding: 0 var(--s-1) var(--s-1); }
+.task { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .7rem; display: grid; gap: .5rem; font-size: .82rem; line-height: 1.35; box-shadow: var(--shadow-sm); }
+.task b { font-weight: 700; }
+.task__meta { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); }
+.task .avatar { width: 24px; height: 24px; font-size: .6rem; border-width: 0; }
+.tag { font-size: .68rem; font-weight: 700; padding: .2em .55em; border-radius: 4px; background: color-mix(in oklab, var(--primary) 12%, var(--surface)); color: var(--primary); }
+.tag--a { background: color-mix(in oklab, var(--accent) 16%, var(--surface)); color: var(--ink); }
+.bar { height: 5px; border-radius: 3px; background: var(--surface2); overflow: hidden; }
+.bar > span { display: block; height: 100%; width: 100%; background: var(--primary); transform-origin: 0 50%; transform: scaleX(var(--v, .5)); }
+.task--float { border-color: color-mix(in oklab, var(--primary) 45%, var(--border)); box-shadow: var(--shadow-lg); animation: float 7s var(--ease-in-out) infinite alternate; }
+@keyframes float { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-8px) rotate(.5deg); } }
+.float-card { position: absolute; left: clamp(-1rem, -2vw, 0rem); bottom: -1.75rem; display: flex; align-items: center; gap: var(--s-3); padding: .75rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); font-size: var(--step--1); line-height: 1.3; max-width: calc(100% - 1rem); }
+.ring { --p: 86; width: 44px; height: 44px; flex: none; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--primary) calc(var(--p) * 1%), var(--surface2) 0); }
+.ring::after { content: ""; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); grid-area: 1 / 1; }
+.ring span { grid-area: 1 / 1; z-index: 1; font-size: .7rem; font-weight: 800; }
+.float-card strong { display: block; font-weight: 700; }
+.float-card small { color: var(--muted); font-size: inherit; }
+
+/* ---------- 7. Logo marquee ---------- */
+.logos { padding-block: var(--s-7) var(--s-6); border-bottom: 1px solid var(--border); }
+.logos p { text-align: center; font-size: var(--step--1); color: var(--muted); margin-bottom: var(--s-5); }
+.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, var(--ink) 10%, var(--ink) 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, var(--ink) 10%, var(--ink) 90%, transparent); }
+.marquee__track { display: flex; gap: clamp(2rem, 5vw, 3.5rem); width: max-content; animation: marquee 38s linear infinite; list-style: none; padding: 0; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee li { display: flex; align-items: center; gap: .5rem; font: 800 1.15rem/1 var(--font-display); letter-spacing: -0.02em; color: color-mix(in oklab, var(--ink) 70%, var(--bg)); white-space: nowrap; }
+.marquee svg { width: 22px; height: 22px; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- 8. Feature rows ---------- */
+.rows { display: grid; gap: clamp(4rem, 9vw, 7rem); }
+.row { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+@media (min-width: 900px) {
+  .row { grid-template-columns: 5fr 6fr; }
+  .row--rev { grid-template-columns: 6fr 5fr; }
+  .row--rev > :first-child { order: 2; }
+}
+.row h3 { font-size: var(--step-2); font-weight: 800; letter-spacing: -0.025em; margin-bottom: var(--s-4); }
+.row > div > p { color: var(--muted); max-width: 48ch; }
+.checks { list-style: none; padding: 0; margin-top: var(--s-5); display: grid; gap: var(--s-3); }
+.checks li { display: flex; gap: var(--s-3); align-items: flex-start; }
+.checks svg { width: 20px; height: 20px; flex: none; margin-top: .2em; color: var(--primary); }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: clamp(1rem, 3vw, 1.5rem); font-size: .85rem; }
+.panel__title { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); font-weight: 700; margin-bottom: var(--s-4); flex-wrap: wrap; }
+.panel__title span { color: var(--muted); font: 500 .74rem/1.4 var(--font-mono); }
+
+/* gantt */
+.gantt { display: grid; gap: .55rem; }
+.gantt__scale, .gantt__row { display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); gap: var(--s-3); align-items: center; }
+.gantt__scale div:last-child { display: grid; grid-template-columns: repeat(6, 1fr); font: 500 .68rem/1.4 var(--font-mono); color: var(--muted); }
+.gantt__row > span:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.track { position: relative; height: 26px; border-radius: 6px; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 6 - 1px), var(--border) calc(100% / 6 - 1px) calc(100% / 6)); }
+.track b { position: absolute; top: 3px; bottom: 3px; left: var(--s); width: var(--w); border-radius: 5px; background: var(--primary); color: var(--on-primary); font-size: .68rem; font-weight: 700; padding-inline: .5rem; display: flex; align-items: center; white-space: nowrap; overflow: hidden; }
+.track b.soft { background: color-mix(in oklab, var(--primary) 22%, var(--surface)); color: var(--ink); }
+.track b.hot { background: var(--accent); color: var(--on-accent); }
+.track .today { position: absolute; top: -4px; bottom: -4px; left: 58%; width: 2px; background: var(--accent); border-radius: 1px; }
+
+/* workload */
+.load { display: grid; gap: var(--s-4); }
+.load__row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s-3); align-items: center; }
+.load__row .avatar { border: 0; }
+.load__name { display: block; font-weight: 700; line-height: 1.2; }
+.load__bar { height: 10px; border-radius: 5px; background: var(--surface2); overflow: hidden; margin-top: .35rem; }
+.load__bar span { display: block; height: 100%; background: var(--primary); transform-origin: 0 50%; transform: scaleX(var(--v)); }
+.load__bar.over span { background: var(--accent); }
+.load__row em { font: 500 .8rem/1 var(--font-mono); font-style: normal; }
+.load__note { margin-top: var(--s-4); padding: .7rem .85rem; border-radius: var(--radius); background: color-mix(in oklab, var(--accent) 14%, var(--surface)); display: flex; gap: var(--s-2); align-items: flex-start; }
+.load__note svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--ink); }
+
+/* automation */
+.rule { display: grid; gap: var(--s-2); }
+.rule__step { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3); align-items: center; padding: .8rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); }
+.rule__step small { display: block; text-transform: uppercase; letter-spacing: .1em; font-size: .66rem; font-weight: 700; color: var(--muted); }
+.rule__step .icon-tile { width: 36px; height: 36px; }
+.rule__step .icon-tile svg { width: 18px; height: 18px; }
+.rule__link { width: 2px; height: 14px; margin-left: 1.9rem; background: var(--border); }
+.chip { display: inline-block; padding: .1em .45em; border-radius: 4px; background: var(--surface2); font-weight: 700; }
+.toggle-ui { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; color: var(--primary); }
+.toggle-ui i { width: 30px; height: 18px; border-radius: 9px; background: var(--primary); position: relative; }
+.toggle-ui i::after { content: ""; position: absolute; right: 2px; top: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--on-primary); }
+
+/* ---------- 9. Bento ---------- */
+.bento { display: grid; gap: var(--s-4); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .bento { grid-template-columns: repeat(6, minmax(0, 1fr)); } .t-wide { grid-column: span 4; } .t-mid { grid-column: span 3; } .t-sm { grid-column: span 2; } }
+.tile { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); transition: transform var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out), border-color var(--dur-3); }
+.tile p { color: var(--muted); font-size: .95rem; }
+.tile h3 { font-size: 1.15rem; }
+.tile--ink { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tile--ink p { color: color-mix(in oklab, var(--bg) 78%, var(--ink)); }
+.tile--ink .icon-tile { background: color-mix(in oklab, var(--bg) 14%, var(--ink)); color: var(--bg); }
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: color-mix(in oklab, var(--primary) 35%, var(--border)); }
+}
+.tile:focus-within { outline: 2px solid var(--primary); outline-offset: 2px; }
+.integrations { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
+.integrations span { display: inline-flex; align-items: center; gap: .4rem; padding: .4rem .7rem; border: 1px solid color-mix(in oklab, var(--bg) 20%, var(--ink)); border-radius: var(--radius); font-size: .82rem; font-weight: 700; }
+.mini-doc { margin-top: auto; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--s-3); display: grid; gap: .4rem; background: var(--bg); }
+.mini-doc i { display: block; height: 7px; border-radius: 4px; background: var(--border); }
+.mini-doc i:first-child { width: 45%; height: 10px; background: color-mix(in oklab, var(--ink) 35%, var(--border)); }
+.mini-doc i:nth-child(3) { width: 82%; }
+.mini-doc i:nth-child(4) { width: 64%; background: color-mix(in oklab, var(--accent) 45%, var(--border)); }
+
+/* ---------- 10. Metrics band ---------- */
+.band { background: var(--primary); color: var(--on-primary); position: relative; overflow: clip; }
+.band::after { content: ""; position: absolute; inset: auto -8% -55% auto; width: 520px; aspect-ratio: 1; border-radius: 50%; border: 70px solid color-mix(in oklab, var(--on-primary) 7%, transparent); pointer-events: none; }
+.band .eyebrow { color: var(--on-primary); opacity: .85; }
+.band h2 { max-width: 22ch; }
+.stats { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6) var(--s-5); margin-top: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 900px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stat { border-top: 1px solid color-mix(in oklab, var(--on-primary) 30%, transparent); padding-top: var(--s-4); }
+.stat strong { display: block; font: 800 var(--step-4)/1 var(--font-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: var(--s-2); font-size: .95rem; color: color-mix(in oklab, var(--on-primary) 86%, var(--primary)); }
+
+/* ---------- 11. Testimonials ---------- */
+.quotes { display: grid; gap: var(--s-5); }
+@media (min-width: 900px) { .quotes { grid-template-columns: 7fr 5fr; } }
+.quote { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, 2.5rem); display: flex; flex-direction: column; gap: var(--s-5); }
+.quote blockquote p { font-size: var(--step-0); }
+.quote--big blockquote p { font: 700 var(--step-2)/1.3 var(--font-display); letter-spacing: -0.02em; }
+.quote--big { background: var(--surface2); border-color: transparent; justify-content: space-between; }
+.quote--big svg.qmark { width: 40px; height: 40px; color: var(--accent); }
+.quote figcaption { display: flex; align-items: center; gap: var(--s-3); font-size: .95rem; line-height: 1.35; }
+.quote figcaption .avatar { width: 44px; height: 44px; font-size: .85rem; border: 0; }
+.quote figcaption small { display: block; color: var(--muted); font-size: inherit; }
+.quotes__side { display: grid; gap: var(--s-5); }
+
+/* ---------- 12. Pricing ---------- */
+.billing { display: inline-flex; padding: 4px; border-radius: var(--radius); background: var(--surface2); border: 1px solid var(--border); margin-top: var(--s-5); position: relative; }
+.billing button { position: relative; z-index: 1; min-height: 44px; padding: 0 1.1rem; border-radius: 6px; font-weight: 700; font-size: .95rem; transition: color var(--dur-2); }
+.billing button { transition: color var(--dur-2), background-color var(--dur-3) var(--ease-out); }
+.billing button[aria-pressed="true"] { color: var(--on-primary); background: var(--primary); }
+.billing .save { font-size: .72rem; color: inherit; opacity: .85; margin-left: .3rem; }
+.plans { display: grid; gap: var(--s-5); align-items: stretch; }
+@media (min-width: 900px) { .plans { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; } }
+.plan { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.5rem, 3vw, 2rem); display: flex; flex-direction: column; gap: var(--s-4); }
+.plan h3 { font-size: 1.15rem; }
+.plan > p { color: var(--muted); font-size: .95rem; }
+.price { display: flex; align-items: baseline; gap: .35rem; }
+.price strong { font: 800 var(--step-4)/1 var(--font-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.price span { color: var(--muted); font-size: .9rem; }
+.plan ul { list-style: none; padding: 0; display: grid; gap: .6rem; font-size: .95rem; }
+.plan li { display: flex; gap: .6rem; align-items: flex-start; }
+.plan li svg { width: 18px; height: 18px; flex: none; margin-top: .25em; color: var(--primary); }
+.plan .btn { width: 100%; margin-top: auto; }
+.plan--pop { border: 2px solid var(--primary); box-shadow: var(--shadow-lg); }
+@media (min-width: 900px) { .plan--pop { padding-block: 2.75rem; } }
+.plan--pop .badge-pop { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); padding: .35em .9em; border-radius: var(--radius-pill); background: var(--accent); color: var(--on-accent); font-size: .78rem; font-weight: 800; white-space: nowrap; }
+.price strong[data-amount] { transition: opacity var(--dur-2); }
+.pricing-note { text-align: center; margin-top: var(--s-6); color: var(--muted); font-size: .95rem; }
+
+/* ---------- 13. FAQ ---------- */
+.faq-grid { display: grid; gap: var(--s-6); }
+@media (min-width: 900px) { .faq-grid { grid-template-columns: 4fr 7fr; gap: var(--s-8); } }
+.faq { border-bottom: 1px solid var(--border); }
+.faq:first-child { border-top: 1px solid var(--border); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); padding: 1.15rem 0; min-height: 44px; font-weight: 700; font-size: 1.08rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font-size: 1.6em; line-height: 1; font-weight: 500; color: var(--primary); transition: transform var(--dur-3) var(--ease-spring); }
+.faq[open] summary::after { transform: rotate(45deg); }
+.faq__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-3) var(--ease-out); }
+.faq[open] .faq__body { grid-template-rows: 1fr; }
+.faq__body > div { overflow: hidden; color: var(--muted); }
+.faq__body p { padding-bottom: 1.15rem; max-width: 62ch; }
+
+/* ---------- 14. Final CTA ---------- */
+.cta { background: var(--ink); color: var(--bg); border-radius: var(--radius-lg); padding: clamp(2rem, 6vw, 4.5rem); display: grid; gap: var(--s-6); position: relative; overflow: hidden; }
+@media (min-width: 900px) { .cta { grid-template-columns: 6fr 5fr; align-items: center; } }
+.cta::before { content: ""; position: absolute; right: -80px; top: -80px; width: 260px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 40%, transparent), transparent); pointer-events: none; }
+.cta h2 { font-size: var(--step-4); }
+.cta p { color: color-mix(in oklab, var(--bg) 78%, var(--ink)); margin-top: var(--s-4); max-width: 44ch; }
+.cta form { position: relative; display: grid; gap: var(--s-3); }
+.cta label { font-weight: 700; font-size: var(--step--1); }
+.cta .inline { display: grid; gap: var(--s-3); }
+@media (min-width: 600px) { .cta .inline { grid-template-columns: 1fr auto; } }
+.cta input { width: 100%; min-height: 52px; font-size: max(16px, 1rem); padding: .8em 1em; border-radius: var(--radius); border: 1.5px solid color-mix(in oklab, var(--bg) 25%, var(--ink)); background: color-mix(in oklab, var(--bg) 6%, var(--ink)); color: var(--bg); transition: border-color var(--dur-2), box-shadow var(--dur-2); }
+.cta input::placeholder { color: color-mix(in oklab, var(--bg) 60%, var(--ink)); }
+.cta input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 30%, transparent); }
+.cta input:user-invalid { border-color: var(--accent); animation: shake 300ms var(--ease-out); }
+@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.cta .btn { background: var(--accent); color: var(--on-accent); box-shadow: none; min-height: 52px; }
+.cta .btn:focus-visible { outline-color: var(--bg); }
+.cta small { color: color-mix(in oklab, var(--bg) 70%, var(--ink)); font-size: var(--step--1); }
+.form-status { font-weight: 700; color: var(--bg); display: flex; gap: .5rem; align-items: center; }
+.form-status:empty { display: none; }
+.form-status svg { width: 20px; height: 20px; color: var(--accent); }
+
+/* ---------- 15. Footer ---------- */
+.site-footer { padding-block: var(--s-8) var(--s-6); font-size: .95rem; }
+.footer-grid { display: grid; gap: var(--s-6); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 900px) { .footer-grid { grid-template-columns: 2fr repeat(3, 1fr); } }
+.footer-grid > div:first-child { grid-column: 1 / -1; }
+@media (min-width: 900px) { .footer-grid > div:first-child { grid-column: auto; } }
+.footer-grid p { color: var(--muted); margin-top: var(--s-3); max-width: 34ch; }
+.footer-grid h4 { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-family: var(--font-text); font-weight: 700; margin-bottom: var(--s-2); }
+.footer-grid ul { list-style: none; padding: 0; }
+.footer-grid li a { display: inline-block; padding-block: .6rem; }
+.footer-bottom { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: var(--muted); font-size: var(--step--1); }
+.footer-bottom a { display: inline-block; padding-block: .7rem; }
+.status-dot { display: inline-flex; align-items: center; gap: .5rem; }
+.status-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 25%, transparent); }
+
+/* ---------- 16. Motion ---------- */
+.js [data-reveal], .js [data-reveal-stagger] > * { opacity: 0; transform: translateY(20px); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
+.js .is-in[data-reveal], .js .is-in[data-reveal-stagger] > * { opacity: 1; transform: none; }
+.js .tile.is-in, .js [data-reveal-stagger].is-in > .tile { transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out), border-color var(--dur-3); transition-delay: 0s; }
+.rise { animation: rise var(--dur-4) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .marquee__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+  .marquee__track [aria-hidden="true"] { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="#top" aria-label="Plotline home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="currentColor"/><path d="M9 21.5c3-6 6.5 1.5 9.5-4.5S23 11 23 11" stroke="var(--on-primary)" stroke-width="2.4" stroke-linecap="round"/><circle cx="23" cy="11" r="2.6" fill="var(--accent)"/></svg>
+      Plotline<span class="dot">.</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a class="link" href="#features">Product</a></li>
+        <li><a class="link" href="#more">Features</a></li>
+        <li><a class="link" href="#customers">Customers</a></li>
+        <li><a class="link" href="#pricing">Pricing</a></li>
+        <li><a class="link" href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--sm" href="#start">Start free trial</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+        <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+  <ul>
+    <li><a href="#features">Product</a></li>
+    <li><a href="#more">Features</a></li>
+    <li><a href="#customers">Customers</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="btn" href="#start">Start free trial
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</nav>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container hero__grid">
+      <div>
+        <span class="badge rise" style="--i:0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+          New: Workload view with auto-rebalancing
+        </span>
+        <h1 class="rise" style="--i:1">Plans that
+          <span class="accent-word">move<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14c38-9 92-12 194-6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span>
+          as fast as your team does.</h1>
+        <p class="lead rise" style="--i:2">Plotline keeps boards, timelines and workload in one place, and updates them as work happens. No more Monday spreadsheet rebuilds or chasing status in Slack.</p>
+        <div class="cluster hero__ctas rise" style="--i:3">
+          <a class="btn" href="#start" data-magnetic>Start your free trial
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="#features">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5 3.5-5 3.5z" fill="currentColor"/></svg>
+            Watch the 2-min tour</a>
+        </div>
+        <div class="hero__proof rise" style="--i:4">
+          <div class="avatars" aria-hidden="true">
+            <span class="avatar avatar--p">PR</span><span class="avatar avatar--a">MO</span><span class="avatar avatar--i">ED</span><span class="avatar">JK</span>
+          </div>
+          <div>
+            <div class="stars" aria-label="Rated 4.8 out of 5">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+            </div>
+            4.8/5 from 1,900+ reviews on G2
+          </div>
+        </div>
+      </div>
+
+      <div class="mock rise" style="--i:2" role="img" aria-label="Plotline board view showing the Sprint 24 board for the Mobile app launch project, with tasks in To do, In progress and In review columns">
+        <div class="window" aria-hidden="true">
+          <div class="window__bar"><i></i><i></i><i></i><strong>Mobile app launch</strong> · Board <span class="badge">Sprint 24</span></div>
+          <div class="board">
+            <div class="col">
+              <div class="col__head"><span>To do</span><span>4</span></div>
+              <div class="task"><b>Write App Store release notes</b><div class="task__meta"><span class="tag tag--a">Copy</span><span class="avatar avatar--a">MO</span></div></div>
+              <div class="task"><b>Push-notification opt-in screen</b><div class="task__meta"><span class="tag">Design</span><span class="avatar avatar--i">ED</span></div></div>
+              <div class="task"><b>Localise onboarding (DE, FR)</b><div class="task__meta"><span class="tag">i18n</span><span class="avatar">JK</span></div></div>
+            </div>
+            <div class="col">
+              <div class="col__head"><span>In progress</span><span>3</span></div>
+              <div class="task task--float"><b>Offline sync for task lists</b><div class="bar"><span style="--v:.7"></span></div><div class="task__meta"><span class="tag">iOS</span><span class="avatar avatar--p">PR</span></div></div>
+              <div class="task"><b>Payment sheet QA on Android 15</b><div class="bar"><span style="--v:.35"></span></div><div class="task__meta"><span class="tag tag--a">QA</span><span class="avatar">JK</span></div></div>
+            </div>
+            <div class="col">
+              <div class="col__head"><span>In review</span><span>2</span></div>
+              <div class="task"><b>Dark mode token audit</b><div class="task__meta"><span class="tag">Design</span><span class="avatar avatar--i">ED</span></div></div>
+              <div class="task"><b>Crash-free rate dashboard</b><div class="task__meta"><span class="tag">Data</span><span class="avatar avatar--p">PR</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="float-card" aria-hidden="true">
+          <div class="ring" style="--p:86"><span>86%</span></div>
+          <div><strong>Sprint 24 is on track</strong><small>Ships Thu, Oct 22 · 2 risks flagged</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS -->
+  <section class="logos" aria-label="Customers">
+    <div class="container">
+      <p>Trusted by 12,000+ teams, from 8-person studios to public companies</p>
+    </div>
+    <div class="marquee">
+      <ul class="marquee__track">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 18 12 4l9 14z"/></svg>Northwind Freight</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M4 12h16"/></svg>Halcyon Health</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20 20 4M4 12l8-8M12 20l8-8"/></svg>Brightline</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3c4 4 4 14 0 18M12 3c-4 4-4 14 0 18M3 12h18"/></svg>Kestrel Labs</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/></svg>Orbital Foods</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>Juniper &amp; Co</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 10h18M5 10v9M19 10v9M12 10v9M2 21h20M12 3l9 5H3z"/></svg>Meridian Bank</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12c3-6 6 6 9 0s6 6 9 0"/></svg>Fathom Studio</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18 12 4l9 14z"/></svg>Northwind Freight</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M4 12h16"/></svg>Halcyon Health</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20 20 4M4 12l8-8M12 20l8-8"/></svg>Brightline</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 4 14 0 18M12 3c-4 4-4 14 0 18M3 12h18"/></svg>Kestrel Labs</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/></svg>Orbital Foods</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>Juniper &amp; Co</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M5 10v9M19 10v9M12 10v9M2 21h20M12 3l9 5H3z"/></svg>Meridian Bank</li>
+        <li aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c3-6 6 6 9 0s6 6 9 0"/></svg>Fathom Studio</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FEATURE ROWS -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">How Plotline works</span>
+        <h2>One plan. Every view your team needs.</h2>
+        <p>Every task lives once and shows up everywhere: on the board, on the timeline and in each person's week. Change a date in one place and the whole plan follows.</p>
+      </div>
+
+      <div class="rows">
+        <article class="row" data-reveal>
+          <div>
+            <span class="eyebrow">Plan</span>
+            <h3>See every deadline, dependency and slip on one timeline</h3>
+            <p>Drag a milestone and its dependants shift with it. Plotline marks the critical path in coral, so you can see which date is putting launch day at risk.</p>
+            <ul class="checks">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Finish-to-start, start-to-start and lag dependencies</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Baselines to compare today's plan with the one you signed off</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Read-only share links for clients and execs</li>
+            </ul>
+          </div>
+          <div class="panel" role="img" aria-label="Timeline view: Discovery and Design done, Build in progress and on the critical path, QA and Launch scheduled for late October">
+            <div aria-hidden="true">
+              <div class="panel__title">Q4 · Mobile app launch <span>Sep 21 – Nov 1</span></div>
+              <div class="gantt">
+                <div class="gantt__scale"><div></div><div><span>Sep 21</span><span>28</span><span>Oct 5</span><span>12</span><span>19</span><span>26</span></div></div>
+                <div class="gantt__row"><span>Discovery</span><div class="track"><b class="soft" style="--s:0%;--w:20%">Done</b></div></div>
+                <div class="gantt__row"><span>Design system</span><div class="track"><b class="soft" style="--s:12%;--w:30%">Done</b></div></div>
+                <div class="gantt__row"><span>Build: iOS + Android</span><div class="track"><b class="hot" style="--s:30%;--w:42%">Critical path</b><i class="today"></i></div></div>
+                <div class="gantt__row"><span>QA &amp; beta</span><div class="track"><b style="--s:62%;--w:22%">Beta</b></div></div>
+                <div class="gantt__row"><span>Launch</span><div class="track"><b style="--s:84%;--w:16%">Oct 29</b></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="row row--rev" data-reveal>
+          <div>
+            <span class="eyebrow">Balance</span>
+            <h3>Spot burnout before it shows up in a retro</h3>
+            <p>Workload reads hours, estimates and time off from every project at once. When someone is over capacity, Plotline suggests who can take the work, and you approve it in one click.</p>
+            <ul class="checks">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Capacity by person, team or skill</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Syncs holidays from Google Calendar, Outlook and BambooHR</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Auto-rebalance suggestions you approve before anything moves</li>
+            </ul>
+          </div>
+          <div class="panel" role="img" aria-label="Workload view for the week of October 19: Priya at 112 percent capacity, Marcus 74 percent, Elena 88 percent, Jonas 52 percent, with a suggestion to move a task from Priya to Jonas">
+            <div aria-hidden="true">
+              <div class="panel__title">Team workload <span>Week of Oct 19</span></div>
+              <div class="load">
+                <div class="load__row"><span class="avatar avatar--p">PR</span><div><span class="load__name">Priya Raman</span><div class="load__bar over"><span style="--v:1"></span></div></div><em>112%</em></div>
+                <div class="load__row"><span class="avatar avatar--a">MO</span><div><span class="load__name">Marcus Oyelaran</span><div class="load__bar"><span style="--v:.74"></span></div></div><em>74%</em></div>
+                <div class="load__row"><span class="avatar avatar--i">ED</span><div><span class="load__name">Elena Duarte</span><div class="load__bar"><span style="--v:.88"></span></div></div><em>88%</em></div>
+                <div class="load__row"><span class="avatar">JK</span><div><span class="load__name">Jonas Krüger</span><div class="load__bar"><span style="--v:.52"></span></div></div><em>52%</em></div>
+              </div>
+              <div class="load__note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/></svg><span>Move <b>"Offline sync QA"</b> (6h) from Priya to Jonas?</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="row" data-reveal>
+          <div>
+            <span class="eyebrow">Automate</span>
+            <h3>Hand off the busywork with rules anyone can write</h3>
+            <p>Build "when this, then that" rules in plain language, with no scripting. Teams on Plotline run an average of 31 automations and skip about 140 manual updates a month.</p>
+            <ul class="checks">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>60+ triggers and actions across Slack, GitHub and Jira</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Recurring tasks and templated project kick-offs</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>A full run history for every rule, so nothing happens silently</li>
+            </ul>
+          </div>
+          <div class="panel" role="img" aria-label="Automation rule: when a task moves to Ready for QA, assign it to the QA rotation and post in the release Slack channel">
+            <div aria-hidden="true">
+              <div class="panel__title">Rule · Ready for QA handoff <span class="toggle-ui"><i></i>Active</span></div>
+              <div class="rule">
+                <div class="rule__step"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><div><small>When</small>Status changes to <span class="chip">Ready for QA</span></div></div>
+                <div class="rule__link"></div>
+                <div class="rule__step"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/></svg></span><div><small>Then</small>Assign to <span class="chip">QA rotation</span>, due in 2 days</div></div>
+                <div class="rule__link"></div>
+                <div class="rule__step"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><small>And</small>Post in <span class="chip">#release-mobile</span> with a link</div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENTO -->
+  <section class="section section--alt" id="more">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">Everything else</span>
+        <h2>The rest of your stack, minus four tabs.</h2>
+      </div>
+      <div class="bento" data-reveal-stagger>
+        <div class="tile tile--ink t-wide">
+          <span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7H6a4 4 0 0 0 0 8h3M15 7h3a4 4 0 0 1 0 8h-3M8 11h8"/></svg></span>
+          <h3>Two-way sync with the tools you already use</h3>
+          <p>Link a pull request and the task moves itself to review. Reply in Slack and the comment appears in Plotline.</p>
+          <div class="integrations"><span>Slack</span><span>GitHub</span><span>GitLab</span><span>Figma</span><span>Google Drive</span><span>Jira import</span><span>Zapier</span></div>
+        </div>
+        <div class="tile t-sm">
+          <span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+          <h3>Docs next to the work</h3>
+          <p>Specs and briefs that turn into tasks when you highlight a line.</p>
+          <div class="mini-doc" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="tile t-sm">
+          <span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+          <h3>Intake forms</h3>
+          <p>Requests from sales, legal or support land as triaged tasks, not DMs.</p>
+        </div>
+        <div class="tile t-sm">
+          <span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span>
+          <h3>Time tracking</h3>
+          <p>One-click timers and timesheets that export to Xero and QuickBooks.</p>
+        </div>
+        <div class="tile t-sm">
+          <span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>
+          <h3>Portfolio reports</h3>
+          <p>Status, budget and risk across every project, refreshed hourly.</p>
+        </div>
+        <div class="tile t-mid">
+          <span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Security your IT team will sign off</h3>
+          <p>SOC 2 Type II, SAML SSO, SCIM provisioning, audit logs and EU or US data residency, all on Business plans.</p>
+        </div>
+        <div class="tile t-mid">
+          <span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/></svg></span>
+          <h3>Free guests for clients and contractors</h3>
+          <p>Invite unlimited guests to specific projects. They see only what you share, and they never count as a paid seat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="section band" aria-labelledby="metrics-title">
+    <div class="container">
+      <span class="eyebrow">The Plotline effect</span>
+      <h2 id="metrics-title">What changes in the first 90 days</h2>
+      <div class="stats" data-reveal-stagger>
+        <div class="stat"><strong><span data-count="38" data-suffix="%">38%</span></strong><span>fewer status meetings on the calendar</span></div>
+        <div class="stat"><strong><span data-count="2.4" data-decimals="1" data-suffix="h">2.4h</span></strong><span>saved per person, every week</span></div>
+        <div class="stat"><strong><span data-count="12000" data-suffix="+">12,000+</span></strong><span>teams across 94 countries</span></div>
+        <div class="stat"><strong><span data-count="99.98" data-decimals="2" data-suffix="%">99.98%</span></strong><span>uptime over the last 12 months</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="customers">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">Customers</span>
+        <h2>Teams that stopped rebuilding the plan every Monday.</h2>
+      </div>
+      <div class="quotes" data-reveal-stagger>
+        <figure class="quote quote--big">
+          <svg class="qmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 18v-5c0-4 2-7 6-8l1 2c-2 .8-3 2.4-3 4.5h3V18zm9 0v-5c0-4 2-7 6-8l1 2c-2 .8-3 2.4-3 4.5h3V18z"/></svg>
+          <blockquote><p>We ran three product launches last quarter across 46 people and never once opened the old master spreadsheet. The timeline flagged our QA crunch two weeks out, which is about ten days earlier than we used to find out.</p></blockquote>
+          <figcaption><span class="avatar avatar--p">PR</span><div><strong>Priya Raman</strong><small>Head of Delivery, Kestrel Labs</small></div></figcaption>
+        </figure>
+        <div class="quotes__side">
+          <figure class="quote">
+            <blockquote><p>"Workload view ended the 'who has bandwidth?' thread in Slack. My leads rebalance on Friday afternoon in about five minutes."</p></blockquote>
+            <figcaption><span class="avatar avatar--a">MO</span><div><strong>Marcus Oyelaran</strong><small>Ops Director, Northwind Freight</small></div></figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote><p>"Clients get a live timeline link instead of a weekly PDF. Our account managers got their Thursday mornings back."</p></blockquote>
+            <figcaption><span class="avatar avatar--i">ED</span><div><strong>Elena Duarte</strong><small>Partner, Fathom Studio</small></div></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section section--alt" id="pricing">
+    <div class="container">
+      <div class="section__head" data-reveal style="margin-inline:auto;text-align:center">
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple per-seat pricing. Guests are always free.</h2>
+        <div class="billing" role="group" aria-label="Billing period">
+          <button type="button" data-billing="monthly" aria-pressed="false">Monthly</button>
+          <button type="button" data-billing="annual" aria-pressed="true">Annual<span class="save">−20%</span></button>
+        </div>
+      </div>
+      <div class="plans" data-reveal-stagger>
+        <article class="plan">
+          <h3>Starter</h3>
+          <p>For small teams getting out of spreadsheets.</p>
+          <div class="price"><strong>$0</strong><span>free for up to 5 people</span></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Unlimited tasks and boards</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>3 active timelines</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Slack and GitHub integrations</li>
+          </ul>
+          <a class="btn btn--ghost" href="#start">Start for free</a>
+        </article>
+        <article class="plan plan--pop">
+          <span class="badge-pop">Most teams pick this</span>
+          <h3>Team</h3>
+          <p>Timelines, workload and automations for growing teams.</p>
+          <div class="price"><strong class="num" data-monthly="$12" data-annual="$10">$10</strong><span>per seat / month</span></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in Starter</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Unlimited timelines and dependencies</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Workload view and 5,000 automation runs/mo</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Unlimited free guests</li>
+          </ul>
+          <a class="btn" href="#start">Start 14-day trial
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="plan">
+          <h3>Business</h3>
+          <p>Portfolio reporting and security controls for larger orgs.</p>
+          <div class="price"><strong class="num" data-monthly="$24" data-annual="$19">$19</strong><span>per seat / month</span></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in Team</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Portfolios, budgets and time tracking</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SAML SSO, SCIM and audit logs</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Named success manager from 50 seats</li>
+          </ul>
+          <a class="btn btn--ghost" href="#start">Talk to sales</a>
+        </article>
+      </div>
+      <p class="pricing-note">Prices in USD. Nonprofits and schools get 50% off any paid plan.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container faq-grid">
+      <div data-reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions teams ask before switching</h2>
+        <p class="muted" style="margin-top:var(--s-4)">Something else? Email <a class="link" href="mailto:hello@plotline.app" style="color:var(--primary);font-weight:700">hello@plotline.app</a> and a real person replies within 4 working hours.</p>
+      </div>
+      <div data-reveal>
+        <details class="faq" open><summary>How long does it take to move over from Jira, Asana or Trello?</summary><div class="faq__body"><div><p>Most teams are fully moved in under a day. Our importers bring across tasks, assignees, comments, attachments and custom fields. On Business plans, a migration specialist will map your workflows with you.</p></div></div></details>
+        <details class="faq"><summary>What happens when the 14-day trial ends?</summary><div class="faq__body"><div><p>You choose a plan or drop to Starter for free, and you keep all your data either way. We never ask for a card to start the trial, so there are no surprise charges.</p></div></div></details>
+        <details class="faq"><summary>Do guests and clients need a paid seat?</summary><div class="faq__body"><div><p>No. Guests are free and unlimited on every plan. They can view, comment on and complete tasks in the projects you share with them, and nothing else.</p></div></div></details>
+        <details class="faq"><summary>Where is our data stored?</summary><div class="faq__body"><div><p>In AWS regions in Frankfurt or Virginia, whichever you choose. Data is encrypted at rest (AES-256) and in transit (TLS 1.3). We're SOC 2 Type II certified and GDPR compliant, and we'll sign a DPA on request.</p></div></div></details>
+        <details class="faq"><summary>Can I switch between monthly and annual billing?</summary><div class="faq__body"><div><p>Yes, at any time from the billing page. If you move to annual, we credit the unused part of your current month straight away.</p></div></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section" id="start" style="padding-top:0">
+    <div class="container">
+      <div class="cta" data-reveal>
+        <div>
+          <h2>Your next plan can update itself.</h2>
+          <p>Start a 14-day trial of Plotline Team. No card needed, free import from your current tool, and you can invite your whole team on day one.</p>
+        </div>
+        <form id="signup" novalidate>
+          <label for="email">Work email</label>
+          <div class="inline">
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@company.com" required>
+            <button class="btn" type="submit">Start free trial
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <small>By signing up you agree to our Terms and Privacy Policy.</small>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Plotline home">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="currentColor"/><path d="M9 21.5c3-6 6.5 1.5 9.5-4.5S23 11 23 11" stroke="var(--on-primary)" stroke-width="2.4" stroke-linecap="round"/><circle cx="23" cy="11" r="2.6" fill="var(--accent)"/></svg>
+          Plotline<span class="dot">.</span>
+        </a>
+        <p>Project planning that keeps itself up to date. Made in Lisbon and Toronto.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a class="link" href="#features">Timeline</a></li>
+          <li><a class="link" href="#features">Workload</a></li>
+          <li><a class="link" href="#features">Automations</a></li>
+          <li><a class="link" href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a class="link" href="#customers">Customers</a></li>
+          <li><a class="link" href="mailto:careers@plotline.app">Careers</a></li>
+          <li><a class="link" href="mailto:press@plotline.app">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a class="link" href="#faq">FAQ</a></li>
+          <li><a class="link" href="mailto:hello@plotline.app">hello@plotline.app</a></li>
+          <li><a class="link" href="tel:+18005550142">+1 (800) 555-0142</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Plotline Software Inc.</span>
+      <span class="status-dot">All systems operational</span>
+      <a class="link" href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* micro.js (frontend-taste) */
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  $$("[data-reveal-stagger]").forEach((el) => [...el.children].forEach((c, i) => c.style.setProperty("--i", Math.min(i, 6))));
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("is-in");
+      if (e.target.dataset.count !== undefined) countUp(e.target);
+      io.unobserve(e.target);
+    }),
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+  );
+  $$("[data-reveal],[data-reveal-stagger],[data-count]").forEach((el) => io.observe(el));
+
+  function countUp(el) {
+    const end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const fmt = (n) => (el.dataset.prefix || "") + n.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + (el.dataset.suffix || "");
+    if (reduce) return (el.textContent = fmt(end));
+    const t0 = performance.now(), dur = 1200;
+    const tick = (t) => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+      el.textContent = fmt(end * e);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const header = document.querySelector(".site-header");
+  const onScroll = () => header?.classList.toggle("is-scrolled", scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  $$("[data-nav-toggle]").forEach((btn) => {
+    const panel = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!panel) return;
+    $$("li", panel).forEach((li, i) => li.style.setProperty("--i", i));
+    const set = (open) => {
+      btn.setAttribute("aria-expanded", open);
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      panel.classList.toggle("is-open", open);
+      document.documentElement.style.overflow = open ? "hidden" : "";
+      if (open) panel.querySelector("a,button")?.focus({ preventScroll: true });
+    };
+    btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+    panel.addEventListener("click", (e) => e.target.closest("a") && set(false));
+    addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { set(false); btn.focus(); }
+    });
+    matchMedia("(min-width: 900px)").addEventListener("change", (m) => m.matches && set(false));
+  });
+
+  if (!reduce && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    $$("[data-magnetic]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width - 0.5) * 12, y = ((e.clientY - r.top) / r.height - 0.5) * 12;
+        el.style.translate = `${x}px ${y}px`;
+      });
+      el.addEventListener("pointerleave", () => (el.style.translate = ""));
+      el.style.transition += ", translate 250ms cubic-bezier(.22,1,.36,1)";
+    });
+  }
+
+  /* Billing toggle */
+  const btns = $$(".billing button");
+  btns.forEach((b) => b.addEventListener("click", () => {
+    btns.forEach((x) => x.setAttribute("aria-pressed", x === b));
+    const mode = b.dataset.billing;
+    $$("[data-" + mode + "]").forEach((el) => (el.textContent = el.dataset[mode]));
+  }));
+
+  /* Signup form: inline validation + success */
+  const form = document.getElementById("signup");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = form.querySelector("input"), status = form.querySelector(".form-status");
+    if (!input.checkValidity()) {
+      status.textContent = "Please enter a valid work email, like you@company.com.";
+      input.focus();
+      return;
+    }
+    const btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.firstChild.textContent = "Creating workspace… ";
+    setTimeout(() => {
+      btn.firstChild.textContent = "You're in ";
+      status.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Check ' + input.value.replace(/[<>&"]/g, "") + " for your sign-in link.";
+    }, 900);
+  });
+
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

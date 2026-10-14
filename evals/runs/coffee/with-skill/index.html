@@ -1,0 +1,1038 @@
+<!doctype html>
+<!--
+  BRIEF
+  Domain & audience: independent neighborhood coffee roaster + café (Halfmoon Coffee, Portland OR).
+    Audience = locals 22–55 who care about good coffee and a calm place to sit; secondary = remote workers, bean subscribers.
+  Tone: cozy, crafted, unhurried.
+  Primary conversion: Order ahead for pickup (secondary: buy beans / visit).
+  Signature moment: hero headline with a hand-drawn honey underline that draws in, beside an arched illustrated cup
+    with softly rising steam and a floating "this week's roast" tasting card.
+  Palette: oat-honey · Fonts: warm-serif (Young Serif + Instrument Sans)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halfmoon Coffee — Roasted on Division Street, Portland</title>
+<meta name="description" content="Halfmoon Coffee is a small-batch roaster and café on SE Division St, Portland. Order ahead for pickup, browse the menu, or take home fresh-roasted beans.">
+<meta name="theme-color" content="#FAF6EF">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- 0. Tokens: Oat & Honey + warm-serif ---------- */
+:root {
+  color-scheme: light dark;
+  --bg: #FAF6EF;
+  --surface: #FFFFFF;
+  --surface2: #F2E9DA;
+  --ink: #3A2B20;
+  --muted: #6C5A4B;
+  --border: #E8DCC8;
+  --primary: #8E4F1B;
+  --on-primary: #FFFFFF;
+  --accent: #E9B872;
+  --on-accent: #3A2B20;
+  --danger: #B3401A;
+  --ok: #3F6B3A;
+
+  --font-display: "Young Serif", ui-serif, Georgia, serif;
+  --font-text: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.90rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.125rem);
+  --step-1:  clamp(1.25rem, 1.16rem + 0.45vw, 1.50rem);
+  --step-2:  clamp(1.56rem, 1.40rem + 0.80vw, 2.00rem);
+  --step-3:  clamp(1.95rem, 1.66rem + 1.45vw, 2.67rem);
+  --step-4:  clamp(2.44rem, 1.95rem + 2.45vw, 3.55rem);
+  --step-5:  clamp(3.05rem, 2.20rem + 4.20vw, 5.30rem);
+
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.5rem;
+  --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem;
+
+  --radius: 12px; --radius-lg: 24px; --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent), 0 1px 3px color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow-lg: 0 2px 4px color-mix(in oklab, var(--ink) 4%, transparent), 0 16px 40px -12px color-mix(in oklab, var(--ink) 22%, transparent);
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --dur-1: 120ms; --dur-2: 200ms; --dur-3: 320ms; --dur-4: 600ms;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1C1510; --surface: #251C15; --surface2: #2F241B;
+    --ink: #F5ECDF; --muted: #C4B29E; --border: #3E3125;
+    --primary: #E9A86A; --on-primary: #1C1510;
+    --accent: #E9B872; --on-accent: #3A2B20;
+    --danger: #F08A6A; --ok: #9CCB8E;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1C1510; --surface: #251C15; --surface2: #2F241B;
+  --ink: #F5ECDF; --muted: #C4B29E; --border: #3E3125;
+  --primary: #E9A86A; --on-primary: #1C1510;
+  --accent: #E9B872; --on-accent: #3A2B20;
+  --danger: #F08A6A; --ok: #9CCB8E;
+}
+
+/* ---------- 1. Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { min-height: 100svh; background: var(--bg); color: var(--ink); font: 400 var(--step-0)/1.65 var(--font-text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, svg, video, picture { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+a { color: inherit; }
+p, h1, h2, h3, h4, li { overflow-wrap: break-word; }
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- 2. Type ---------- */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); line-height: 1.25; letter-spacing: -0.01em; }
+p, li { text-wrap: pretty; }
+.eyebrow { display: inline-block; font: 600 var(--step--1)/1 var(--font-text); letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: var(--s-4); }
+.lead { font-size: var(--step-1); line-height: 1.5; color: var(--muted); max-width: 52ch; }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+.prose { max-width: 65ch; }
+
+/* ---------- 3. Layout ---------- */
+.container { width: min(100% - 2rem, 1200px); margin-inline: auto; }
+.container--narrow { width: min(100% - 2rem, 760px); margin-inline: auto; }
+.section { padding-block: clamp(3.5rem, 8vw, 7rem); }
+.section--alt { background: var(--surface2); }
+.section__head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.grid-auto { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.split { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+@media (min-width: 900px) { .split { grid-template-columns: 7fr 5fr; } .split--rev { grid-template-columns: 5fr 7fr; } .split--rev > :first-child { order: 2; } }
+.cluster { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+.stack > * + * { margin-top: var(--space, var(--s-4)); }
+.skip { position: absolute; left: var(--s-4); top: -100px; z-index: 100; background: var(--primary); color: var(--on-primary); padding: var(--s-2) var(--s-4); border-radius: var(--radius); }
+.skip:focus { top: var(--s-4); }
+
+/* ---------- 4. Header & nav ---------- */
+.site-header { position: sticky; top: 0; z-index: 50; padding-block: 1rem; transition: padding var(--dur-3) var(--ease-out), background-color var(--dur-3), box-shadow var(--dur-3); }
+.site-header.is-scrolled { padding-block: .6rem; background: color-mix(in oklab, var(--bg) 85%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); box-shadow: 0 1px 0 var(--border); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); }
+.logo { display: inline-flex; align-items: center; gap: var(--s-2); text-decoration: none; font-family: var(--font-display); font-size: var(--step-1); line-height: 1; min-height: 44px; }
+.logo svg { width: 34px; height: 34px; color: var(--primary); }
+.nav-links { display: none; }
+.nav-cta { display: none; }
+.nav-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius); position: relative; z-index: 51; }
+.burger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform var(--dur-3) var(--ease-out), opacity var(--dur-2); }
+.burger span + span { margin-top: 5px; }
+[aria-expanded="true"] .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+[aria-expanded="true"] .burger span:nth-child(2) { opacity: 0; }
+[aria-expanded="true"] .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav { position: fixed; inset: 0 0 0 auto; z-index: 49; width: min(85vw, 360px); padding: 6rem var(--s-6) var(--s-6); background: var(--surface); box-shadow: var(--shadow-lg); transform: translateX(105%); visibility: hidden; transition: transform var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3); display: flex; flex-direction: column; gap: var(--s-6); }
+.mobile-nav.is-open { transform: none; visibility: visible; transition: transform var(--dur-3) var(--ease-out), visibility 0s; }
+.mobile-nav ul { list-style: none; padding: 0; display: grid; gap: var(--s-1); }
+.mobile-nav a:not(.btn) { display: block; padding: .8rem 0; font-size: var(--step-1); font-family: var(--font-display); text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-nav.is-open li { animation: slide-in var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 50ms + 80ms); }
+.mobile-nav__meta { font-size: var(--step--1); color: var(--muted); }
+@keyframes slide-in { from { opacity: 0; transform: translateX(16px); } }
+@media (min-width: 900px) {
+  .nav-links { display: flex; gap: var(--s-6); list-style: none; padding: 0; }
+  .nav-links a { text-decoration: none; font-weight: 500; display: inline-block; padding-block: .6rem; }
+  .nav-cta { display: inline-flex; }
+  .nav-toggle, .mobile-nav { display: none; }
+}
+
+/* ---------- 5. Components ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; min-height: 48px; padding: .8em 1.4em; border-radius: var(--radius-pill); font-weight: 600; line-height: 1.1; text-decoration: none; background: var(--primary); color: var(--on-primary);
+  box-shadow: 0 6px 16px -6px color-mix(in oklab, var(--primary) 60%, transparent);
+  transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), background-color var(--dur-2); }
+.btn svg { width: 1.1em; height: 1.1em; transition: transform var(--dur-2) var(--ease-out); }
+.btn--accent { background: var(--accent); color: var(--on-accent); box-shadow: 0 6px 16px -6px color-mix(in oklab, var(--accent) 70%, transparent); }
+.btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ink) 25%, transparent); }
+.btn--sm { min-height: 44px; padding: .6em 1.1em; font-size: var(--step--1); }
+.btn:active { transform: scale(.98); transition-duration: var(--dur-1); }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: var(--radius-pill); }
+.link { text-decoration: none; background: linear-gradient(currentColor 0 0) 0 100% / 0 2px no-repeat; transition: background-size var(--dur-3) var(--ease-out); }
+.link:hover, .link:focus-visible { background-size: 100% 2px; }
+.card { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+  transition: transform var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out), border-color var(--dur-3); }
+.card__body { padding: var(--s-5); display: grid; gap: var(--s-2); }
+.badge { display: inline-flex; align-items: center; gap: .35em; padding: .3em .75em; border-radius: var(--radius-pill); font-size: var(--step--1); font-weight: 600; background: color-mix(in oklab, var(--primary) 12%, var(--surface)); color: var(--primary); width: fit-content; }
+.icon-tile { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: color-mix(in oklab, var(--primary) 12%, var(--surface)); color: var(--primary); flex: none; }
+.icon-tile svg { width: 24px; height: 24px; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px color-mix(in oklab, var(--primary) 55%, transparent); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn--ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: color-mix(in oklab, var(--primary) 30%, var(--border)); }
+  .card:hover .card__art svg { transform: scale(1.05) rotate(-2deg); }
+}
+.btn:focus-visible svg { transform: translateX(3px); }
+.card:focus-within { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* FAQ */
+.faq { border-bottom: 1px solid var(--border); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); padding: 1.1rem 0; font-weight: 600; font-size: var(--step-1); min-height: 44px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font-size: 1.5em; line-height: 1; color: var(--primary); transition: transform var(--dur-3) var(--ease-spring); }
+.faq[open] summary::after { transform: rotate(45deg); }
+.faq__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-3) var(--ease-out); }
+.faq[open] .faq__body { grid-template-rows: 1fr; }
+.faq__body > div { overflow: hidden; color: var(--muted); }
+.faq__body p { padding-bottom: 1.1rem; max-width: 65ch; }
+
+/* Forms */
+.field { display: grid; gap: var(--s-2); }
+.field label { font-weight: 600; font-size: var(--step--1); }
+.field input, .field select, .field textarea { width: 100%; min-height: 48px; font-size: max(16px, 1rem); padding: .8em 1em; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--surface); transition: border-color var(--dur-2), box-shadow var(--dur-2); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 18%, transparent); }
+.field :user-invalid { border-color: var(--danger); animation: shake 300ms var(--ease-out); }
+@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+/* ---------- 6. Motion ---------- */
+.js [data-reveal], .js [data-reveal-stagger] > * { opacity: 0; transform: translateY(20px); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
+.js .is-in[data-reveal], .js .is-in[data-reveal-stagger] > * { opacity: 1; transform: none; }
+.rise { animation: rise var(--dur-4) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+/* ---------- 7. Page ---------- */
+/* Hero */
+.hero { padding-block: clamp(1.5rem, 5vw, 4rem) clamp(3.5rem, 8vw, 6rem); position: relative; }
+.hero .split { align-items: center; }
+.hero h1 { margin-bottom: var(--s-5); }
+.hero h1 em { font-style: normal; position: relative; display: inline-block; color: var(--primary); }
+.scribble { position: absolute; left: -2%; right: -2%; bottom: -.18em; width: 104%; height: .32em; color: var(--accent); overflow: visible; }
+.scribble path { stroke-dasharray: 320; stroke-dashoffset: 320; animation: draw 900ms var(--ease-out) 650ms forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.hero .lead { margin-bottom: var(--s-6); }
+.hero__meta { margin-top: var(--s-6); display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); color: var(--muted); font-size: var(--step--1); }
+.hero__meta span { display: inline-flex; align-items: center; gap: var(--s-2); }
+.hero__meta svg { width: 18px; height: 18px; color: var(--primary); }
+.open-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in oklab, var(--ok) 20%, transparent); }
+.open-dot.is-closed { background: var(--muted); box-shadow: 0 0 0 4px color-mix(in oklab, var(--muted) 20%, transparent); }
+
+.hero__art { position: relative; max-width: 480px; width: 100%; margin-inline: auto; }
+.arch { position: relative; aspect-ratio: 4 / 5; border-radius: 999px 999px var(--radius-lg) var(--radius-lg); background: var(--surface2); overflow: hidden; display: grid; place-items: end center; }
+.arch::before { content: ""; position: absolute; inset: 0; opacity: .5; background-image: radial-gradient(color-mix(in oklab, var(--primary) 30%, transparent) 1px, transparent 1.6px); background-size: 16px 16px; }
+.arch svg.cup { position: relative; width: 78%; margin-bottom: 8%; }
+.steam path { stroke-dasharray: 6 0; animation: steam 4.5s var(--ease-in-out) infinite; opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; }
+.steam path:nth-child(2) { animation-delay: 1.4s; }
+.steam path:nth-child(3) { animation-delay: 2.8s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(14px) scaleY(.85); } 35% { opacity: .9; } 100% { opacity: 0; transform: translateY(-18px) scaleY(1.05); } }
+.blob { position: absolute; width: 38%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); right: -6%; top: 6%; z-index: -1; animation: float 8s var(--ease-in-out) infinite alternate; }
+@keyframes float { to { transform: translate(-8px, 12px); } }
+.roast-card { position: absolute; left: -4%; bottom: 10%; width: min(78%, 270px); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s-4) var(--s-5); box-shadow: var(--shadow-lg); }
+.roast-card .eyebrow { margin-bottom: var(--s-2); }
+.roast-card strong { font-family: var(--font-display); font-weight: 400; font-size: var(--step-1); display: block; line-height: 1.2; }
+.roast-card p { font-size: var(--step--1); color: var(--muted); margin-top: var(--s-1); }
+.notes { display: flex; flex-wrap: wrap; gap: var(--s-1); margin-top: var(--s-3); }
+.notes span { font-size: var(--step--1); padding: .15em .65em; border-radius: var(--radius-pill); background: color-mix(in oklab, var(--accent) 30%, var(--surface)); color: var(--ink); }
+@media (min-width: 900px) { .roast-card { left: -14%; } }
+
+/* Origins marquee */
+.strip { border-block: 1px solid var(--border); padding-block: var(--s-5); background: var(--surface); }
+.marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, var(--ink) 10%, var(--ink) 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, var(--ink) 10%, var(--ink) 90%, transparent); }
+.marquee__track { display: flex; gap: var(--s-7); width: max-content; animation: marquee 40s linear infinite; list-style: none; padding: 0; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__track li { display: inline-flex; align-items: center; gap: var(--s-3); font-family: var(--font-display); font-size: var(--step-1); white-space: nowrap; color: var(--muted); }
+.marquee__track li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Signature drinks */
+.drinks { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.card__art { aspect-ratio: 5 / 4; display: grid; place-items: center; background: var(--surface2); overflow: hidden; }
+.card__art svg { width: 56%; transition: transform var(--dur-4) var(--ease-out); }
+.card__top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); }
+.price { font-family: var(--font-display); font-size: var(--step-1); color: var(--primary); font-variant-numeric: tabular-nums; }
+.card p { color: var(--muted); }
+.card .stretched { text-decoration: none; }
+.card .stretched::after { content: ""; position: absolute; inset: 0; }
+.card .stretched:focus-visible { outline: none; }
+
+/* Story */
+.story__art { position: relative; }
+.story__art .frame { aspect-ratio: 1; border-radius: var(--radius-lg); background: var(--primary); color: var(--on-primary); display: grid; place-items: center; overflow: hidden; position: relative; }
+.story__art .frame svg { width: 70%; }
+.story__art .stamp { position: absolute; right: -2%; bottom: -6%; width: 34%; min-width: 110px; aspect-ratio: 1; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; text-align: center; font-family: var(--font-display); line-height: 1.1; box-shadow: var(--shadow-lg); transform: rotate(-8deg); padding: var(--s-3); }
+.story__art .stamp b { display: block; font-weight: 400; font-size: var(--step-3); }
+.story__art .stamp small { font-family: var(--font-text); font-size: var(--step--1); font-weight: 600; }
+.signoff { display: flex; align-items: center; gap: var(--s-3); margin-top: var(--s-6); }
+.signoff .avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--surface2); display: grid; place-items: center; font-family: var(--font-display); color: var(--primary); border: 1px solid var(--border); }
+.signoff p { line-height: 1.35; }
+
+/* Menu */
+.menu-wrap { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+@media (min-width: 900px) { .menu-wrap { grid-template-columns: 4fr 8fr; align-items: start; } .menu-wrap .section__head { position: sticky; top: 6rem; } }
+.tabs { position: relative; display: flex; gap: var(--s-1); padding: var(--s-1); border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--border); width: fit-content; max-width: 100%; overflow-x: auto; margin-bottom: var(--s-6); }
+.tabs button { position: relative; z-index: 1; min-height: 44px; padding: .5em 1.1em; border-radius: var(--radius-pill); font-weight: 600; white-space: nowrap; color: var(--muted); transition: color var(--dur-2); }
+.tabs button[aria-selected="true"] { color: var(--on-primary); }
+.tabs button:focus-visible { outline-offset: -3px; border-radius: var(--radius-pill); outline-color: var(--accent); }
+.tabs__indicator { position: absolute; top: var(--s-1); bottom: var(--s-1); left: 0; width: var(--w, 0); transform: translateX(var(--x, 0)); background: var(--primary); border-radius: var(--radius-pill); transition: transform var(--dur-3) var(--ease-out), width var(--dur-3) var(--ease-out); }
+.menu-list { list-style: none; padding: 0; display: grid; gap: var(--s-5); }
+.menu-list li { display: grid; gap: var(--s-1); }
+.menu-row { display: flex; align-items: baseline; gap: var(--s-3); }
+.menu-row h3 { font-size: var(--step-1); }
+.menu-row::after { content: ""; order: 1; flex: 1; border-bottom: 2px dotted color-mix(in oklab, var(--ink) 30%, transparent); transform: translateY(-.3em); min-width: 1.5rem; }
+.menu-row .price { order: 2; font-size: var(--step-0); font-family: var(--font-text); font-weight: 600; }
+.menu-list p { color: var(--muted); font-size: var(--step--1); max-width: 52ch; }
+.tag { font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--primary); margin-left: var(--s-2); font-family: var(--font-text); vertical-align: middle; }
+[role="tabpanel"][hidden] { display: none; }
+[role="tabpanel"]:not([hidden]) { animation: rise var(--dur-3) var(--ease-out) both; }
+.menu-note { margin-top: var(--s-6); font-size: var(--step--1); color: var(--muted); }
+
+/* Roast band */
+.band { background: var(--primary); color: var(--on-primary); position: relative; overflow: hidden; }
+.band .eyebrow { color: var(--accent); }
+.band .lead { color: color-mix(in oklab, var(--on-primary) 85%, transparent); }
+.steps { list-style: none; padding: 0; display: grid; gap: var(--s-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); counter-reset: step; margin-top: var(--s-7); }
+.steps li { border-top: 1px solid color-mix(in oklab, var(--on-primary) 35%, transparent); padding-top: var(--s-5); counter-increment: step; }
+.steps li::before { content: "0" counter(step); display: block; font-family: var(--font-display); font-size: var(--step-2); color: var(--accent); margin-bottom: var(--s-3); }
+.steps h3 { margin-bottom: var(--s-2); }
+.steps p { color: color-mix(in oklab, var(--on-primary) 85%, transparent); }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-6) var(--s-5); margin-top: var(--s-8); padding-top: var(--s-7); border-top: 1px solid color-mix(in oklab, var(--on-primary) 35%, transparent); }
+@media (min-width: 900px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat b { display: block; font-family: var(--font-display); font-weight: 400; font-size: var(--step-4); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: var(--s-2); font-size: var(--step--1); color: color-mix(in oklab, var(--on-primary) 85%, transparent); max-width: 22ch; }
+.band__ring { position: absolute; right: -120px; top: -120px; width: 360px; height: 360px; color: var(--on-primary); opacity: .08; pointer-events: none; }
+
+/* Beans */
+.beans { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.bean .card__art { aspect-ratio: 1 / 1; }
+.bean .card__art svg { width: 48%; }
+.bean__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); margin-top: var(--s-3); flex-wrap: wrap; }
+.bean__foot .btn { position: relative; z-index: 1; }
+.btn.is-added { background: var(--ok); color: var(--surface); }
+.sub-note { margin-top: var(--s-6); display: flex; gap: var(--s-4); align-items: flex-start; padding: var(--s-5); border-radius: var(--radius-lg); border: 1.5px dashed color-mix(in oklab, var(--primary) 45%, var(--border)); background: color-mix(in oklab, var(--accent) 10%, var(--bg)); }
+.sub-note p { color: var(--muted); }
+.sub-note strong { color: var(--ink); }
+
+/* Reviews */
+.reviews { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); }
+@media (min-width: 900px) { .reviews { grid-template-columns: 7fr 5fr; align-items: start; } }
+.quote-big { font-family: var(--font-display); font-size: var(--step-3); line-height: 1.2; letter-spacing: -0.015em; text-wrap: balance; }
+.quote-big::before { content: "\201C"; display: block; font-size: 2.2em; line-height: .6; color: var(--accent); margin-bottom: var(--s-3); }
+.who { margin-top: var(--s-5); display: flex; align-items: center; gap: var(--s-3); color: var(--muted); font-size: var(--step--1); }
+.who b { color: var(--ink); font-weight: 600; }
+.stars { display: inline-flex; gap: 2px; color: var(--primary); }
+.stars svg { width: 16px; height: 16px; }
+.small-quotes { display: grid; gap: var(--s-4); }
+.small-quote { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s-5); }
+.small-quote p { margin-block: var(--s-2); }
+
+/* Visit */
+.visit { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+@media (min-width: 900px) { .visit { grid-template-columns: 5fr 7fr; align-items: center; } }
+.hours { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; margin-block: var(--s-5); }
+.hours th, .hours td { text-align: left; padding: .7rem 0; border-bottom: 1px solid var(--border); font-weight: 400; }
+.hours th { font-weight: 600; }
+.hours td { text-align: right; color: var(--muted); }
+.hours tr.is-today th, .hours tr.is-today td { color: var(--primary); font-weight: 600; }
+.contact-list { list-style: none; padding: 0; display: grid; gap: var(--s-2); }
+.contact-list a { display: inline-flex; align-items: center; gap: var(--s-3); min-height: 44px; text-decoration: none; }
+.contact-list svg { width: 20px; height: 20px; color: var(--primary); flex: none; }
+.map { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); background: var(--surface2); aspect-ratio: 4 / 3; }
+.map svg { width: 100%; height: 100%; }
+.map__pin { position: absolute; left: 54%; top: 46%; transform: translate(-50%, -100%); display: grid; justify-items: center; gap: var(--s-1); }
+.map__pin span { background: var(--surface); border: 1px solid var(--border); padding: .35em .8em; border-radius: var(--radius-pill); font-size: var(--step--1); font-weight: 600; white-space: nowrap; box-shadow: var(--shadow-sm); }
+.map__pin svg { width: 34px; height: 34px; color: var(--primary); animation: bob 2.4s var(--ease-in-out) infinite alternate; }
+@keyframes bob { to { transform: translateY(-5px); } }
+
+/* Order */
+.order { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+@media (min-width: 900px) { .order { grid-template-columns: 5fr 7fr; } }
+.order-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.25rem, 4vw, 2.5rem); display: grid; gap: var(--s-5); box-shadow: var(--shadow-sm); }
+.form-row { display: grid; gap: var(--s-5); }
+@media (min-width: 600px) { .form-row { grid-template-columns: 1fr 1fr; } }
+.choice { display: flex; flex-wrap: wrap; gap: var(--s-2); border: 0; padding: 0; }
+.choice legend { font-weight: 600; font-size: var(--step--1); margin-bottom: var(--s-2); }
+.choice label { position: relative; }
+.choice input { position: absolute; opacity: 0; inset: 0; }
+.choice span { display: inline-flex; align-items: center; min-height: 44px; padding: .4em 1em; border-radius: var(--radius-pill); border: 1.5px solid var(--border); cursor: pointer; font-weight: 500; transition: background-color var(--dur-2), border-color var(--dur-2), color var(--dur-2); }
+.choice input:checked + span { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.choice input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .choice span:hover { border-color: var(--primary); } }
+.form-status { display: none; align-items: flex-start; gap: var(--s-3); padding: var(--s-4); border-radius: var(--radius); background: color-mix(in oklab, var(--ok) 12%, var(--surface)); border: 1px solid color-mix(in oklab, var(--ok) 40%, var(--border)); }
+.form-status.is-visible { display: flex; animation: rise var(--dur-3) var(--ease-out) both; }
+.form-status svg { width: 22px; height: 22px; color: var(--ok); flex: none; margin-top: 2px; }
+.spinner { width: 1.1em; height: 1.1em; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin 700ms linear infinite; display: none; }
+.is-loading .spinner { display: inline-block; }
+.is-loading .btn-arrow { display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.perks { list-style: none; padding: 0; display: grid; gap: var(--s-4); margin-top: var(--s-6); }
+.perks li { display: flex; gap: var(--s-4); align-items: flex-start; }
+.perks p { color: var(--muted); font-size: var(--step--1); }
+
+/* Footer */
+.site-footer { background: var(--surface2); padding-block: clamp(3rem, 6vw, 5rem) var(--s-6); border-top: 1px solid var(--border); }
+.footer-grid { display: grid; gap: var(--s-7); grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.footer-grid h2 { font-size: var(--step--1); font-family: var(--font-text); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: var(--s-3); }
+.footer-grid ul { list-style: none; padding: 0; display: grid; }
+.footer-grid ul a { display: inline-block; padding-block: .6rem; }
+.footer-grid p { color: var(--muted); }
+.newsletter { display: flex; gap: var(--s-2); margin-top: var(--s-4); flex-wrap: wrap; }
+.newsletter input { flex: 1 1 180px; min-width: 0; min-height: 48px; font-size: max(16px, 1rem); padding: .7em 1em; border: 1.5px solid var(--border); border-radius: var(--radius-pill); background: var(--surface); }
+.newsletter input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 18%, transparent); }
+.socials { display: flex; gap: var(--s-2); margin-top: var(--s-4); }
+.socials a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); transition: transform var(--dur-2) var(--ease-out), color var(--dur-2), border-color var(--dur-2); }
+.socials svg { width: 20px; height: 20px; }
+@media (hover: hover) and (pointer: fine) { .socials a:hover { transform: translateY(-2px); color: var(--primary); border-color: var(--primary); } }
+.socials a:focus-visible { color: var(--primary); border-color: var(--primary); border-radius: 50%; }
+.legal { margin-top: var(--s-8); padding-top: var(--s-5); border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); font-size: var(--step--1); color: var(--muted); }
+.big-word { font-family: var(--font-display); font-size: clamp(3.5rem, 17vw, 14rem); line-height: .9; letter-spacing: -0.04em; color: color-mix(in oklab, var(--primary) 14%, var(--surface2)); margin-top: var(--s-7); user-select: none; white-space: nowrap; overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .scribble path { stroke-dashoffset: 0; }
+  .steam path { opacity: .7; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="#top" aria-label="Halfmoon Coffee, home">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/><path d="M24 9a11 11 0 1 0 0 22 13 13 0 0 1 0-22Z" fill="currentColor"/></svg>
+      Halfmoon
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a class="link" href="#menu">Menu</a></li>
+        <li><a class="link" href="#story">Our story</a></li>
+        <li><a class="link" href="#beans">Beans</a></li>
+        <li><a class="link" href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--sm nav-cta" href="#order">Order ahead
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+  <ul>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#story">Our story</a></li>
+    <li><a href="#beans">Beans</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="btn" href="#order">Order ahead
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+  <p class="mobile-nav__meta">1418 SE Division St, Portland<br>Open daily from 6:30am</p>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container split">
+      <div>
+        <span class="eyebrow rise" style="--i:0">Roasted on Division St. since 2014</span>
+        <h1 class="rise" style="--i:1">Slow mornings, <em>honest
+          <svg class="scribble" viewBox="0 0 300 24" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M4 16c40-9 92-12 150-9 52 3 96 4 142-5" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg></em> coffee.</h1>
+        <p class="lead rise" style="--i:2">We roast small batches twice a week, pull every shot by hand, and bake our cardamom buns at 5am. Pull up a chair — or order ahead and skip the line.</p>
+        <div class="cluster rise" style="--i:3">
+          <a class="btn" href="#order" data-magnetic>Order for pickup
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#menu">See the menu</a>
+        </div>
+        <div class="hero__meta rise" style="--i:4">
+          <span><i class="open-dot" id="open-dot" aria-hidden="true"></i><span id="open-text">Open daily 6:30am – 5pm</span></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>1418 SE Division St, Portland</span>
+        </div>
+      </div>
+
+      <div class="hero__art rise" style="--i:2">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="arch">
+          <svg class="cup" viewBox="0 0 260 260" fill="none" role="img" aria-label="Illustration of a steaming ceramic cup on a saucer">
+            <g class="steam" stroke="var(--primary)" stroke-width="5" stroke-linecap="round" opacity=".7">
+              <path d="M100 92c-12-14 12-22 0-38s10-24 4-34"/>
+              <path d="M130 92c-12-14 12-22 0-38s10-24 4-34"/>
+              <path d="M160 92c-12-14 12-22 0-38s10-24 4-34"/>
+            </g>
+            <ellipse cx="130" cy="226" rx="112" ry="20" fill="var(--border)"/>
+            <ellipse cx="130" cy="220" rx="104" ry="16" fill="var(--surface)"/>
+            <path d="M58 108h144v42c0 40-30 68-72 68s-72-28-72-68v-42Z" fill="var(--primary)"/>
+            <path d="M202 120c26 0 34 14 34 26 0 18-16 30-40 30" stroke="var(--primary)" stroke-width="12" stroke-linecap="round"/>
+            <ellipse cx="130" cy="108" rx="72" ry="14" fill="var(--ink)"/>
+            <ellipse cx="130" cy="108" rx="60" ry="9" fill="var(--accent)" opacity=".55"/>
+            <path d="M118 107c6-4 18-4 24 0" stroke="var(--surface)" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+            <path d="M78 150c6 26 22 44 44 50" stroke="var(--surface)" stroke-width="5" stroke-linecap="round" opacity=".25"/>
+          </svg>
+        </div>
+        <aside class="roast-card" aria-label="This week's roast">
+          <span class="eyebrow">This week's roast</span>
+          <strong>Finca La Esperanza</strong>
+          <p>Huila, Colombia · washed · roasted Tue</p>
+          <div class="notes"><span>panela</span><span>red apple</span><span>cocoa</span></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGINS STRIP -->
+  <div class="strip" aria-label="Origins we roast this season">
+    <div class="marquee">
+      <ul class="marquee__track">
+        <li>Huila, Colombia</li><li>Guji, Ethiopia</li><li>Nyeri, Kenya</li><li>Cerrado, Brazil</li><li>Huehuetenango, Guatemala</li><li>Kirinyaga, Kenya</li><li>Cajamarca, Peru</li>
+        <li aria-hidden="true">Huila, Colombia</li><li aria-hidden="true">Guji, Ethiopia</li><li aria-hidden="true">Nyeri, Kenya</li><li aria-hidden="true">Cerrado, Brazil</li><li aria-hidden="true">Huehuetenango, Guatemala</li><li aria-hidden="true">Kirinyaga, Kenya</li><li aria-hidden="true">Cajamarca, Peru</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SIGNATURE DRINKS -->
+  <section class="section" aria-labelledby="sig-title">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">What regulars order</span>
+        <h2 id="sig-title">Three drinks we'd stake the name on</h2>
+      </div>
+      <div class="drinks" data-reveal-stagger>
+        <article class="card">
+          <div class="card__art" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none"><path d="M30 44h60l-6 56a8 8 0 0 1-8 7H44a8 8 0 0 1-8-7l-6-56Z" fill="var(--primary)"/><path d="M33 64h54" stroke="var(--accent)" stroke-width="6"/><ellipse cx="60" cy="44" rx="30" ry="6" fill="var(--surface)"/><path d="M52 40c4-6 12-6 16 0" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card__body">
+            <div class="card__top"><h3><a class="stretched" href="#order">Honey Oat Cortado</a></h3><span class="price">$5.25</span></div>
+            <p>Double ristretto, Oatly, and a spoon of Wilamette Valley clover honey. Small, strong, gone in five sips.</p>
+            <span class="badge">Most ordered</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__art" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none"><rect x="36" y="22" width="48" height="84" rx="10" fill="var(--surface)" stroke="var(--primary)" stroke-width="4"/><rect x="40" y="44" width="40" height="58" rx="6" fill="var(--primary)"/><rect x="46" y="52" width="10" height="10" rx="2" fill="var(--surface)" opacity=".7"/><rect x="62" y="64" width="10" height="10" rx="2" fill="var(--surface)" opacity=".7"/><path d="M70 10v30" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card__body">
+            <div class="card__top"><h3><a class="stretched" href="#order">18-Hour Cold Brew</a></h3><span class="price">$4.75</span></div>
+            <p>Steeped overnight from our Cerrado natural. Chocolatey, low-acid, and dangerously easy on a July afternoon.</p>
+            <span class="badge">Served on tap</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__art" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none"><path d="M60 18c18 0 30 12 30 26 0 10-6 16-6 16H36s-6-6-6-16c0-14 12-26 30-26Z" fill="var(--accent)"/><path d="M36 60h48l-4 34a10 10 0 0 1-10 9H50a10 10 0 0 1-10-9l-4-34Z" fill="var(--primary)"/><path d="M44 38c6 6 14-6 20 0s12-4 14 2" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card__body">
+            <div class="card__top"><h3><a class="stretched" href="#order">Cardamom Bun</a></h3><span class="price">$4.50</span></div>
+            <p>Laminated, knotted, and rolled in fresh-ground cardamom sugar. Out of the oven at 6:15 — usually gone by 10.</p>
+            <span class="badge">Baked daily</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section section--alt" id="story" aria-labelledby="story-title">
+    <div class="container split split--rev">
+      <div class="story__art" data-reveal>
+        <div class="frame">
+          <svg viewBox="0 0 200 200" fill="none" role="img" aria-label="Illustration of a small drum coffee roaster">
+            <rect x="40" y="70" width="110" height="70" rx="35" fill="currentColor" opacity=".18"/>
+            <rect x="40" y="70" width="110" height="70" rx="35" stroke="currentColor" stroke-width="4"/>
+            <path d="M150 105h18M95 70V44h-20l10-16h20l10 16H95" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="95" cy="105" r="18" stroke="currentColor" stroke-width="4"/>
+            <path d="M60 140v26M130 140v26M48 166h94" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="95" cy="105" r="5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="stamp"><div><b class="num">2014</b><small>est. on Division</small></div></div>
+      </div>
+      <div data-reveal>
+        <span class="eyebrow">Our story</span>
+        <h2 id="story-title">A 5-kilo roaster, a borrowed corner, and a lot of early mornings</h2>
+        <div class="stack prose" style="--space: var(--s-4); margin-top: var(--s-5)">
+          <p class="muted">Halfmoon started in the back of Rosa's bike shop with a secondhand Diedrich roaster and three wholesale accounts. Eleven years later we have our own room on Division, but the roaster is the same one — it just has more stickers now.</p>
+          <p class="muted">We buy from fourteen farms, most of them for five seasons or longer, and pay well above the Fair Trade floor because good coffee costs what it costs. Everything we serve was roasted within the last 10 days.</p>
+        </div>
+        <div class="signoff">
+          <div class="avatar" aria-hidden="true">MO</div>
+          <p><b>Maya Okafor</b><br><span class="muted">Founder &amp; head roaster</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section" id="menu" aria-labelledby="menu-title">
+    <div class="container menu-wrap">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">The menu</span>
+        <h2 id="menu-title">Short menu, done properly</h2>
+        <p class="lead" style="margin-top: var(--s-4)">Oat, almond and whole milk at no extra charge. Every espresso drink is a double.</p>
+      </div>
+      <div data-reveal>
+        <div class="tabs" role="tablist" aria-label="Menu categories">
+          <span class="tabs__indicator" aria-hidden="true"></span>
+          <button role="tab" id="tab-coffee" aria-controls="panel-coffee" aria-selected="true">Espresso &amp; brew</button>
+          <button role="tab" id="tab-other" aria-controls="panel-other" aria-selected="false" tabindex="-1">Not coffee</button>
+          <button role="tab" id="tab-bakery" aria-controls="panel-bakery" aria-selected="false" tabindex="-1">Bakery</button>
+        </div>
+
+        <div role="tabpanel" id="panel-coffee" aria-labelledby="tab-coffee" tabindex="0">
+          <ul class="menu-list">
+            <li><div class="menu-row"><h3>Espresso</h3><span class="price">$3.50</span></div><p>Rotating single origin. Ask what's on — right now it's the Guji natural.</p></li>
+            <li><div class="menu-row"><h3>Cortado</h3><span class="price">$4.50</span></div><p>Equal parts espresso and steamed milk, 4 oz.</p></li>
+            <li><div class="menu-row"><h3>Flat white</h3><span class="price">$4.75</span></div><p>Velvet microfoam, 6 oz. The barista's favorite.</p></li>
+            <li><div class="menu-row"><h3>Latte <span class="tag">hot or iced</span></h3><span class="price">$5.25</span></div><p>12 oz. Add house vanilla, honey or brown-butter syrup +$0.75.</p></li>
+            <li><div class="menu-row"><h3>Pour-over</h3><span class="price">$5.50</span></div><p>Any bag on the shelf, brewed on a Kalita Wave. Takes four minutes; worth it.</p></li>
+            <li><div class="menu-row"><h3>Batch brew</h3><span class="price">$3.25</span></div><p>Free refills if you're staying in.</p></li>
+          </ul>
+        </div>
+        <div role="tabpanel" id="panel-other" aria-labelledby="tab-other" tabindex="0" hidden>
+          <ul class="menu-list">
+            <li><div class="menu-row"><h3>Ceremonial matcha latte</h3><span class="price">$5.75</span></div><p>Uji matcha whisked to order, with your choice of milk.</p></li>
+            <li><div class="menu-row"><h3>Spiced chai</h3><span class="price">$5.00</span></div><p>Our own blend, simmered with ginger, black pepper and cardamom.</p></li>
+            <li><div class="menu-row"><h3>Drinking chocolate</h3><span class="price">$4.75</span></div><p>Made with Woodblock 70% from across the river.</p></li>
+            <li><div class="menu-row"><h3>Loose-leaf tea</h3><span class="price">$3.75</span></div><p>Sencha, Assam, chamomile or Earl Grey, from Steven Smith Teamaker.</p></li>
+          </ul>
+        </div>
+        <div role="tabpanel" id="panel-bakery" aria-labelledby="tab-bakery" tabindex="0" hidden>
+          <ul class="menu-list">
+            <li><div class="menu-row"><h3>Cardamom bun</h3><span class="price">$4.50</span></div><p>Our signature. Get here before 10.</p></li>
+            <li><div class="menu-row"><h3>Brown-butter banana bread</h3><span class="price">$4.00</span></div><p>Thick slice, toasted, with salted butter.</p></li>
+            <li><div class="menu-row"><h3>Breakfast sando <span class="tag">until 11</span></h3><span class="price">$9.50</span></div><p>Soft scramble, aged cheddar, chili crisp on a milk bun. Veggie sausage +$2.</p></li>
+            <li><div class="menu-row"><h3>Olive-oil cake <span class="tag">GF</span></h3><span class="price">$4.75</span></div><p>Almond flour, orange zest, a little flaky salt.</p></li>
+          </ul>
+        </div>
+        <p class="menu-note">Prices include tax. Tell us about any allergies — our kitchen handles nuts, dairy, wheat and eggs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROAST BAND -->
+  <section class="section band" aria-labelledby="roast-title">
+    <svg class="band__ring" viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2"/><circle cx="50" cy="50" r="34" stroke="currentColor" stroke-width="2"/><circle cx="50" cy="50" r="22" stroke="currentColor" stroke-width="2"/></svg>
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">From farm to cup</span>
+        <h2 id="roast-title">Every bag passes through four pairs of hands we know by name</h2>
+      </div>
+      <ol class="steps" data-reveal-stagger>
+        <li><h3>Sourced direct</h3><p>We visit partner farms every other year and cup samples from each harvest before committing.</p></li>
+        <li><h3>Roasted Tue &amp; Fri</h3><p>Small 5 kg batches, profiled by Maya to taste like the place it grew — not like the roast.</p></li>
+        <li><h3>Rested 4 days</h3><p>Fresh isn't always best. Espresso rests before it hits the grinder, so it pulls sweet and even.</p></li>
+        <li><h3>Poured by hand</h3><p>Our baristas dial in every morning at 6am. If a shot runs fast, it goes down the drain.</p></li>
+      </ol>
+      <div class="stats">
+        <div class="stat"><b data-count="14">14</b><span>partner farms across 7 countries</span></div>
+        <div class="stat"><b data-count="11">11</b><span>years on the same Diedrich roaster</span></div>
+        <div class="stat"><b data-count="2400" data-suffix="+">2,400+</b><span>cups poured on Division every week</span></div>
+        <div class="stat"><b data-count="10" data-suffix=" days">10 days</b><span>max from roast to your cup</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEANS -->
+  <section class="section" id="beans" aria-labelledby="beans-title">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">Take some home</span>
+        <h2 id="beans-title">Beans on the shelf this month</h2>
+        <p class="lead" style="margin-top: var(--s-4)">12 oz bags, whole bean or ground to order. Pick up in store or add to your pickup order.</p>
+      </div>
+      <div class="beans" data-reveal-stagger>
+        <article class="card bean">
+          <div class="card__art" aria-hidden="true"><svg viewBox="0 0 100 120" fill="none"><path d="M22 20h56l6 92H16l6-92Z" fill="var(--primary)"/><path d="M22 20l6-10h44l6 10" fill="var(--border)"/><rect x="30" y="48" width="40" height="34" rx="4" fill="var(--surface)"/><circle cx="50" cy="65" r="8" fill="var(--accent)"/></svg></div>
+          <div class="card__body">
+            <span class="badge">Espresso · medium</span>
+            <h3>Halfmoon House Blend</h3>
+            <p>Brazil + Colombia. Milk chocolate, toasted hazelnut, caramel. What's in your latte.</p>
+            <div class="bean__foot"><span class="price">$17</span><button class="btn btn--sm btn--ghost" type="button" data-add="House Blend">Add to order</button></div>
+          </div>
+        </article>
+        <article class="card bean">
+          <div class="card__art" aria-hidden="true"><svg viewBox="0 0 100 120" fill="none"><path d="M22 20h56l6 92H16l6-92Z" fill="var(--accent)"/><path d="M22 20l6-10h44l6 10" fill="var(--border)"/><rect x="30" y="48" width="40" height="34" rx="4" fill="var(--surface)"/><path d="M42 72c0-10 8-16 16-16-2 8-8 14-16 16Z" fill="var(--primary)"/></svg></div>
+          <div class="card__body">
+            <span class="badge">Filter · light</span>
+            <h3>Guji Natural, Ethiopia</h3>
+            <p>Hambela Wamena washing station. Blueberry, jasmine, a long candied-lemon finish.</p>
+            <div class="bean__foot"><span class="price">$22</span><button class="btn btn--sm btn--ghost" type="button" data-add="Guji Natural">Add to order</button></div>
+          </div>
+        </article>
+        <article class="card bean">
+          <div class="card__art" aria-hidden="true"><svg viewBox="0 0 100 120" fill="none"><path d="M22 20h56l6 92H16l6-92Z" fill="var(--ink)"/><path d="M22 20l6-10h44l6 10" fill="var(--border)"/><rect x="30" y="48" width="40" height="34" rx="4" fill="var(--surface)"/><path d="M40 66h20M50 56v20" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"/></svg></div>
+          <div class="card__body">
+            <span class="badge">Decaf · medium</span>
+            <h3>Sugarcane Decaf, Colombia</h3>
+            <p>Naturally decaffeinated in Huila. Brown sugar, plum, cocoa — no compromise after 3pm.</p>
+            <div class="bean__foot"><span class="price">$18</span><button class="btn btn--sm btn--ghost" type="button" data-add="Sugarcane Decaf">Add to order</button></div>
+          </div>
+        </article>
+      </div>
+      <div class="sub-note" data-reveal>
+        <span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span>
+        <p><strong>Never run out.</strong> Subscribe for a fresh bag every 2 or 4 weeks, shipped free anywhere in Oregon and Washington, or held at the counter with your name on it. Skip or cancel any time. <a class="link" href="mailto:beans@halfmooncoffee.com" style="color: var(--primary); font-weight: 600">beans@halfmooncoffee.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section section--alt" aria-labelledby="reviews-title">
+    <div class="container">
+      <h2 id="reviews-title" class="eyebrow" style="font-family: var(--font-text)">What the neighborhood says</h2>
+      <div class="reviews" data-reveal>
+        <figure>
+          <blockquote class="quote-big">I've worked from the window seat every Thursday for three years. They know my order, my dog's name, and when I need the decaf.</blockquote>
+          <figcaption class="who">
+            <span class="stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7L12 2Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7L12 2Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7L12 2Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7L12 2Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7L12 2Z"/></svg>
+            </span>
+            <span><b>Priya Raman</b> · Richmond neighborhood, via Google</span>
+          </figcaption>
+        </figure>
+        <div class="small-quotes" data-reveal-stagger>
+          <figure class="small-quote">
+            <p>"The Guji pour-over tasted like blueberry pie. I bought two bags on the way out."</p>
+            <figcaption class="who" style="margin-top:0"><span><b>Daniel Cho</b> · Yelp, Aug 2026</span></figcaption>
+          </figure>
+          <figure class="small-quote">
+            <p>"Best cardamom bun outside of Stockholm, and I'd know — I'm Swedish."</p>
+            <figcaption class="who" style="margin-top:0"><span><b>Linnea Berg</b> · Instagram</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="section" id="visit" aria-labelledby="visit-title">
+    <div class="container visit">
+      <div data-reveal>
+        <span class="eyebrow">Visit</span>
+        <h2 id="visit-title">Come sit a while</h2>
+        <p class="muted" style="margin-top: var(--s-4)">Twenty-two seats, a back patio with heaters, fast Wi-Fi, and outlets under every window table. Dogs welcome on the patio.</p>
+        <table class="hours" aria-label="Opening hours">
+          <tbody>
+            <tr data-days="1,2,3,4,5"><th scope="row">Monday – Friday</th><td>6:30am – 5:00pm</td></tr>
+            <tr data-days="6"><th scope="row">Saturday</th><td>7:30am – 5:00pm</td></tr>
+            <tr data-days="0"><th scope="row">Sunday</th><td>7:30am – 4:00pm</td></tr>
+          </tbody>
+        </table>
+        <ul class="contact-list">
+          <li><a class="link" href="https://maps.google.com/?q=1418+SE+Division+St+Portland+OR"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>1418 SE Division St, Portland, OR 97202</a></li>
+          <li><a class="link" href="tel:+15035550142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>(503) 555-0142</a></li>
+          <li><a class="link" href="mailto:hello@halfmooncoffee.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>hello@halfmooncoffee.com</a></li>
+        </ul>
+      </div>
+      <div class="map" data-reveal>
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" fill="none" role="img" aria-label="Stylized map showing Halfmoon Coffee on SE Division Street between 14th and 15th Avenue">
+          <rect width="400" height="300" fill="var(--surface2)"/>
+          <g fill="var(--surface)" stroke="var(--border)" stroke-width="1">
+            <rect x="10" y="10" width="110" height="100" rx="6"/><rect x="140" y="10" width="110" height="100" rx="6"/><rect x="270" y="10" width="120" height="100" rx="6"/>
+            <rect x="10" y="170" width="110" height="120" rx="6"/><rect x="140" y="170" width="110" height="120" rx="6"/><rect x="270" y="170" width="120" height="120" rx="6"/>
+          </g>
+          <rect x="280" y="190" width="100" height="90" rx="10" fill="var(--accent)" opacity=".35"/>
+          <path d="M0 140h400" stroke="var(--border)" stroke-width="40"/>
+          <path d="M0 140h400" stroke="var(--surface)" stroke-width="2" stroke-dasharray="10 10"/>
+          <path d="M130 0v300M260 0v300" stroke="var(--border)" stroke-width="18"/>
+          <text x="16" y="135" font-family="Instrument Sans, sans-serif" font-size="11" font-weight="600" fill="var(--muted)" letter-spacing="1.5">SE DIVISION ST</text>
+          <text x="300" y="240" font-family="Instrument Sans, sans-serif" font-size="11" fill="var(--muted)">Piccolo Park</text>
+        </svg>
+        <div class="map__pin" aria-hidden="true">
+          <span>Halfmoon Coffee</span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s-7.5-6.6-7.5-12.3A7.5 7.5 0 0 1 19.5 9.7C19.5 15.4 12 22 12 22Zm0-9.3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER AHEAD -->
+  <section class="section section--alt" id="order" aria-labelledby="order-title">
+    <div class="container order">
+      <div data-reveal>
+        <span class="eyebrow">Order ahead</span>
+        <h2 id="order-title">Skip the line. Your cup will be waiting.</h2>
+        <p class="lead" style="margin-top: var(--s-4)">Orders are usually ready in 8–10 minutes. Pay at the pickup shelf by the door.</p>
+        <ul class="perks">
+          <li><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Ready when you are</b><p>Choose a pickup time up to 2 hours out.</p></div></li>
+          <li><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7Z"/></svg></span><div><b>Every 10th drink is on us</b><p>Stamps are tracked by phone number — no card to lose.</p></div></li>
+        </ul>
+      </div>
+      <form class="order-form" id="order-form" novalidate data-reveal>
+        <div class="form-row">
+          <div class="field"><label for="o-name">Name for the cup</label><input id="o-name" name="name" autocomplete="given-name" required placeholder="Sam"></div>
+          <div class="field"><label for="o-phone">Mobile number</label><input id="o-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9()+\- ]{10,}" placeholder="(503) 555-0199"></div>
+        </div>
+        <div class="field">
+          <label for="o-drink">Drink</label>
+          <select id="o-drink" name="drink" required>
+            <option value="">Choose a drink…</option>
+            <option>Honey Oat Cortado — $5.25</option>
+            <option>Flat white — $4.75</option>
+            <option>Latte — $5.25</option>
+            <option>18-Hour Cold Brew — $4.75</option>
+            <option>Spiced chai — $5.00</option>
+            <option>Ceremonial matcha latte — $5.75</option>
+          </select>
+        </div>
+        <fieldset class="choice">
+          <legend>Milk</legend>
+          <label><input type="radio" name="milk" value="Whole" checked><span>Whole</span></label>
+          <label><input type="radio" name="milk" value="Oat"><span>Oat</span></label>
+          <label><input type="radio" name="milk" value="Almond"><span>Almond</span></label>
+          <label><input type="radio" name="milk" value="None"><span>No milk</span></label>
+        </fieldset>
+        <div class="form-row">
+          <div class="field">
+            <label for="o-time">Pickup time</label>
+            <select id="o-time" name="time">
+              <option>As soon as possible</option>
+              <option>In 20 minutes</option>
+              <option>In 30 minutes</option>
+              <option>In 1 hour</option>
+            </select>
+          </div>
+          <div class="field"><label for="o-extra">Add a bag or bake <span class="muted" style="font-weight:400">(optional)</span></label><input id="o-extra" name="extra" placeholder="e.g. Cardamom bun"></div>
+        </div>
+        <button class="btn" type="submit" id="order-btn"><span class="spinner" aria-hidden="true"></span><span class="btn-label">Place pickup order</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <div class="form-status" id="order-status" role="status" aria-live="polite">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+          <p id="order-msg"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container--narrow">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">Good to know</span>
+        <h2 id="faq-title">Questions we hear at the counter</h2>
+      </div>
+      <div data-reveal>
+        <details class="faq"><summary>Can I work from the café?</summary><div class="faq__body"><div><p>Absolutely. Wi-Fi is free and fast, and the window bar has outlets. On weekends between 9am and 1pm we ask laptop folks to share tables so everyone gets a seat.</p></div></div></details>
+        <details class="faq"><summary>Do you have dairy-free and gluten-free options?</summary><div class="faq__body"><div><p>Oat and almond milk are free with any drink. Our olive-oil cake is gluten-free, though it's baked in a kitchen that also uses wheat flour.</p></div></div></details>
+        <details class="faq"><summary>Do you sell wholesale?</summary><div class="faq__body"><div><p>Yes — we roast for about thirty cafés, restaurants and offices around Portland. Email <a class="link" href="mailto:wholesale@halfmooncoffee.com" style="color: var(--primary)">wholesale@halfmooncoffee.com</a> and we'll set up a tasting.</p></div></div></details>
+        <details class="faq"><summary>Can I book the space for an event?</summary><div class="faq__body"><div><p>After 5pm the café is available for small gatherings of up to 30 people, with coffee, tea and pastries. Public cupping classes run the first Saturday of every month at 3pm ($25).</p></div></div></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Halfmoon Coffee, back to top">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/><path d="M24 9a11 11 0 1 0 0 22 13 13 0 0 1 0-22Z" fill="currentColor"/></svg>
+          Halfmoon
+        </a>
+        <p style="margin-top: var(--s-3)">Small-batch roaster &amp; café on SE Division Street, Portland.</p>
+        <div class="socials">
+          <a href="https://instagram.com/" aria-label="Halfmoon Coffee on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+          <a href="mailto:hello@halfmooncoffee.com" aria-label="Email Halfmoon Coffee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <ul>
+          <li><a class="link" href="#menu">Menu</a></li>
+          <li><a class="link" href="#beans">Buy beans</a></li>
+          <li><a class="link" href="#order">Order ahead</a></li>
+          <li><a class="link" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Hours</h2>
+        <p class="num">Mon–Fri 6:30am–5pm<br>Sat 7:30am–5pm<br>Sun 7:30am–4pm</p>
+      </div>
+      <div>
+        <h2>Roast notes</h2>
+        <p>One email a month: new arrivals, cupping dates, nothing else.</p>
+        <form class="newsletter" id="news-form" novalidate>
+          <label for="n-email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+          <input id="n-email" type="email" autocomplete="email" required placeholder="you@email.com">
+          <button class="btn btn--sm" type="submit">Subscribe</button>
+        </form>
+        <p id="news-status" role="status" aria-live="polite" style="margin-top: var(--s-2); font-size: var(--step--1)"></p>
+      </div>
+    </div>
+    <div class="big-word" aria-hidden="true">Halfmoon</div>
+    <div class="legal">
+      <span>&copy; <span id="year">2026</span> Halfmoon Coffee Roasters LLC · Portland, Oregon</span>
+      <span>Roasted Tuesdays &amp; Fridays</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* micro.js — frontend-taste helpers (inlined) */
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  $$("[data-reveal-stagger]").forEach((el) => [...el.children].forEach((c, i) => c.style.setProperty("--i", Math.min(i, 6))));
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("is-in");
+      if (e.target.dataset.count !== undefined) countUp(e.target);
+      io.unobserve(e.target);
+    }),
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+  );
+  $$("[data-reveal],[data-reveal-stagger],[data-count]").forEach((el) => io.observe(el));
+
+  function countUp(el) {
+    const end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const fmt = (n) => (el.dataset.prefix || "") + n.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + (el.dataset.suffix || "");
+    if (reduce) return (el.textContent = fmt(end));
+    const t0 = performance.now(), dur = 1200;
+    const tick = (t) => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+      el.textContent = fmt(end * e);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const header = document.querySelector(".site-header");
+  const onScroll = () => header?.classList.toggle("is-scrolled", scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  $$("[data-nav-toggle]").forEach((btn) => {
+    const panel = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!panel) return;
+    $$("li", panel).forEach((li, i) => li.style.setProperty("--i", i));
+    const set = (open) => {
+      btn.setAttribute("aria-expanded", open);
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      panel.classList.toggle("is-open", open);
+      document.documentElement.style.overflow = open ? "hidden" : "";
+      if (open) panel.querySelector("a,button")?.focus({ preventScroll: true });
+    };
+    btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+    panel.addEventListener("click", (e) => e.target.closest("a") && set(false));
+    addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { set(false); btn.focus(); }
+    });
+    matchMedia("(min-width: 900px)").addEventListener("change", (m) => m.matches && set(false));
+  });
+
+  if (!reduce && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    $$("[data-magnetic]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width - 0.5) * 12, y = ((e.clientY - r.top) / r.height - 0.5) * 12;
+        el.style.translate = `${x}px ${y}px`;
+      });
+      el.addEventListener("pointerleave", () => (el.style.translate = ""));
+      el.style.transition += ", translate 250ms cubic-bezier(.22,1,.36,1)";
+    });
+  }
+})();
+
+/* Page-specific behavior */
+(() => {
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Open-now indicator + today's hours highlight (Portland time)
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", minute: "numeric", hour12: false }).formatToParts(new Date());
+    const get = (t) => parts.find((p) => p.type === t)?.value;
+    const day = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(get("weekday"));
+    const mins = (+get("hour") % 24) * 60 + +get("minute");
+    const open = day >= 1 && day <= 5 ? 390 : 450;
+    const close = day === 0 ? 960 : 1020;
+    const isOpen = mins >= open && mins < close;
+    const fmt = (m) => { const h = Math.floor(m / 60), mm = m % 60; return `${((h + 11) % 12) + 1}${mm ? ":" + String(mm).padStart(2, "0") : ""}${h < 12 ? "am" : "pm"}`; };
+    document.getElementById("open-dot").classList.toggle("is-closed", !isOpen);
+    document.getElementById("open-text").textContent = isOpen ? `Open now · until ${fmt(close)}` : `Closed now · opens ${fmt(day === 5 || day === 6 ? 450 : (day === 0 ? 390 : (mins < open ? open : 390)))}`;
+    document.querySelectorAll(".hours tr").forEach((tr) => tr.classList.toggle("is-today", tr.dataset.days.split(",").includes(String(day))));
+  } catch (e) {}
+
+  // Tabs with sliding indicator
+  const list = document.querySelector('[role="tablist"]');
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const ind = list.querySelector(".tabs__indicator");
+  const place = (t) => { ind.style.setProperty("--x", t.offsetLeft + "px"); ind.style.setProperty("--w", t.offsetWidth + "px"); };
+  const select = (t, focus) => {
+    tabs.forEach((x) => {
+      const on = x === t;
+      x.setAttribute("aria-selected", on);
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
+    });
+    place(t);
+    if (focus) t.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(t));
+    t.addEventListener("keydown", (e) => {
+      const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (d) { e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
+  });
+  const sync = () => place(tabs.find((t) => t.getAttribute("aria-selected") === "true"));
+  addEventListener("resize", sync);
+  document.fonts?.ready.then(sync);
+  sync();
+
+  // Add-to-order bean buttons
+  const extra = document.getElementById("o-extra");
+  document.querySelectorAll("[data-add]").forEach((b) => b.addEventListener("click", () => {
+    const name = b.dataset.add + " (12 oz)";
+    const cur = extra.value.split(",").map((s) => s.trim()).filter(Boolean);
+    if (!cur.includes(name)) cur.push(name);
+    extra.value = cur.join(", ");
+    b.classList.add("is-added");
+    b.textContent = "Added ✓";
+    setTimeout(() => { b.classList.remove("is-added"); b.textContent = "Add another"; }, 1800);
+  }));
+
+  // Order form
+  const form = document.getElementById("order-form");
+  const btn = document.getElementById("order-btn");
+  const status = document.getElementById("order-status");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      const bad = form.querySelector(":invalid");
+      bad.focus();
+      bad.style.borderColor = "var(--danger)";
+      bad.addEventListener("input", () => (bad.style.borderColor = ""), { once: true });
+      return;
+    }
+    const d = new FormData(form);
+    btn.classList.add("is-loading");
+    btn.disabled = true;
+    btn.querySelector(".btn-label").textContent = "Sending to the bar…";
+    setTimeout(() => {
+      btn.classList.remove("is-loading");
+      btn.querySelector(".btn-label").textContent = "Order placed";
+      const drink = String(d.get("drink")).split(" — ")[0];
+      const milk = d.get("milk") === "None" ? "" : ` with ${String(d.get("milk")).toLowerCase()} milk`;
+      document.getElementById("order-msg").innerHTML = `<b>Got it, ${d.get("name")}!</b> One ${drink}${milk}${d.get("extra") ? " + " + d.get("extra") : ""}. We'll text ${d.get("phone")} when it's on the pickup shelf (${String(d.get("time")).toLowerCase()}).`;
+      status.classList.add("is-visible");
+      setTimeout(() => { btn.disabled = false; btn.querySelector(".btn-label").textContent = "Place another order"; }, 2500);
+    }, 900);
+  });
+
+  // Newsletter
+  const nf = document.getElementById("news-form");
+  nf.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = nf.querySelector("input");
+    const out = document.getElementById("news-status");
+    if (!input.checkValidity()) { out.textContent = "Please enter a valid email address."; input.focus(); return; }
+    out.textContent = "You're on the list — first Roast Notes lands next month.";
+    nf.reset();
+  });
+})();
+</script>
+</body>
+</html>
