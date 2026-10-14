@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Palette toolkit for the frontend-design skill. Zero dependencies.
+// Palette toolkit for the frontend-taste skill. Zero dependencies.
 //
 //   node palettes.mjs pick "build me a school website"   -> best-matching palettes + font pairing
 //   node palettes.mjs css campus-evergreen               -> :root tokens (light + dark)
