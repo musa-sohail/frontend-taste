@@ -1,0 +1,17 @@
+{
+  "name": "frontend-taste",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An agent skill that makes AI-built frontends look designed — palettes, type, motion, responsiveness.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "palettes:check": "node skill/frontend-taste/scripts/palettes.mjs check",
+    "palettes:md": "node skill/frontend-taste/scripts/palettes.mjs md > skill/frontend-taste/references/palettes.md",
+    "audit": "node skill/frontend-taste/scripts/audit.mjs",
+    "evals:audit": "node evals/run-audit.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
+  }
+}
