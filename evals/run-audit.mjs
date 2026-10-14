@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 const audit = join(here, "../skills/frontend-taste/scripts/audit.mjs");
 const runsDir = join(here, "runs");
-const variants = ["baseline", "with-skill"];
+const variants = ["baseline", "with-skill", "with-skill-v2"];
 const out = {};
 
 for (const id of readdirSync(runsDir).sort()) {
@@ -26,25 +26,25 @@ for (const id of readdirSync(runsDir).sort()) {
 writeFileSync(join(here, "results.json"), JSON.stringify(out, null, 2));
 
 // markdown summary
-const lines = ["| Prompt | Baseline | With skill | Δ |", "|---|---:|---:|---:|"];
-let sb = 0, ss = 0, n = 0;
+const present = variants.filter((v) => Object.values(out).some((r) => r[v]));
+const lines = [`| Prompt | ${present.join(" | ")} |`, `|---|${present.map(() => "---:").join("|")}|`];
+const sums = Object.fromEntries(present.map((v) => [v, []]));
 for (const [id, r] of Object.entries(out)) {
-  if (!r.baseline || !r["with-skill"]) continue;
-  const b = r.baseline.score, s = r["with-skill"].score;
-  sb += b; ss += s; n++;
-  lines.push(`| ${id} | ${b} | ${s} | ${s - b >= 0 ? "+" : ""}${s - b} |`);
+  lines.push(`| ${id} | ${present.map((v) => (r[v] ? r[v].score : "–")).join(" | ")} |`);
+  for (const v of present) if (r[v]) sums[v].push(r[v].score);
 }
-if (n) lines.push(`| **average** | **${Math.round(sb / n)}** | **${Math.round(ss / n)}** | **+${Math.round((ss - sb) / n)}** |`);
+const avg = (xs) => (xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : "–");
+lines.push(`| **average** | ${present.map((v) => `**${avg(sums[v])}**`).join(" | ")} |`);
 
 // per-check pass rates
 const names = [...new Set(Object.values(out).flatMap((r) => (r.baseline?.results || []).map((x) => x.name)))];
-lines.push("", "| Check | Baseline pass | With-skill pass |", "|---|:-:|:-:|");
+lines.push("", `| Check | ${present.join(" | ")} |`, `|---|${present.map(() => ":-:").join("|")}|`);
 for (const name of names) {
   const rate = (v) => {
     const xs = Object.values(out).map((r) => r[v]?.results.find((x) => x.name === name)).filter(Boolean);
     return `${xs.filter((x) => x.pass).length}/${xs.length}`;
   };
-  lines.push(`| ${name} | ${rate("baseline")} | ${rate("with-skill")} |`);
+  lines.push(`| ${name} | ${present.map(rate).join(" | ")} |`);
 }
 writeFileSync(join(here, "results.md"), lines.join("\n") + "\n");
 console.log(lines.join("\n"));
