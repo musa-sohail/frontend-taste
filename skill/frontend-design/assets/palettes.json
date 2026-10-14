@@ -1,0 +1,189 @@
+{
+  "$comment": "Curated, contrast-checked palettes. Each role is a semantic token. Run `node scripts/palettes.mjs --check` after editing. Roles: bg (page), surface (cards), surface2 (alt sections/wells), ink (body text), muted (secondary text), border, primary (brand / main CTA), onPrimary (text on primary), accent (highlights, badges, secondary CTA), onAccent (text on accent).",
+  "palettes": [
+    {
+      "id": "campus-evergreen",
+      "name": "Campus Evergreen",
+      "domains": ["school", "university", "college", "academy", "education", "library", "tutoring"],
+      "mood": "trustworthy, warm, established, optimistic",
+      "fonts": "scholarly-warm",
+      "light": { "bg": "#FBF8F3", "surface": "#FFFFFF", "surface2": "#F1ECE2", "ink": "#1B2A27", "muted": "#56645F", "border": "#E4DDD0", "primary": "#1F5F4A", "onPrimary": "#FFFFFF", "accent": "#F2B544", "onAccent": "#1B2A27" },
+      "dark":  { "bg": "#0F1A17", "surface": "#16241F", "surface2": "#1C2D27", "ink": "#ECF2EE", "muted": "#A3B4AD", "border": "#2A3D36", "primary": "#5FC29B", "onPrimary": "#0B1512", "accent": "#F2B544", "onAccent": "#1B2A27" }
+    },
+    {
+      "id": "scholar-navy",
+      "name": "Scholar Navy",
+      "domains": ["university", "high school", "boarding school", "research", "institute", "conference"],
+      "mood": "prestigious, serious, classic, confident",
+      "fonts": "institutional-serif",
+      "light": { "bg": "#F7F6F2", "surface": "#FFFFFF", "surface2": "#ECEAE3", "ink": "#14213D", "muted": "#545E72", "border": "#DEDBD2", "primary": "#1D3A6E", "onPrimary": "#FFFFFF", "accent": "#C8442A", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#0B1222", "surface": "#121B30", "surface2": "#18233D", "ink": "#E9EDF5", "muted": "#A0AAC0", "border": "#25314D", "primary": "#8DB1F5", "onPrimary": "#0B1222", "accent": "#F07A5E", "onAccent": "#0B1222" }
+    },
+    {
+      "id": "crayon-pop",
+      "name": "Crayon Pop",
+      "domains": ["kindergarten", "preschool", "daycare", "kids", "primary school", "toys", "children", "nursery", "summer camp"],
+      "mood": "playful, joyful, safe, energetic",
+      "fonts": "playful-rounded",
+      "light": { "bg": "#FFF9EF", "surface": "#FFFFFF", "surface2": "#FFEFD6", "ink": "#2B2340", "muted": "#5E5673", "border": "#F0E3CC", "primary": "#5B3FD9", "onPrimary": "#FFFFFF", "accent": "#FFD23F", "onAccent": "#2B2340" },
+      "extras": { "coral": "#FF7A59", "teal": "#1FA595", "sky": "#4CB5F5" },
+      "dark":  { "bg": "#1A1530", "surface": "#231C40", "surface2": "#2C244F", "ink": "#F7F3FF", "muted": "#BDB4D6", "border": "#3A3160", "primary": "#A996FF", "onPrimary": "#1A1530", "accent": "#FFD23F", "onAccent": "#2B2340" }
+    },
+    {
+      "id": "clinic-calm",
+      "name": "Clinic Calm",
+      "domains": ["hospital", "clinic", "healthcare", "dental", "pharmacy", "therapy", "medical", "telehealth"],
+      "mood": "calm, clean, reassuring, competent",
+      "fonts": "accessible-clean",
+      "light": { "bg": "#F5FAFA", "surface": "#FFFFFF", "surface2": "#E6F2F2", "ink": "#0F2A33", "muted": "#4D6870", "border": "#D5E5E6", "primary": "#0B6E78", "onPrimary": "#FFFFFF", "accent": "#FF8A65", "onAccent": "#2A0F06" },
+      "dark":  { "bg": "#0A1A1F", "surface": "#10242A", "surface2": "#152E35", "ink": "#E6F4F5", "muted": "#9DB8BD", "border": "#21404A", "primary": "#4FD1C5", "onPrimary": "#062226", "accent": "#FF9E80", "onAccent": "#2A0F06" }
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "domains": ["fintech", "bank", "accounting", "insurance", "payments", "crypto", "investing", "b2b saas"],
+      "mood": "precise, secure, modern, credible",
+      "fonts": "product-geometric",
+      "light": { "bg": "#F6F7F9", "surface": "#FFFFFF", "surface2": "#EDEFF4", "ink": "#0A1220", "muted": "#4F5B6E", "border": "#DDE1E9", "primary": "#3346D3", "onPrimary": "#FFFFFF", "accent": "#087F5B", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#080C14", "surface": "#0F1521", "surface2": "#151D2C", "ink": "#E8ECF4", "muted": "#98A3B8", "border": "#222C3E", "primary": "#8C9BFF", "onPrimary": "#080C14", "accent": "#34D399", "onAccent": "#05150F" }
+    },
+    {
+      "id": "midnight-signal",
+      "name": "Midnight Signal",
+      "domains": ["developer tool", "ai", "saas", "api", "startup", "devtools", "analytics", "cybersecurity"],
+      "mood": "technical, sharp, futuristic, focused",
+      "fonts": "product-geometric",
+      "prefer": "dark",
+      "light": { "bg": "#FAFAFB", "surface": "#FFFFFF", "surface2": "#F0F0F4", "ink": "#0E0E14", "muted": "#555566", "border": "#E2E2E9", "primary": "#5B47E0", "onPrimary": "#FFFFFF", "accent": "#08784D", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#09090D", "surface": "#121218", "surface2": "#18181F", "ink": "#EDEDF2", "muted": "#9A9AAE", "border": "#26262F", "primary": "#8B7CFF", "onPrimary": "#09090D", "accent": "#3DDC97", "onAccent": "#04140D" }
+    },
+    {
+      "id": "trattoria",
+      "name": "Trattoria",
+      "domains": ["restaurant", "italian", "bistro", "wine bar", "pizzeria", "catering", "food"],
+      "mood": "warm, appetizing, rustic, inviting",
+      "fonts": "warm-serif",
+      "light": { "bg": "#F8F1E7", "surface": "#FFFBF5", "surface2": "#EFE4D3", "ink": "#2A1A12", "muted": "#6A5547", "border": "#E3D4BF", "primary": "#A63A1E", "onPrimary": "#FFFFFF", "accent": "#5E6E2F", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#1A110C", "surface": "#231812", "surface2": "#2C1F17", "ink": "#F6EADB", "muted": "#C2AE9A", "border": "#3D2C21", "primary": "#F08A62", "onPrimary": "#1A110C", "accent": "#B9C97A", "onAccent": "#161A08" }
+    },
+    {
+      "id": "oat-honey",
+      "name": "Oat & Honey",
+      "domains": ["cafe", "coffee", "bakery", "brunch", "tea house", "ice cream", "dessert"],
+      "mood": "cozy, soft, handmade, friendly",
+      "fonts": "warm-serif",
+      "light": { "bg": "#FAF6EF", "surface": "#FFFFFF", "surface2": "#F2E9DA", "ink": "#3A2B20", "muted": "#6C5A4B", "border": "#E8DCC8", "primary": "#8E4F1B", "onPrimary": "#FFFFFF", "accent": "#E9B872", "onAccent": "#3A2B20" },
+      "dark":  { "bg": "#1C1510", "surface": "#251C15", "surface2": "#2F241B", "ink": "#F5ECDF", "muted": "#C4B29E", "border": "#3E3125", "primary": "#E9A86A", "onPrimary": "#1C1510", "accent": "#E9B872", "onAccent": "#3A2B20" }
+    },
+    {
+      "id": "counsel",
+      "name": "Counsel",
+      "domains": ["law firm", "legal", "consulting", "wealth management", "accounting firm", "architecture firm", "government"],
+      "mood": "authoritative, discreet, refined, stable",
+      "fonts": "institutional-serif",
+      "light": { "bg": "#FAFAF7", "surface": "#FFFFFF", "surface2": "#EFEEE8", "ink": "#111418", "muted": "#545A62", "border": "#E0DED6", "primary": "#1E2A38", "onPrimary": "#FFFFFF", "accent": "#8A6A3B", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#0D1015", "surface": "#141920", "surface2": "#1A2029", "ink": "#ECECE8", "muted": "#A2A8B0", "border": "#282F3A", "primary": "#D2B48C", "onPrimary": "#0D1015", "accent": "#D2B48C", "onAccent": "#0D1015" }
+    },
+    {
+      "id": "pulse",
+      "name": "Pulse",
+      "domains": ["gym", "fitness", "sports", "crossfit", "martial arts", "running club", "energy drink"],
+      "mood": "bold, intense, kinetic, loud",
+      "fonts": "bold-condensed",
+      "prefer": "dark",
+      "light": { "bg": "#F4F4EF", "surface": "#FFFFFF", "surface2": "#E8E8E0", "ink": "#0E0E0E", "muted": "#4F4F4A", "border": "#D9D9D0", "primary": "#0E0E0E", "onPrimary": "#D4FF3A", "accent": "#D63A1C", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#0B0B0B", "surface": "#141414", "surface2": "#1C1C1C", "ink": "#F5F5F0", "muted": "#A5A59C", "border": "#2A2A2A", "primary": "#D4FF3A", "onPrimary": "#0B0B0B", "accent": "#FF5A3C", "onAccent": "#0B0B0B" }
+    },
+    {
+      "id": "sage-retreat",
+      "name": "Sage Retreat",
+      "domains": ["spa", "wellness", "yoga", "meditation", "skincare", "salon", "retreat", "organic"],
+      "mood": "serene, natural, soft, restorative",
+      "fonts": "elegant-light",
+      "light": { "bg": "#F4F1EA", "surface": "#FBF9F4", "surface2": "#E8E3D8", "ink": "#2E3A33", "muted": "#56625B", "border": "#DCD5C7", "primary": "#4A6A4D", "onPrimary": "#FFFFFF", "accent": "#D8A48F", "onAccent": "#2E3A33" },
+      "dark":  { "bg": "#151A17", "surface": "#1C231F", "surface2": "#232B26", "ink": "#EEF0EA", "muted": "#AEB7AF", "border": "#313B35", "primary": "#A9C8A4", "onPrimary": "#151A17", "accent": "#E3B7A4", "onAccent": "#2B1C15" }
+    },
+    {
+      "id": "estate",
+      "name": "Estate",
+      "domains": ["real estate", "property", "interior design", "furniture", "hotel", "architecture", "home decor"],
+      "mood": "elevated, spacious, tasteful, aspirational",
+      "fonts": "luxury-serif",
+      "light": { "bg": "#F7F5F2", "surface": "#FFFFFF", "surface2": "#EDE9E3", "ink": "#1C1C1C", "muted": "#5E5A55", "border": "#E0DBD3", "primary": "#2F4858", "onPrimary": "#FFFFFF", "accent": "#9C5634", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#121314", "surface": "#1A1B1D", "surface2": "#212326", "ink": "#EFECE7", "muted": "#ABA59D", "border": "#2E3033", "primary": "#9CC0D3", "onPrimary": "#121314", "accent": "#E09A74", "onAccent": "#1E0F07" }
+    },
+    {
+      "id": "hope",
+      "name": "Hope",
+      "domains": ["nonprofit", "charity", "ngo", "foundation", "community", "volunteer", "fundraising", "mosque", "church"],
+      "mood": "human, hopeful, urgent, warm",
+      "fonts": "humanist-friendly",
+      "light": { "bg": "#FFFBF5", "surface": "#FFFFFF", "surface2": "#FBEFE2", "ink": "#1F2937", "muted": "#545E6C", "border": "#F0E2D0", "primary": "#C2410C", "onPrimary": "#FFFFFF", "accent": "#1F7A5A", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#17120E", "surface": "#201913", "surface2": "#2A2119", "ink": "#FBF3EA", "muted": "#C3B5A6", "border": "#3A2E23", "primary": "#FB8F5E", "onPrimary": "#17120E", "accent": "#5ED1A4", "onAccent": "#07170F" }
+    },
+    {
+      "id": "editorial-mono",
+      "name": "Editorial Mono",
+      "domains": ["portfolio", "agency", "design studio", "photographer", "architect portfolio", "magazine", "blog", "personal site"],
+      "mood": "confident, minimal, editorial, crafted",
+      "fonts": "editorial-grotesk",
+      "light": { "bg": "#F2F0EB", "surface": "#FAF9F6", "surface2": "#E7E4DC", "ink": "#0D0D0D", "muted": "#55524C", "border": "#D6D2C8", "primary": "#0D0D0D", "onPrimary": "#F2F0EB", "accent": "#C93C00", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#0D0D0D", "surface": "#151515", "surface2": "#1D1D1D", "ink": "#F2F0EB", "muted": "#A29E95", "border": "#2B2B2B", "primary": "#F2F0EB", "onPrimary": "#0D0D0D", "accent": "#FF6A2B", "onAccent": "#0D0D0D" }
+    },
+    {
+      "id": "coastline",
+      "name": "Coastline",
+      "domains": ["travel", "tourism", "resort", "airline", "surf", "marine", "outdoor", "booking"],
+      "mood": "breezy, adventurous, bright, open",
+      "fonts": "humanist-friendly",
+      "light": { "bg": "#F4F9FB", "surface": "#FFFFFF", "surface2": "#E3F0F5", "ink": "#0B2733", "muted": "#4A6572", "border": "#D2E4EB", "primary": "#09657F", "onPrimary": "#FFFFFF", "accent": "#FFB347", "onAccent": "#2A1800" },
+      "dark":  { "bg": "#071820", "surface": "#0C222C", "surface2": "#112C38", "ink": "#E5F3F8", "muted": "#9BBAC6", "border": "#1D3D4B", "primary": "#5CC6E6", "onPrimary": "#071820", "accent": "#FFB347", "onAccent": "#2A1800" }
+    },
+    {
+      "id": "atelier",
+      "name": "Atelier",
+      "domains": ["fashion", "ecommerce", "jewelry", "boutique", "luxury", "beauty brand", "perfume", "clothing"],
+      "mood": "luxurious, restrained, sophisticated, quiet",
+      "fonts": "luxury-serif",
+      "light": { "bg": "#FFFFFF", "surface": "#FAF8F5", "surface2": "#F1EDE7", "ink": "#111111", "muted": "#5F5F5F", "border": "#E6E2DC", "primary": "#111111", "onPrimary": "#FFFFFF", "accent": "#8C6A4A", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#0E0D0C", "surface": "#161514", "surface2": "#1E1C1A", "ink": "#F3F0EB", "muted": "#ABA49B", "border": "#2C2926", "primary": "#F3F0EB", "onPrimary": "#0E0D0C", "accent": "#D2B08C", "onAccent": "#0E0D0C" }
+    },
+    {
+      "id": "hardhat",
+      "name": "Hardhat",
+      "domains": ["construction", "manufacturing", "logistics", "plumbing", "electrician", "auto repair", "industrial", "trades"],
+      "mood": "sturdy, reliable, no-nonsense, hard-working",
+      "fonts": "bold-condensed",
+      "light": { "bg": "#F4F4F2", "surface": "#FFFFFF", "surface2": "#E7E7E3", "ink": "#1A1A1A", "muted": "#555552", "border": "#D8D8D3", "primary": "#1A1A1A", "onPrimary": "#FFC21A", "accent": "#FFC21A", "onAccent": "#1A1A1A" },
+      "dark":  { "bg": "#111111", "surface": "#191919", "surface2": "#212121", "ink": "#F2F2EE", "muted": "#A8A8A2", "border": "#2E2E2E", "primary": "#FFC21A", "onPrimary": "#111111", "accent": "#FFC21A", "onAccent": "#111111" }
+    },
+    {
+      "id": "fresh-mint",
+      "name": "Fresh Mint",
+      "domains": ["productivity app", "consumer app", "mobile app", "edtech", "hr software", "marketplace", "landing page"],
+      "mood": "fresh, approachable, optimistic, modern",
+      "fonts": "startup-grotesk",
+      "light": { "bg": "#F7FBF9", "surface": "#FFFFFF", "surface2": "#E8F4EF", "ink": "#0D1F1A", "muted": "#4B6159", "border": "#D6E7E0", "primary": "#0B7A5A", "onPrimary": "#FFFFFF", "accent": "#FF6B4A", "onAccent": "#1F0802" },
+      "dark":  { "bg": "#08130F", "surface": "#0E1C17", "surface2": "#13251F", "ink": "#E7F5EF", "muted": "#9CB8AD", "border": "#1E3830", "primary": "#4ADE9E", "onPrimary": "#06130D", "accent": "#FF8A6E", "onAccent": "#1F0802" }
+    },
+    {
+      "id": "arcade",
+      "name": "Arcade",
+      "domains": ["gaming", "esports", "music", "nightclub", "festival", "streaming", "nft", "events"],
+      "mood": "electric, loud, nocturnal, youthful",
+      "fonts": "display-futurist",
+      "prefer": "dark",
+      "light": { "bg": "#FBF7FF", "surface": "#FFFFFF", "surface2": "#F1E9FB", "ink": "#140B24", "muted": "#584C6B", "border": "#E4D9F2", "primary": "#C2185B", "onPrimary": "#FFFFFF", "accent": "#006B80", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#0B0912", "surface": "#13101D", "surface2": "#1B1729", "ink": "#F3EEFF", "muted": "#A89FC0", "border": "#2A2440", "primary": "#FF2E88", "onPrimary": "#0B0912", "accent": "#00E5FF", "onAccent": "#0B0912" }
+    },
+    {
+      "id": "orchard",
+      "name": "Orchard",
+      "domains": ["farm", "grocery", "organic food", "agriculture", "farmers market", "florist", "garden center", "sustainability"],
+      "mood": "earthy, fresh, honest, abundant",
+      "fonts": "warm-serif",
+      "light": { "bg": "#FAF8F0", "surface": "#FFFFFF", "surface2": "#EFEBDB", "ink": "#22281C", "muted": "#5A6150", "border": "#E1DCC8", "primary": "#3D6B2A", "onPrimary": "#FFFFFF", "accent": "#B84E1C", "onAccent": "#FFFFFF" },
+      "dark":  { "bg": "#12150E", "surface": "#191D14", "surface2": "#20251A", "ink": "#EEF0E4", "muted": "#AEB4A0", "border": "#2E3425", "primary": "#9BCB7A", "onPrimary": "#12150E", "accent": "#F08A55", "onAccent": "#1E0B02" }
+    }
+  ]
+}
