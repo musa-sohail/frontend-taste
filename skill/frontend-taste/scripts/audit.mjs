@@ -118,7 +118,12 @@ const d = await page.evaluate(() => {
 
   const h1 = document.querySelectorAll("h1");
   const h1Size = h1[0] ? parseFloat(getComputedStyle(h1[0]).fontSize) : 0;
-  const pEl = document.querySelector("main p, p");
+  // body size = the most common font size among visible paragraphs (ignores captions / hidden menus)
+  const ps = [...document.querySelectorAll("main p, p")].filter(visible).filter((p) => p.textContent.trim().length > 40);
+  const freq = {};
+  for (const p of ps) { const fs = parseFloat(getComputedStyle(p).fontSize); freq[fs] = (freq[fs] || 0) + p.textContent.length; }
+  const modal = Object.entries(freq).sort((a, b) => b[1] - a[1])[0];
+  const pEl = ps.find((p) => modal && parseFloat(getComputedStyle(p).fontSize) === +modal[0]) || null;
   const bodySize = pEl ? parseFloat(getComputedStyle(pEl).fontSize) : parseFloat(getComputedStyle(document.body).fontSize);
   const lhRaw = pEl ? getComputedStyle(pEl).lineHeight : "normal";
   const lineHeight = lhRaw === "normal" ? 1.2 : parseFloat(lhRaw) / bodySize;
@@ -193,8 +198,19 @@ const mobile = await mp.evaluate(() => {
 // mobile nav: find a visible toggle in the header and see whether nav links appear
 const navWorks = await (async () => {
   const before = await mp.evaluate(() => [...document.querySelectorAll("header a, nav a, [class*=nav] a, [class*=menu] a")].filter((a) => { const r = a.getBoundingClientRect(); return r.width > 0 && r.height > 0 && r.top < innerHeight && r.left < innerWidth && r.right > 0 && getComputedStyle(a).visibility !== "hidden"; }).length);
-  const toggle = await mp.$('header button[aria-expanded], header [aria-controls], button[class*="menu" i], button[class*="burger" i], button[class*="toggle" i], [class*="hamburger" i], header button');
-  if (!toggle || !(await toggle.isVisible())) return { found: false, works: false, before };
+  // most specific selectors first; skip theme/dark-mode toggles
+  const sels = ['[data-nav-toggle]', 'button[aria-controls*="nav" i], button[aria-controls*="menu" i]', 'button[aria-label*="menu" i], button[aria-label*="navigation" i]',
+    '[class*="burger" i], [class*="hamburger" i], button[class*="menu" i], button[class*="nav-toggle" i]', 'header button[aria-expanded]', 'header button'];
+  let toggle = null;
+  for (const sel of sels) {
+    for (const h of await mp.$$(sel)) {
+      const label = await h.evaluate((el) => (el.getAttribute("aria-label") || el.className || el.textContent || "").toString().toLowerCase());
+      if (/theme|dark|light|mode|search|cart/.test(label)) continue;
+      if (await h.isVisible()) { toggle = h; break; }
+    }
+    if (toggle) break;
+  }
+  if (!toggle) return { found: false, works: false, before };
   await toggle.click().catch(() => {});
   await mp.waitForTimeout(500);
   const after = await mp.evaluate(() => [...document.querySelectorAll("a")].filter((a) => { const r = a.getBoundingClientRect(); const cs = getComputedStyle(a); return r.width > 0 && r.height > 0 && r.top >= 0 && r.top < innerHeight && r.left >= 0 && r.right <= innerWidth + 1 && cs.visibility !== "hidden" && +cs.opacity > 0.1; }).length);

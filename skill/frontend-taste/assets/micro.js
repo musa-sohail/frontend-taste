@@ -1,7 +1,8 @@
 /* micro.js — tiny, dependency-free microinteraction helpers (~2KB min).
- * Drop in before </body>:  <script src="micro.js" defer></script>  (or inline it)
- * Add <script>document.documentElement.classList.add('js')</script> in <head> so
- * reveal styles only hide content when JS is running.
+ * Drop in at the end of body as an external deferred script, or inline it.
+ * In head, run  document.documentElement.classList.add('js')  in a tiny inline script
+ * so reveal styles only hide content when JS is running.
+ * (This comment intentionally contains no closing script tag, so the file is safe to inline.)
  *
  * Attributes:
  *   data-reveal                 fade/slide element in when it enters the viewport
