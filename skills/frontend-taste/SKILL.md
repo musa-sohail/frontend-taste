@@ -35,7 +35,7 @@ Use the matching **page recipe** in `references/layout.md` (school, restaurant, 
 - Base styles target a 375px phone. Enhance at 600/900/1200px. Use intrinsic grids (`repeat(auto-fit, minmax(min(100%, 260px), 1fr))`) and `clamp()` padding.
 - Use semantic HTML: skip link, `header/nav/main/section/footer`, one `h1`, and real `<button>`/`<a>` elements.
 - Use inline SVG icons (`currentColor`, stroke 1.75–2). **No emoji icons** unless the brand is playful/kids.
-- For imagery, the hero deserves a **drawn inline-SVG scene or an HTML/CSS product mock** built from the palette (a schoolhouse on a hill, a cup with steam, a kanban board). These beat an empty gradient box. Use the `.ph` placeholder only for secondary photos. No random hotlinked stock photos.
+- **Imagery: draw it.** Follow `references/illustration.md`. The hero gets a drawn inline-SVG scene or an HTML/CSS product mock built from the palette (a schoolhouse on a hill, a cup with steam, a kanban board). Cards, tiles, and news items each get their **own** small spot illustration, with backgrounds varied across primary/accent/surface2 tints. Never repeat the same gradient placeholder box down the page; use `.ph` at most about three times, for slots that must become real photos. No random hotlinked stock photos.
 - Write **specific, plausible copy**: names, numbers, dates, places. No lorem ipsum, no "Welcome to X".
 
 ### 6. Add microinteractions (pick 5–8 from `references/motion.md`)
@@ -73,7 +73,8 @@ Use the motion tokens (`--ease-out`, `--dur-*`) and animate only transform and o
 - `references/palettes.md`: 20 contrast-checked palettes (light + dark) with a domain map. Generated from `assets/palettes.json`.
 - `references/typography.md`: 13 font pairings, Google Fonts URLs, fluid type scale.
 - `references/motion.md`: motion tokens and 14 microinteraction recipes.
-- `references/layout.md`: responsive system, composition rules, imagery, page recipes.
+- `references/layout.md`: responsive system, composition rules, hero archetypes, page recipes.
+- `references/illustration.md`: how to draw varied, on-palette inline-SVG scenes and spot art.
 - `references/anti-patterns.md`: AI-generated-site tells to remove.
 - `references/checklist.md`: pre-ship QA.
 - `assets/starter.css`, `assets/micro.js`: base layer and interaction helpers.

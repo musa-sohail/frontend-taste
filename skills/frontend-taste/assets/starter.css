@@ -148,6 +148,8 @@ p, li { text-wrap: pretty; }
 .ph { position: relative; aspect-ratio: var(--ar, 4 / 3); border-radius: var(--radius-lg); overflow: hidden; display: grid; place-items: end start; padding: var(--s-4);
   background: radial-gradient(120% 80% at 20% 10%, color-mix(in oklab, var(--accent) 55%, transparent), transparent 60%), linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--primary) 55%, var(--ink))); color: var(--on-primary); }
 .ph::before { content: ""; position: absolute; inset: 0; opacity: .18; background-image: radial-gradient(currentColor 1px, transparent 1.5px); background-size: 14px 14px; }
+.ph--accent { background: radial-gradient(120% 80% at 80% 10%, color-mix(in oklab, var(--surface) 40%, transparent), transparent 60%), linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 60%, var(--primary))); color: var(--on-accent); }
+.ph--soft { background: linear-gradient(135deg, var(--surface2), color-mix(in oklab, var(--primary) 18%, var(--surface2))); color: var(--ink); }
 .ph span { position: relative; font-size: var(--step--1); font-weight: 600; background: color-mix(in oklab, var(--ink) 35%, transparent); padding: .3em .7em; border-radius: var(--radius-pill); backdrop-filter: blur(6px); }
 
 /* ---------- 6. Motion ---------- */

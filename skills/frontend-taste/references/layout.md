@@ -79,7 +79,7 @@ Composition guards for the hero:
 ## Imagery without stock photos
 
 Don't use hotlinked random stock images that may 404 or show unrelated content. Use one of these, in order of preference:
-1. **Inline SVG illustration or patterns** built from the palette (blobs, arches, grids, dots, hand-drawn squiggles). These always load and always match.
+1. **Bespoke inline SVG illustration** built from the palette: a scene for the hero and distinct spot art for each card/tile. See `illustration.md`. These always load, always match, and make the page feel made-for-purpose.
 2. **Photo placeholders that look intentional:** `aspect-ratio` boxes with a palette gradient, a subtle grain/pattern, an icon, and a caption, e.g. "Photo: Science lab, Grade 9". Real images can be swapped in later.
 3. If real photos are explicitly wanted: `https://images.unsplash.com/photo-<id>?w=1200&q=70&auto=format` with known IDs, always with `alt`, explicit `width`/`height`, and a colored `background` while loading.
 

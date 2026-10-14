@@ -32,6 +32,7 @@ If a reviewer can tell the site was AI-generated in 3 seconds, it failed. Check 
 - **Generic claims** ("We are committed to excellence"). Prefer specifics such as numbers, names, dates, and places.
 - **Emoji as icons** (🎓📚🏆) on a serious brand.
 - **Broken images:** random Unsplash/placeholder URLs that 404 or show unrelated subjects.
+- **Monotonous placeholders:** the same gradient "photo" box repeated in every card and section. Draw distinct spot illustrations instead (`illustration.md`).
 - **Copyright 2023** or other stale years. Use the current year.
 
 ## Interaction
