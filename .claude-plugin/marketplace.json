@@ -1,6 +1,13 @@
 {
   "name": "frontend-taste",
-  "owner": { "name": "Musa Sohail", "url": "https://github.com/musa-sohail" },
+  "owner": {
+    "name": "Musa Sohail",
+    "url": "https://github.com/musa-sohail"
+  },
+  "metadata": {
+    "description": "frontend-taste: an agent skill that makes AI-built frontends look designed.",
+    "version": "1.0.0"
+  },
   "plugins": [
     {
       "name": "frontend-taste",
