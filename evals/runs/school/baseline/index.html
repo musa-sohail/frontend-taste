@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkspur Hill School</title>
+<meta name="description" content="Larkspur Hill School is an independent K–8 day school where curious children become capable, kind, and confident learners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f1e7;
+  --paper-2:#efe7d6;
+  --card:#fffdf8;
+  --ink:#1d2a24;
+  --ink-2:#4a564f;
+  --line:#ddd3bf;
+  --forest:#1f4d3a;
+  --forest-ink:#f6f1e7;
+  --clay:#c4552d;
+  --clay-soft:#f3d9cb;
+  --sun:#e2a72e;
+  --sun-soft:#f7e6bb;
+  --sky:#5c8fa8;
+  --sky-soft:#d6e6ec;
+  --focus:#c4552d;
+  --radius:18px;
+  --shadow:0 1px 2px rgba(29,42,36,.06),0 8px 24px -12px rgba(29,42,36,.18);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141a17;--paper-2:#1a221e;--card:#1f2924;--ink:#efe9dc;--ink-2:#b4bdb6;--line:#2f3b35;
+    --forest:#2c6b51;--forest-ink:#f6f1e7;--clay:#e27a52;--clay-soft:#3a2a22;--sun:#e8b54c;--sun-soft:#3a3220;
+    --sky:#86b6cc;--sky-soft:#1f3038;--focus:#e8b54c;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141a17;--paper-2:#1a221e;--card:#1f2924;--ink:#efe9dc;--ink-2:#b4bdb6;--line:#2f3b35;
+  --forest:#2c6b51;--forest-ink:#f6f1e7;--clay:#e27a52;--clay-soft:#3a2a22;--sun:#e8b54c;--sun-soft:#3a3220;
+  --sky:#86b6cc;--sky-soft:#1f3038;--focus:#e8b54c;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.1;margin:0;letter-spacing:-.01em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--clay)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 16px/1 var(--sans);padding:14px 22px;border-radius:999px;border:2px solid transparent;text-decoration:none;cursor:pointer;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--clay);color:#fff}
+.btn-primary:hover{background:color-mix(in srgb,var(--clay) 88%,black)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+
+/* Utility bar */
+.util{background:var(--forest);color:var(--forest-ink);font-size:14px}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px}
+.util a{text-decoration:none;opacity:.9}
+.util a:hover{opacity:1;text-decoration:underline}
+.util-links{display:flex;gap:20px;flex-wrap:wrap}
+.notice{display:flex;align-items:center;gap:8px}
+.notice b{background:var(--sun);color:#1d2a24;border-radius:999px;padding:1px 8px;font-size:12px;letter-spacing:.04em}
+@media (max-width:760px){.util-links{display:none}.util .wrap{justify-content:center;text-align:center}}
+
+/* Header */
+header.site{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:44px;height:44px;flex:none}
+.brand-name{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1}
+.brand-name small{display:block;font-family:var(--sans);font-size:12px;font-weight:500;color:var(--ink-2);letter-spacing:.06em;margin-top:4px}
+nav.main ul{list-style:none;display:flex;gap:4px;margin:0;padding:0;align-items:center}
+nav.main a{display:block;padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:500;font-size:16px}
+nav.main a:hover{background:var(--paper-2)}
+nav.main .btn{padding:11px 18px;margin-left:8px}
+.icon-btn{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);display:inline-grid;place-items:center;cursor:pointer}
+.head-actions{display:flex;gap:8px;align-items:center}
+.menu-btn{display:none}
+@media (max-width:980px){
+  .menu-btn{display:inline-grid}
+  nav.main{position:fixed;inset:76px 0 auto 0;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 16px 24px;display:none;box-shadow:var(--shadow)}
+  nav.main.open{display:block}
+  nav.main ul{flex-direction:column;align-items:stretch}
+  nav.main a{padding:14px 12px;font-size:18px}
+  nav.main .btn{margin:8px 0 0;justify-content:center}
+}
+
+/* Hero */
+.hero{padding:64px 0 40px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(42px,6.4vw,80px);font-weight:600;margin:18px 0 22px}
+.hero h1 em{font-style:italic;color:var(--forest);font-weight:400}
+[data-theme="dark"] .hero h1 em{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero h1 em{color:var(--sun)}}
+.hero .lede{font-size:20px;color:var(--ink-2);max-width:34ch}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.hero-meta{display:flex;gap:24px;margin-top:36px;flex-wrap:wrap;font-size:15px;color:var(--ink-2)}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--sun);display:inline-block}
+.hero-art{position:relative;aspect-ratio:1/1.02;border-radius:28px;overflow:hidden;background:var(--sky-soft);box-shadow:var(--shadow)}
+.hero-art svg{width:100%;height:100%}
+.hero-badge{position:absolute;left:-18px;bottom:36px;background:var(--card);border-radius:16px;padding:14px 18px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;max-width:250px}
+.hero-badge strong{font-family:var(--serif);font-size:30px;color:var(--clay);line-height:1}
+.hero-badge span{font-size:14px;color:var(--ink-2);line-height:1.3}
+@media (max-width:900px){
+  .hero{padding:40px 0 24px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-badge{left:12px;bottom:12px}
+}
+
+/* Stats */
+.stats{padding:24px 0 72px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:28px 20px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-family:var(--serif);font-size:44px;font-weight:600;line-height:1;color:var(--forest)}
+[data-theme="dark"] .stat b{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stat b{color:var(--sun)}}
+.stat span{display:block;margin-top:8px;color:var(--ink-2);font-size:15px}
+@media (max-width:760px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+}
+
+section{scroll-margin-top:90px}
+.sec{padding:88px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(32px,4.4vw,52px);margin-top:10px;max-width:18ch}
+.sec-head p{color:var(--ink-2);max-width:44ch}
+@media (max-width:600px){.sec{padding:64px 0}}
+
+/* Approach */
+.approach{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pillar{padding:32px 28px;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line)}
+.pillar .ico{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px}
+.pillar h3{font-size:26px;margin-bottom:12px}
+.pillar p{color:var(--ink-2)}
+.p1 .ico{background:var(--clay-soft);color:var(--clay)}
+.p2 .ico{background:var(--sun-soft);color:#9a6a0a}
+.p3 .ico{background:var(--sky-soft);color:var(--sky)}
+[data-theme="dark"] .p2 .ico{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .p2 .ico{color:var(--sun)}}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+
+.quote{margin-top:64px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.quote svg{color:var(--clay);width:48px}
+.quote blockquote{margin:0;font-family:var(--serif);font-size:clamp(24px,3vw,34px);line-height:1.3;font-weight:400;max-width:30ch}
+.quote cite{display:block;margin-top:18px;font-style:normal;font-family:var(--sans);font-size:15px;color:var(--ink-2)}
+@media (max-width:600px){.quote{grid-template-columns:1fr;gap:12px}}
+
+/* Programs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tab{font:600 16px var(--sans);padding:12px 20px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--forest);color:var(--forest-ink);border-color:var(--forest)}
+.panel{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow)}
+.panel[hidden]{display:none}
+.panel-art{border-radius:16px;min-height:300px;overflow:hidden}
+.panel-art svg{width:100%;height:100%}
+.panel h3{font-size:36px;margin:8px 0 14px}
+.panel .grades{font-weight:600;color:var(--clay);font-size:15px}
+.panel p{color:var(--ink-2)}
+.panel ul{list-style:none;padding:0;margin:24px 0 28px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+.panel li{display:flex;gap:10px;align-items:flex-start;font-size:16px}
+.panel li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--sun-soft);border:5px solid var(--sun)}
+.text-link{font-weight:600;color:var(--clay);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.text-link:hover{text-decoration:underline}
+@media (max-width:900px){.panel{grid-template-columns:1fr;padding:24px}.panel-art{min-height:220px}}
+@media (max-width:520px){.panel ul{grid-template-columns:1fr}}
+
+/* News & Events */
+.ne{background:var(--paper-2)}
+.ne-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:32px}
+.news-list{display:grid;gap:20px}
+.news-card{display:grid;grid-template-columns:160px 1fr;gap:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.news-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.news-thumb{border-radius:12px;min-height:120px;overflow:hidden}
+.news-thumb svg{width:100%;height:100%}
+.news-card .tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.news-card h3{font-size:22px;margin:6px 0 8px}
+.news-card p{font-size:15px;color:var(--ink-2)}
+@media (max-width:520px){.news-card{grid-template-columns:1fr}.news-thumb{min-height:150px}}
+.events{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.events-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.events-head h3{font-size:26px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:600 13px var(--sans);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.event{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.event[hidden]{display:none}
+.date{text-align:center;border-radius:12px;padding:8px 0;background:var(--paper)}
+.date .m{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--clay)}
+.date .d{display:block;font-family:var(--serif);font-size:28px;font-weight:600;line-height:1}
+.event h4{font-family:var(--sans);font-size:17px;font-weight:600}
+.event p{font-size:14px;color:var(--ink-2);margin-top:2px}
+.ev-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:6px}
+.t-community{background:var(--clay-soft);color:var(--clay)}
+.t-admissions{background:var(--sky-soft);color:var(--sky)}
+.t-arts{background:var(--sun-soft);color:#8a5d06}
+[data-theme="dark"] .t-arts{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .t-arts{color:var(--sun)}}
+.empty{padding:20px 0;color:var(--ink-2);font-size:15px;border-top:1px solid var(--line)}
+@media (max-width:900px){.ne-grid{grid-template-columns:1fr}}
+
+/* Campus life */
+.life-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px}
+.tile{border-radius:var(--radius);overflow:hidden;position:relative;display:flex;align-items:flex-end;padding:20px;color:#fff}
+.tile svg{position:absolute;inset:0;width:100%;height:100%}
+.tile span{position:relative;font-family:var(--serif);font-size:22px;font-weight:600;text-shadow:0 1px 10px rgba(0,0,0,.25)}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile.wide{grid-column:span 2}
+@media (max-width:900px){.life-grid{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.tile.big{grid-row:span 1}}
+@media (max-width:520px){.life-grid{grid-template-columns:1fr}.tile.big,.tile.wide{grid-column:span 1}}
+
+/* Admissions */
+.adm{background:var(--forest);color:var(--forest-ink)}
+.adm .eyebrow{color:var(--sun)}
+.adm .sec-head p{color:color-mix(in srgb,var(--forest-ink) 78%,transparent)}
+.adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px 0;border-top:1px solid rgba(246,241,231,.18)}
+.steps li:first-child{border-top:0;padding-top:0}
+.steps li::before{content:counter(s);width:52px;height:52px;border-radius:50%;border:1.5px solid var(--sun);color:var(--sun);display:grid;place-items:center;font-family:var(--serif);font-size:22px;font-weight:600}
+.steps h3{font-size:24px;margin-bottom:6px}
+.steps p{color:color-mix(in srgb,var(--forest-ink) 78%,transparent);font-size:16px}
+.steps .when{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sun);margin-top:8px;display:block}
+.form-card{background:var(--card);color:var(--ink);border-radius:24px;padding:32px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.form-card h3{font-size:28px;margin-bottom:6px}
+.form-card > p{color:var(--ink-2);margin-bottom:22px;font-size:15px}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label{font-weight:600;font-size:14px}
+.field input,.field select,.field textarea{font:16px var(--sans);padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+.field textarea{min-height:90px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 3px color-mix(in srgb,var(--clay) 25%,transparent)}
+.field .err{font-size:13px;color:var(--clay);min-height:0}
+.field.invalid input,.field.invalid select{border-color:var(--clay)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.form-card .btn{width:100%;justify-content:center;margin-top:6px}
+.success{display:none;text-align:center;padding:24px 0}
+.success.show{display:block}
+.success .check{width:64px;height:64px;border-radius:50%;background:var(--sun-soft);color:var(--forest);display:grid;place-items:center;margin:0 auto 16px}
+.success h3{margin-bottom:8px}
+.success p{color:var(--ink-2)}
+@media (max-width:900px){.adm-grid{grid-template-columns:1fr}.form-card{padding:24px}}
+
+/* Visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:32px}
+.info-list{display:grid;gap:22px;margin-top:28px}
+.info{display:grid;grid-template-columns:44px 1fr;gap:14px}
+.info .ico{width:44px;height:44px;border-radius:12px;background:var(--paper-2);display:grid;place-items:center;color:var(--forest)}
+[data-theme="dark"] .info .ico{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .info .ico{color:var(--sun)}}
+.info h4{font-family:var(--sans);font-size:15px;font-weight:700}
+.info p{color:var(--ink-2);font-size:16px}
+.map{border-radius:24px;overflow:hidden;border:1px solid var(--line);min-height:380px;background:var(--paper-2)}
+.map svg{width:100%;height:100%}
+@media (max-width:900px){.visit-grid{grid-template-columns:1fr}.map{min-height:280px}}
+
+/* Footer */
+footer{background:var(--ink);color:var(--paper);padding:64px 0 32px}
+[data-theme="dark"] footer{background:#0d1210}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) footer{background:#0d1210}}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:32px}
+footer h4{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--sun);margin-bottom:14px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a{text-decoration:none;opacity:.85}
+footer a:hover{opacity:1;text-decoration:underline}
+footer p{opacity:.8;font-size:15px}
+.news-form{display:flex;gap:8px;margin-top:12px}
+.news-form input{flex:1;min-width:0;font:15px var(--sans);padding:12px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:inherit}
+.news-form button{font:600 15px var(--sans);padding:12px 18px;border-radius:999px;border:0;background:var(--sun);color:#1d2a24;cursor:pointer}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:14px;opacity:.7}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="util">
+  <div class="wrap">
+    <div class="notice"><b>NEW</b> Fall Open House — Saturday, Nov 8 · <a href="#admissions">Reserve a spot</a></div>
+    <div class="util-links">
+      <a href="#">Parent Portal</a>
+      <a href="#">Lunch Menu</a>
+      <a href="#">Support Larkspur</a>
+      <a href="tel:+15415550142">(541) 555-0142</a>
+    </div>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Larkspur Hill School home">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="var(--forest)"/>
+        <path d="M6 34 Q16 22 24 28 T42 30 V40 H6Z" fill="var(--sun)" opacity=".9"/>
+        <path d="M24 9 v19" stroke="var(--forest-ink)" stroke-width="2" stroke-linecap="round"/>
+        <g fill="var(--clay-soft)">
+          <ellipse cx="20.5" cy="13" rx="3" ry="2"/><ellipse cx="27.5" cy="15" rx="3" ry="2"/>
+          <ellipse cx="20.5" cy="18" rx="3" ry="2"/><ellipse cx="27.5" cy="20" rx="3" ry="2"/>
+          <ellipse cx="24" cy="9.5" rx="2.2" ry="2"/>
+        </g>
+      </svg>
+      <span class="brand-name">Larkspur Hill<small>SCHOOL · EST. 1962</small></span>
+    </a>
+    <div class="head-actions">
+      <nav class="main" id="nav" aria-label="Primary">
+        <ul>
+          <li><a href="#approach">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#news">News &amp; Events</a></li>
+          <li><a href="#life">Campus Life</a></li>
+          <li><a href="#visit">Visit</a></li>
+          <li><a href="#admissions" class="btn btn-primary">Apply</a></li>
+        </ul>
+      </nav>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Independent K–8 Day School · Ashwood, Oregon</span>
+      <h1>Where curious kids grow <em>into capable people.</em></h1>
+      <p class="lede">Small classes, big questions, and twelve acres of meadow and creek to explore them in. Larkspur Hill has been helping children love learning for more than sixty years.</p>
+      <div class="hero-cta">
+        <a href="#admissions" class="btn btn-primary">Schedule a Visit
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#programs" class="btn btn-ghost">Explore Programs</a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="dot"></i>Applications open for 2027–28</span>
+        <span><i class="dot" style="background:var(--clay)"></i>Tuition assistance for 38% of families</span>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <svg viewBox="0 0 500 510" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the school building on a hill with trees and a rising sun">
+        <rect width="500" height="510" fill="var(--sky-soft)"/>
+        <circle cx="380" cy="130" r="58" fill="var(--sun)"/>
+        <g fill="#fff" opacity=".85">
+          <ellipse cx="120" cy="100" rx="52" ry="16"/><ellipse cx="150" cy="88" rx="30" ry="16"/>
+          <ellipse cx="300" cy="190" rx="40" ry="11"/>
+        </g>
+        <path d="M0 330 Q120 250 260 300 T500 280 V510 H0Z" fill="#8fb48f"/>
+        <path d="M0 380 Q160 320 300 370 T500 350 V510 H0Z" fill="#5f9270"/>
+        <!-- school -->
+        <g transform="translate(170 228)">
+          <rect x="0" y="40" width="160" height="90" fill="#f3e6cf"/>
+          <path d="M-12 44 L80 -6 L172 44Z" fill="#c4552d"/>
+          <rect x="68" y="-40" width="24" height="40" fill="#f3e6cf"/>
+          <path d="M62 -40 L80 -60 L98 -40Z" fill="#c4552d"/>
+          <circle cx="80" cy="-22" r="7" fill="#fff" stroke="#1d2a24" stroke-width="2"/>
+          <path d="M80 -22 v-4 M80 -22 h3" stroke="#1d2a24" stroke-width="1.5"/>
+          <rect x="66" y="82" width="28" height="48" rx="14" fill="#1f4d3a"/>
+          <g fill="#5c8fa8"><rect x="16" y="62" width="30" height="26" rx="3"/><rect x="114" y="62" width="30" height="26" rx="3"/></g>
+          <g stroke="#f3e6cf" stroke-width="2"><path d="M31 62v26M16 75h30M129 62v26M114 75h30"/></g>
+        </g>
+        <!-- trees -->
+        <g>
+          <rect x="88" y="300" width="8" height="40" fill="#5b3e2b"/><circle cx="92" cy="290" r="34" fill="#1f4d3a"/>
+          <rect x="400" y="290" width="8" height="40" fill="#5b3e2b"/><circle cx="404" cy="276" r="28" fill="#2c6b51"/>
+          <circle cx="440" cy="300" r="20" fill="#1f4d3a"/>
+        </g>
+        <!-- path -->
+        <path d="M250 358 Q230 420 290 510 L210 510 Q200 430 250 358Z" fill="#e9d6ad"/>
+        <!-- flowers -->
+        <g fill="#c4552d"><circle cx="60" cy="440" r="5"/><circle cx="80" cy="460" r="5"/><circle cx="380" cy="430" r="5"/><circle cx="420" cy="470" r="5"/></g>
+        <g fill="#e2a72e"><circle cx="110" cy="470" r="5"/><circle cx="350" cy="470" r="5"/><circle cx="450" cy="420" r="5"/></g>
+        <!-- larkspur stalks -->
+        <g fill="#7b6bb5">
+          <ellipse cx="30" cy="400" rx="5" ry="4"/><ellipse cx="30" cy="390" rx="4" ry="3.5"/><ellipse cx="30" cy="381" rx="3" ry="3"/>
+          <ellipse cx="470" cy="390" rx="5" ry="4"/><ellipse cx="470" cy="380" rx="4" ry="3.5"/><ellipse cx="470" cy="371" rx="3" ry="3"/>
+        </g>
+      </svg>
+      <div class="hero-badge"><strong>12:1</strong><span>student-to-teacher ratio in every classroom</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat"><b>340</b><span>students, K through 8</span></div>
+      <div class="stat"><b>16</b><span>average class size</span></div>
+      <div class="stat"><b>12</b><span>acres of meadow, garden &amp; creek</span></div>
+      <div class="stat"><b>94%</b><span>of faculty hold advanced degrees</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- APPROACH -->
+<section class="sec approach" id="approach">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Our Approach</span>
+        <h2>Rigor and wonder, side by side.</h2>
+      </div>
+      <p>We believe children learn best when they're known well, challenged thoughtfully, and given real work that matters to them.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar p1 reveal">
+        <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <h3>Inquiry first</h3>
+        <p>Units start with a question worth asking — why does the creek flood each spring? — and students build the knowledge to answer it.</p>
+      </article>
+      <article class="pillar p2 reveal">
+        <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.6-9.3 9-9.3 9z"/></svg></div>
+        <h3>Known by name</h3>
+        <p>Every child has an advisor who knows their strengths, their stretches, and their favorite book. Families are partners, not spectators.</p>
+      </article>
+      <article class="pillar p3 reveal">
+        <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12M12 12C12 7 8 4 3 4c0 5 4 8 9 8zM12 14c0-4 3-7 8-7 0 4-3 7-8 7z"/></svg></div>
+        <h3>Outside, often</h3>
+        <p>Our garden, trails, and outdoor classrooms are part of the curriculum. Kids measure, plant, observe, and get muddy every week.</p>
+      </article>
+    </div>
+    <figure class="quote reveal">
+      <svg viewBox="0 0 48 36" fill="currentColor" aria-hidden="true"><path d="M0 36V22C0 9 7 2 20 0l2 5c-7 2-11 6-11 13h9v18zm26 0V22c0-13 7-20 20-22l2 5c-7 2-11 6-11 13h9v18z"/></svg>
+      <div>
+        <blockquote>“My daughter comes home talking about tadpoles, fractions, and fairness — usually in the same sentence. She's never been happier to go to school.”</blockquote>
+        <cite>— Priya N., parent of a 3rd grader</cite>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="sec" id="programs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Academic Programs</span>
+        <h2>A path that grows with your child.</h2>
+      </div>
+      <p>Three divisions, one continuous philosophy — each designed around what children need at that stage of life.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="School divisions">
+      <button class="tab" role="tab" id="tab-lower" aria-controls="panel-lower" aria-selected="true">Lower School</button>
+      <button class="tab" role="tab" id="tab-middle" aria-controls="panel-middle" aria-selected="false" tabindex="-1">Middle School</button>
+      <button class="tab" role="tab" id="tab-enrich" aria-controls="panel-enrich" aria-selected="false" tabindex="-1">After School</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-lower" aria-labelledby="tab-lower">
+      <div class="panel-art" style="background:var(--sun-soft)">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="300" fill="#f7e6bb"/>
+          <g transform="translate(60 70)">
+            <rect x="0" y="80" width="60" height="60" rx="6" fill="#c4552d"/><text x="30" y="122" text-anchor="middle" font-family="Fraunces" font-size="38" fill="#fff" font-weight="700">A</text>
+            <rect x="70" y="80" width="60" height="60" rx="6" fill="#5c8fa8"/><text x="100" y="122" text-anchor="middle" font-family="Fraunces" font-size="38" fill="#fff" font-weight="700">B</text>
+            <rect x="35" y="15" width="60" height="60" rx="6" fill="#1f4d3a"/><text x="65" y="57" text-anchor="middle" font-family="Fraunces" font-size="38" fill="#fff" font-weight="700">C</text>
+            <rect x="140" y="80" width="60" height="60" rx="6" fill="#e2a72e"/><text x="170" y="122" text-anchor="middle" font-family="Fraunces" font-size="38" fill="#fff" font-weight="700">1</text>
+            <rect x="105" y="15" width="60" height="60" rx="6" fill="#c4552d" opacity=".8"/><text x="135" y="57" text-anchor="middle" font-family="Fraunces" font-size="38" fill="#fff" font-weight="700">2</text>
+            <rect x="210" y="80" width="60" height="60" rx="6" fill="#1f4d3a" opacity=".85"/><text x="240" y="122" text-anchor="middle" font-family="Fraunces" font-size="38" fill="#fff" font-weight="700">3</text>
+          </g>
+          <rect x="0" y="210" width="400" height="90" fill="#e2a72e" opacity=".35"/>
+        </svg>
+      </div>
+      <div>
+        <span class="grades">Kindergarten – Grade 4</span>
+        <h3>Lower School</h3>
+        <p>Strong foundations in reading, writing, and math, taught through play, hands-on projects, and plenty of time outdoors. Children learn to ask good questions and to be good friends.</p>
+        <ul>
+          <li>Structured literacy program</li>
+          <li>Singapore-inspired math</li>
+          <li>Weekly garden science</li>
+          <li>Spanish from Kindergarten</li>
+          <li>Music, art &amp; movement daily</li>
+          <li>Social-emotional curriculum</li>
+        </ul>
+        <a href="#" class="text-link">Lower School curriculum guide →</a>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-middle" aria-labelledby="tab-middle" hidden>
+      <div class="panel-art" style="background:var(--sky-soft)">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="300" fill="#d6e6ec"/>
+          <circle cx="200" cy="150" r="90" fill="none" stroke="#5c8fa8" stroke-width="2" stroke-dasharray="4 6"/>
+          <circle cx="200" cy="150" r="34" fill="#e2a72e"/>
+          <circle cx="290" cy="150" r="14" fill="#c4552d"/>
+          <circle cx="137" cy="86" r="10" fill="#1f4d3a"/>
+          <circle cx="200" cy="150" r="130" fill="none" stroke="#5c8fa8" stroke-width="2" stroke-dasharray="4 6" opacity=".6"/>
+          <circle cx="92" cy="210" r="18" fill="#5c8fa8"/>
+          <path d="M40 60 l6 12 l12 2 l-9 8 l2 12 l-11-6 l-11 6 l2-12 l-9-8 l12-2z" fill="#e2a72e"/>
+          <path d="M340 240 l4 8 l8 1 l-6 5 l1 8 l-7-4 l-7 4 l1-8 l-6-5 l8-1z" fill="#c4552d"/>
+        </svg>
+      </div>
+      <div>
+        <span class="grades">Grades 5 – 8</span>
+        <h3>Middle School</h3>
+        <p>Students take on more independence, deeper content, and real responsibility. Advisory groups, interdisciplinary projects, and leadership roles prepare them for high school and beyond.</p>
+        <ul>
+          <li>Pre-algebra through Algebra I</li>
+          <li>Lab sciences &amp; robotics</li>
+          <li>Humanities seminar</li>
+          <li>Annual outdoor expedition</li>
+          <li>8th grade capstone project</li>
+          <li>High school placement support</li>
+        </ul>
+        <a href="#" class="text-link">Middle School curriculum guide →</a>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-enrich" aria-labelledby="tab-enrich" hidden>
+      <div class="panel-art" style="background:var(--clay-soft)">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="300" fill="#f3d9cb"/>
+          <g transform="translate(70 60)">
+            <rect x="0" y="40" width="20" height="140" rx="4" fill="#1f4d3a"/>
+            <ellipse cx="10" cy="40" rx="30" ry="10" fill="#c4552d"/>
+            <circle cx="140" cy="90" r="60" fill="#e2a72e"/>
+            <path d="M100 90 a40 40 0 0 1 80 0" fill="none" stroke="#fff" stroke-width="4"/>
+            <path d="M140 30 v120 M80 90 h120" stroke="#fff" stroke-width="3" opacity=".7"/>
+            <rect x="220" y="60" width="40" height="120" rx="20" fill="#5c8fa8"/>
+            <circle cx="240" cy="90" r="8" fill="#fff"/><circle cx="240" cy="120" r="8" fill="#fff"/><circle cx="240" cy="150" r="8" fill="#fff"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <span class="grades">All grades · 3:00 – 6:00 pm</span>
+        <h3>After School</h3>
+        <p>Extended day with homework support, clubs, and seasonal sports. Families can enroll by the term or drop in as needed — no long-term commitment required.</p>
+        <ul>
+          <li>Chess &amp; strategy games</li>
+          <li>Cross-country &amp; soccer</li>
+          <li>Ceramics studio</li>
+          <li>Coding club</li>
+          <li>Orchestra &amp; choir</li>
+          <li>Supervised homework hall</li>
+        </ul>
+        <a href="#" class="text-link">See this term's clubs →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS & EVENTS -->
+<section class="sec ne" id="news">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">News &amp; Events</span>
+        <h2>What's happening on the Hill.</h2>
+      </div>
+      <a href="#" class="text-link">All stories →</a>
+    </div>
+    <div class="ne-grid">
+      <div class="news-list">
+        <a href="#" class="news-card reveal">
+          <div class="news-thumb"><svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="160" height="120" fill="#1f4d3a"/><circle cx="50" cy="80" r="30" fill="#8fb48f"/><circle cx="110" cy="70" r="36" fill="#5f9270"/><rect x="0" y="95" width="160" height="25" fill="#e9d6ad"/><circle cx="130" cy="25" r="12" fill="#e2a72e"/></svg></div>
+          <div>
+            <span class="tag">Campus · Oct 9</span>
+            <h3>Fourth graders restore the creek's native plantings</h3>
+            <p>Over three weeks, students planted 200 native shrubs and tracked water quality with the county watershed council.</p>
+          </div>
+        </a>
+        <a href="#" class="news-card reveal">
+          <div class="news-thumb"><svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="160" height="120" fill="#5c8fa8"/><rect x="40" y="30" width="80" height="60" rx="6" fill="#d6e6ec"/><circle cx="65" cy="55" r="7" fill="#1d2a24"/><circle cx="95" cy="55" r="7" fill="#1d2a24"/><rect x="62" y="72" width="36" height="6" rx="3" fill="#c4552d"/><rect x="76" y="14" width="8" height="16" fill="#d6e6ec"/><circle cx="80" cy="12" r="6" fill="#e2a72e"/></svg></div>
+          <div>
+            <span class="tag">Achievement · Oct 2</span>
+            <h3>Robotics team heads to state finals</h3>
+            <p>The “Larkbots” placed first in their regional qualifier with a recycling-sorting robot designed entirely by 7th graders.</p>
+          </div>
+        </a>
+        <a href="#" class="news-card reveal">
+          <div class="news-thumb"><svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="160" height="120" fill="#c4552d"/><rect x="20" y="80" width="120" height="40" fill="#8a3a1c"/><path d="M30 80 Q80 20 130 80" fill="#e2a72e"/><circle cx="80" cy="58" r="10" fill="#f7e6bb"/></svg></div>
+          <div>
+            <span class="tag">Arts · Sep 26</span>
+            <h3>Fall musical auditions: <em>The Phantom Tollbooth</em></h3>
+            <p>Middle schoolers will bring Milo's journey to the stage this December. Crew sign-ups are open to all grades.</p>
+          </div>
+        </a>
+      </div>
+
+      <aside class="events reveal" aria-labelledby="events-h">
+        <div class="events-head">
+          <h3 id="events-h">Upcoming</h3>
+          <div class="filters" role="group" aria-label="Filter events">
+            <button class="chip" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" data-filter="community" aria-pressed="false">Community</button>
+            <button class="chip" data-filter="admissions" aria-pressed="false">Admissions</button>
+            <button class="chip" data-filter="arts" aria-pressed="false">Arts</button>
+          </div>
+        </div>
+        <div id="eventList">
+          <div class="event" data-cat="community"><div class="date"><span class="m">Oct</span><span class="d">18</span></div><div><h4>Harvest Festival</h4><p>10:00 am – 2:00 pm · Garden &amp; Meadow</p><span class="ev-tag t-community">Community</span></div></div>
+          <div class="event" data-cat="arts"><div class="date"><span class="m">Oct</span><span class="d">24</span></div><div><h4>Lower School Art Walk</h4><p>5:30 pm · Commons Gallery</p><span class="ev-tag t-arts">Arts</span></div></div>
+          <div class="event" data-cat="admissions"><div class="date"><span class="m">Nov</span><span class="d">08</span></div><div><h4>Fall Open House</h4><p>9:00 am – 12:00 pm · Main Hall</p><span class="ev-tag t-admissions">Admissions</span></div></div>
+          <div class="event" data-cat="community"><div class="date"><span class="m">Nov</span><span class="d">14</span></div><div><h4>Parent Coffee &amp; Conversation</h4><p>8:15 am · Library</p><span class="ev-tag t-community">Community</span></div></div>
+          <div class="event" data-cat="admissions"><div class="date"><span class="m">Dec</span><span class="d">03</span></div><div><h4>Kindergarten Readiness Night</h4><p>6:00 pm · Lower School Hall</p><span class="ev-tag t-admissions">Admissions</span></div></div>
+          <div class="event" data-cat="arts"><div class="date"><span class="m">Dec</span><span class="d">12</span></div><div><h4><em>The Phantom Tollbooth</em> — Opening Night</h4><p>7:00 pm · Barn Theater</p><span class="ev-tag t-arts">Arts</span></div></div>
+        </div>
+        <p class="empty" id="noEvents" hidden>No upcoming events in this category.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPUS LIFE -->
+<section class="sec" id="life">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Campus Life</span>
+        <h2>A day here is never just a day in a classroom.</h2>
+      </div>
+      <p>From morning meeting to afternoon trail runs, every part of the day is designed for connection.</p>
+    </div>
+    <div class="life-grid">
+      <div class="tile big reveal">
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="400" fill="#2c6b51"/><path d="M0 260 Q100 200 200 250 T400 230 V400 H0Z" fill="#1f4d3a"/><g fill="#8fb48f"><rect x="40" y="290" width="60" height="30" rx="4"/><rect x="130" y="300" width="60" height="30" rx="4"/><rect x="220" y="290" width="60" height="30" rx="4"/><rect x="310" y="300" width="60" height="30" rx="4"/></g><g fill="#e2a72e"><circle cx="60" cy="280" r="10"/><circle cx="160" cy="288" r="12"/><circle cx="250" cy="278" r="9"/><circle cx="340" cy="290" r="11"/></g><circle cx="320" cy="80" r="40" fill="#f7e6bb" opacity=".8"/></svg>
+        <span>The Garden Classroom</span>
+      </div>
+      <div class="tile reveal">
+        <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="200" fill="#c4552d"/><circle cx="100" cy="90" r="50" fill="#e27a52"/><path d="M60 90 h80 M100 50 v80" stroke="#f3d9cb" stroke-width="3"/></svg>
+        <span>Athletics</span>
+      </div>
+      <div class="tile reveal">
+        <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="200" fill="#5c8fa8"/><g fill="#d6e6ec"><rect x="30" y="40" width="20" height="100"/><rect x="55" y="55" width="20" height="85"/><rect x="80" y="35" width="20" height="105"/><rect x="105" y="60" width="20" height="80"/><rect x="130" y="45" width="20" height="95"/></g></svg>
+        <span>The Library</span>
+      </div>
+      <div class="tile wide reveal">
+        <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="200" fill="#e2a72e"/><g fill="none" stroke="#fff" stroke-width="3" opacity=".7"><path d="M20 120 q20 -40 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/><path d="M20 150 q20 -30 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" opacity=".6"/></g><circle cx="320" cy="60" r="24" fill="#c4552d"/><circle cx="270" cy="50" r="10" fill="#1f4d3a"/></svg>
+        <span>Music &amp; Performing Arts</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSIONS -->
+<section class="sec adm" id="admissions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Admissions 2027–28</span>
+        <h2>Let's get to know each other.</h2>
+      </div>
+      <p>Our admissions process is simple, personal, and focused on finding the right fit for your child. Priority deadline: January 15.</p>
+    </div>
+    <div class="adm-grid">
+      <ol class="steps">
+        <li><div><h3>Inquire &amp; visit</h3><p>Tell us about your family and join a campus tour or Open House to see classes in action.</p><span class="when">September – January</span></div></li>
+        <li><div><h3>Apply</h3><p>Submit the online application, a parent questionnaire, and recent school records.</p><span class="when">Priority deadline · Jan 15</span></div></li>
+        <li><div><h3>Visit day</h3><p>Your child spends a morning with future classmates while you meet with our admissions team.</p><span class="when">January – February</span></div></li>
+        <li><div><h3>Decisions</h3><p>Families receive admission and tuition assistance decisions together, with time to decide.</p><span class="when">March 10</span></div></li>
+      </ol>
+
+      <div class="form-card" id="formCard">
+        <form id="inquiry" novalidate>
+          <h3>Request information</h3>
+          <p>We'll send a viewbook and reach out within two school days.</p>
+          <div class="row2">
+            <div class="field"><label for="pname">Parent / guardian name</label><input id="pname" name="pname" autocomplete="name" required><span class="err" aria-live="polite"></span></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><span class="err" aria-live="polite"></span></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="cname">Child's first name</label><input id="cname" name="cname" required><span class="err" aria-live="polite"></span></div>
+            <div class="field"><label for="grade">Entering grade</label>
+              <select id="grade" name="grade" required>
+                <option value="">Select…</option>
+                <option>Kindergarten</option><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option><option>Grade 7</option><option>Grade 8</option>
+              </select><span class="err" aria-live="polite"></span></div>
+          </div>
+          <div class="field"><label for="msg">Anything you'd like us to know? <span style="font-weight:400;color:var(--ink-2)">(optional)</span></label><textarea id="msg" name="msg"></textarea></div>
+          <button class="btn btn-primary" type="submit">Send inquiry</button>
+        </form>
+        <div class="success" id="success" role="status">
+          <div class="check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></div>
+          <h3>Thank you!</h3>
+          <p id="successMsg">We've received your inquiry and will be in touch soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="sec" id="visit">
+  <div class="wrap visit-grid">
+    <div class="reveal">
+      <span class="eyebrow">Visit Us</span>
+      <h2 style="font-size:clamp(32px,4.4vw,52px);margin-top:10px">Come see the Hill for yourself.</h2>
+      <div class="info-list">
+        <div class="info"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><h4>Address</h4><p>1420 Meadowlark Road<br>Ashwood, OR 97520</p></div></div>
+        <div class="info"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h4>School hours</h4><p>Mon – Fri · 8:15 am – 3:00 pm<br>Extended day until 6:00 pm</p></div></div>
+        <div class="info"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div><div><h4>Contact</h4><p><a href="tel:+15415550142">(541) 555-0142</a><br><a href="mailto:admissions@larkspurhill.example">admissions@larkspurhill.example</a></p></div></div>
+      </div>
+    </div>
+    <div class="map reveal">
+      <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Stylized map showing the school near Meadowlark Road and Willow Creek">
+        <rect width="600" height="400" fill="var(--paper-2)"/>
+        <g stroke="var(--line)" stroke-width="1">
+          <path d="M0 80h600M0 160h600M0 240h600M0 320h600M100 0v400M220 0v400M340 0v400M460 0v400"/>
+        </g>
+        <path d="M-10 300 C120 260 160 340 280 300 S460 200 610 240" fill="none" stroke="var(--sky)" stroke-width="14" opacity=".55" stroke-linecap="round"/>
+        <path d="M0 140 L600 190" stroke="var(--card)" stroke-width="18"/>
+        <path d="M0 140 L600 190" stroke="var(--ink-2)" stroke-width="1" stroke-dasharray="8 8" opacity=".5"/>
+        <path d="M300 0 L330 400" stroke="var(--card)" stroke-width="12"/>
+        <g fill="#8fb48f" opacity=".7"><circle cx="420" cy="100" r="40"/><circle cx="470" cy="80" r="30"/><circle cx="120" cy="230" r="30"/></g>
+        <text x="40" y="128" font-family="Figtree" font-size="13" font-weight="600" fill="var(--ink-2)">Meadowlark Rd</text>
+        <text x="380" y="262" font-family="Figtree" font-size="13" font-style="italic" fill="var(--sky)">Willow Creek</text>
+        <g transform="translate(360 168)">
+          <circle r="34" fill="var(--clay)" opacity=".18"/>
+          <path d="M0 6 C-14 -8 -14 -28 0 -28 C14 -28 14 -8 0 6Z" fill="var(--clay)" transform="translate(0 -4) scale(1.3)"/>
+          <circle cy="-28" r="7" fill="#fff"/>
+        </g>
+        <rect x="380" y="118" width="170" height="40" rx="10" fill="var(--card)" stroke="var(--line)"/>
+        <text x="396" y="143" font-family="Fraunces" font-size="16" font-weight="600" fill="var(--ink)">Larkspur Hill School</text>
+      </svg>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand" style="color:inherit">
+          <span class="brand-name" style="color:var(--paper)">Larkspur Hill<small style="color:rgba(246,241,231,.6)">SCHOOL · EST. 1962</small></span>
+        </a>
+        <p style="margin-top:16px;max-width:30ch">An independent, coeducational K–8 day school. Larkspur Hill admits students of any race, color, religion, and national or ethnic origin.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="#approach">About</a></li><li><a href="#programs">Programs</a></li><li><a href="#life">Campus Life</a></li><li><a href="#admissions">Admissions</a></li></ul>
+      </div>
+      <div>
+        <h4>Families</h4>
+        <ul><li><a href="#">Parent Portal</a></li><li><a href="#">School Calendar</a></li><li><a href="#">Lunch Menu</a></li><li><a href="#">Careers</a></li></ul>
+      </div>
+      <div>
+        <h4>The Hill Weekly</h4>
+        <p>Stories from campus, once a week.</p>
+        <form class="news-form" id="newsForm">
+          <label for="nl" class="skip" style="position:absolute;left:-999px">Email address</label>
+          <input id="nl" type="email" placeholder="you@example.com" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <p id="nlMsg" style="margin-top:8px;font-size:14px" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> Larkspur Hill School</span>
+      <span>1420 Meadowlark Road, Ashwood, OR</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  // Theme
+  try{var saved=localStorage.getItem('lh-theme');if(saved)root.setAttribute('data-theme',saved);}catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('lh-theme',next);}catch(e){}
+  });
+
+  // Mobile nav
+  var nav=document.getElementById('nav'),mb=document.getElementById('menuBtn');
+  mb.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    mb.setAttribute('aria-expanded',open);
+    mb.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');mb.setAttribute('aria-expanded','false');});});
+
+  // Tabs
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(t){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute('aria-selected',on);
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t);});
+    t.addEventListener('keydown',function(e){
+      var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+      if(d){var n=tabs[(i+d+tabs.length)%tabs.length];select(n);n.focus();e.preventDefault();}
+    });
+  });
+
+  // Event filter
+  var chips=document.querySelectorAll('.chip'),events=document.querySelectorAll('.event'),none=document.getElementById('noEvents');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed',x===c);});
+      var f=c.dataset.filter,shown=0;
+      events.forEach(function(ev){var show=f==='all'||ev.dataset.cat===f;ev.hidden=!show;if(show)shown++;});
+      none.hidden=shown>0;
+    });
+  });
+
+  // Inquiry form
+  var form=document.getElementById('inquiry');
+  function setErr(el,msg){var f=el.closest('.field');f.classList.toggle('invalid',!!msg);f.querySelector('.err').textContent=msg||'';}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true,first=null;
+    [['pname','Please enter your name.'],['email','Please enter a valid email.'],['cname',"Please enter your child's name."],['grade','Please choose a grade.']].forEach(function(p){
+      var el=document.getElementById(p[0]);var bad=!el.value.trim()||(el.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value));
+      setErr(el,bad?p[1]:'');if(bad){ok=false;first=first||el;}
+    });
+    if(!ok){first.focus();return;}
+    var name=document.getElementById('pname').value.trim().split(' ')[0];
+    var child=document.getElementById('cname').value.trim();
+    var grade=document.getElementById('grade').value;
+    document.getElementById('successMsg').textContent='Thanks, '+name+'! We’ll send information about '+grade+' for '+child+' to your inbox and follow up within two school days.';
+    form.style.display='none';
+    document.getElementById('success').classList.add('show');
+  });
+  form.querySelectorAll('input,select').forEach(function(el){el.addEventListener('input',function(){if(el.closest('.field').classList.contains('invalid'))setErr(el,'');});});
+
+  // Newsletter
+  document.getElementById('newsForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=document.getElementById('nl'),m=document.getElementById('nlMsg');
+    if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value)){m.textContent='You’re subscribed. See you Friday!';i.value='';}
+    else m.textContent='Please enter a valid email address.';
+  });
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // Reveal on scroll
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.12});
+    els.forEach(function(el){io.observe(el);});
+  }else els.forEach(function(el){el.classList.add('in');});
+})();
+</script>
+</body>
+</html>

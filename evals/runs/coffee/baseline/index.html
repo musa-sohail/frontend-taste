@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halfmoon Coffee</title>
+<meta name="description" content="Halfmoon Coffee — small-batch roasts, slow mornings, and a neighborhood table on Alder Street.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6efe6;
+    --surface: #fffaf3;
+    --ink: #2a1d15;
+    --muted: #6f5d50;
+    --line: #e2d4c3;
+    --accent: #b5532c;
+    --accent-ink: #fffaf3;
+    --deep: #3b2619;
+    --deep-ink: #f6efe6;
+    --cream: #ead9c2;
+    --radius: 18px;
+    --max: 1160px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b130e;
+      --surface: #241912;
+      --ink: #f3e8da;
+      --muted: #b8a48f;
+      --line: #3a2b20;
+      --accent: #e07a4b;
+      --accent-ink: #1b130e;
+      --deep: #2d1f16;
+      --deep-ink: #f3e8da;
+      --cream: #4a3424;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b130e; --surface: #241912; --ink: #f3e8da; --muted: #b8a48f;
+    --line: #3a2b20; --accent: #e07a4b; --accent-ink: #1b130e;
+    --deep: #2d1f16; --deep-ink: #f3e8da; --cream: #4a3424;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.6 "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.08; margin: 0; letter-spacing: -0.01em; }
+  p { margin: 0; }
+  a { color: inherit; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    border: 1.5px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+
+  /* Nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: "Fraunces", serif; font-weight: 700; font-size: 21px; }
+  .logo svg { width: 28px; height: 28px; color: var(--accent); }
+  .nav-links { display: none; gap: 30px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; font-weight: 500; font-size: 15px; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav .btn { padding: 10px 18px; font-size: 14px; }
+  @media (min-width: 820px) { .nav-links { display: flex; } }
+
+  /* Hero */
+  .hero { padding: 56px 0 72px; }
+  .hero-grid { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.1fr .9fr; gap: 56px; } .hero { padding: 88px 0 104px; } }
+  .hero h1 { font-size: clamp(42px, 7vw, 84px); margin: 16px 0 20px; }
+  .hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .hero p.lead { font-size: 18px; color: var(--muted); max-width: 34em; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .hero-meta div strong { display: block; font-family: "Fraunces", serif; font-size: 26px; }
+  .hero-meta div span { font-size: 13px; color: var(--muted); }
+  .hero-art {
+    position: relative; aspect-ratio: 1 / 1; border-radius: 28px;
+    background: var(--deep); overflow: hidden;
+  }
+  .hero-art svg { width: 100%; height: 100%; }
+  .steam path { animation: rise 4s ease-in-out infinite; transform-origin: center; opacity: .0; }
+  .steam path:nth-child(2) { animation-delay: 1.3s; }
+  .steam path:nth-child(3) { animation-delay: 2.6s; }
+  @keyframes rise {
+    0% { opacity: 0; transform: translateY(14px); }
+    30% { opacity: .75; }
+    100% { opacity: 0; transform: translateY(-26px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .steam path { animation: none; opacity: .6; } }
+  .badge {
+    position: absolute; left: 20px; bottom: 20px;
+    background: var(--surface); color: var(--ink);
+    padding: 12px 16px; border-radius: 14px; font-size: 13px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  }
+  .badge strong { display: block; font-family: "Fraunces", serif; font-size: 16px; }
+
+  /* Sections */
+  section { scroll-margin-top: 70px; }
+  .section { padding: 80px 0; }
+  .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 36px; }
+  .section-head h2 { font-size: clamp(32px, 4.5vw, 52px); margin-top: 10px; }
+  .section-head p { color: var(--muted); max-width: 30em; }
+
+  /* Menu */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .tab {
+    border: 1.5px solid var(--line); background: transparent; color: var(--ink);
+    padding: 9px 18px; border-radius: 999px; font: 500 14px "Inter", sans-serif; cursor: pointer;
+  }
+  .tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .menu-grid { display: grid; gap: 0 48px; }
+  @media (min-width: 760px) { .menu-grid { grid-template-columns: 1fr 1fr; } }
+  .item { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 20px 0; border-bottom: 1px dashed var(--line); }
+  .item h3 { font-size: 20px; font-weight: 600; }
+  .item .price { font-family: "Fraunces", serif; font-size: 19px; font-weight: 600; }
+  .item p { grid-column: 1 / -1; color: var(--muted); font-size: 14.5px; }
+  .tag { display: inline-block; font-family: "Inter", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-left: 8px; vertical-align: middle; }
+  .panel[hidden] { display: none; }
+
+  /* Feature band */
+  .band { background: var(--deep); color: var(--deep-ink); border-radius: 28px; padding: 48px 24px; }
+  @media (min-width: 720px) { .band { padding: 64px 56px; } }
+  .band .eyebrow { color: #e9a07c; }
+  .band-grid { display: grid; gap: 40px; }
+  @media (min-width: 900px) { .band-grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; } }
+  .band h2 { font-size: clamp(30px, 4vw, 46px); margin: 12px 0 18px; }
+  .band p { opacity: .82; }
+  .roasts { display: grid; gap: 14px; }
+  .roast {
+    display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; align-items: center;
+    padding: 18px 20px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+  }
+  .roast h3 { font-size: 19px; }
+  .roast small { opacity: .7; font-size: 13px; grid-column: 1; }
+  .roast .meter { grid-row: 1 / span 2; grid-column: 2; display: flex; gap: 4px; }
+  .roast .meter i { width: 8px; height: 22px; border-radius: 3px; background: rgba(255,255,255,.16); }
+  .roast .meter i.on { background: #e9a07c; }
+
+  /* Story */
+  .story { display: grid; gap: 32px; }
+  @media (min-width: 900px) { .story { grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; } }
+  .story p + p { margin-top: 16px; }
+  .story p { color: var(--muted); font-size: 17px; }
+  .story h2 { font-size: clamp(32px, 4.5vw, 52px); margin: 10px 0 22px; }
+  .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+  .value { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .value svg { width: 28px; height: 28px; color: var(--accent); margin-bottom: 14px; }
+  .value h3 { font-size: 18px; margin-bottom: 6px; }
+  .value p { font-size: 14px; color: var(--muted); }
+
+  /* Quotes */
+  .quotes { display: grid; gap: 16px; }
+  @media (min-width: 820px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+  blockquote { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  blockquote p { font-family: "Fraunces", serif; font-size: 19px; line-height: 1.4; }
+  blockquote cite { display: block; margin-top: 16px; font-style: normal; font-size: 13px; color: var(--muted); }
+
+  /* Visit */
+  .visit { display: grid; gap: 20px; }
+  @media (min-width: 900px) { .visit { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .card h3 { font-size: 24px; margin-bottom: 18px; }
+  .hours { list-style: none; padding: 0; margin: 0; }
+  .hours li { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .hours li:last-child { border-bottom: 0; }
+  .hours li.today { font-weight: 600; color: var(--accent); }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: var(--cream); margin-bottom: 14px; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+  .status.open::before { background: #3f9b5c; }
+  .map { border-radius: 14px; overflow: hidden; background: var(--cream); aspect-ratio: 16 / 9; margin-bottom: 18px; }
+  .map svg { width: 100%; height: 100%; }
+  address { font-style: normal; color: var(--muted); }
+  address strong { color: var(--ink); }
+
+  /* Newsletter */
+  .signup { text-align: center; padding: 80px 0 96px; }
+  .signup h2 { font-size: clamp(30px, 4vw, 44px); margin: 10px 0 14px; }
+  .signup p { color: var(--muted); }
+  .signup form { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 26px; }
+  .signup input {
+    flex: 1 1 240px; max-width: 340px; padding: 13px 18px; border-radius: 999px;
+    border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font: 15px "Inter", sans-serif;
+  }
+  .signup input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .signup .note { margin-top: 14px; font-size: 14px; min-height: 1.4em; color: var(--accent); }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0; font-size: 14px; color: var(--muted); }
+  .foot { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+  .foot nav { display: flex; gap: 20px; }
+  .foot a { text-decoration: none; }
+  .foot a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="Halfmoon Coffee home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M20 4a12 12 0 1 0 8 20.5A10 10 0 0 1 20 4Z" fill="currentColor"/></svg>
+      Halfmoon
+    </a>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#beans">Beans</a></li>
+      <li><a href="#story">Our story</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a href="#visit" class="btn btn-primary">Find us</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Neighborhood roastery · Est. 2016</span>
+        <h1>Slow mornings, <em>serious</em> coffee.</h1>
+        <p class="lead">We roast small batches every Tuesday and Friday, pull shots by hand, and bake everything in the back before the sun is up. Pull up a chair — stay as long as you like.</p>
+        <div class="hero-ctas">
+          <a href="#menu" class="btn btn-primary">See the menu</a>
+          <a href="#beans" class="btn btn-ghost">Shop beans</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>6</strong><span>single origins on rotation</span></div>
+          <div><strong>48 hr</strong><span>max from roaster to cup</span></div>
+          <div><strong>7 am</strong><span>doors open daily</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+              <stop offset="0" stop-color="#e9a07c" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#e9a07c" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="400" fill="url(#glow)"/>
+          <circle cx="300" cy="90" r="34" fill="#f3e2c9"/>
+          <circle cx="314" cy="80" r="30" fill="#3b2619"/>
+          <g fill="#f3e2c9" opacity=".5">
+            <circle cx="70" cy="70" r="2"/><circle cx="120" cy="40" r="1.5"/><circle cx="220" cy="60" r="1.5"/><circle cx="350" cy="170" r="2"/><circle cx="50" cy="160" r="1.5"/>
+          </g>
+          <g class="steam" fill="none" stroke="#f3e2c9" stroke-width="5" stroke-linecap="round">
+            <path d="M170 170c-14-18 14-30 0-50"/>
+            <path d="M200 165c-14-18 14-30 0-50"/>
+            <path d="M230 170c-14-18 14-30 0-50"/>
+          </g>
+          <ellipse cx="200" cy="320" rx="130" ry="20" fill="#24170f"/>
+          <ellipse cx="200" cy="312" rx="118" ry="16" fill="#f3e2c9"/>
+          <path d="M110 200h180v40a90 80 0 0 1-180 0Z" fill="#f6efe6"/>
+          <path d="M290 212c34 0 40 46 2 52" fill="none" stroke="#f6efe6" stroke-width="14" stroke-linecap="round"/>
+          <ellipse cx="200" cy="200" rx="90" ry="16" fill="#6b3e24"/>
+          <path d="M184 196c6-10 26-10 32 0c-6 8-26 8-32 0Z" fill="#e9c9a3"/>
+          <path d="M200 192v10" stroke="#6b3e24" stroke-width="2"/>
+          <path d="M132 250c18 10 46 14 68 14" stroke="#e2d4c3" stroke-width="6" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="badge"><strong>This week: Huila, Colombia</strong>Red plum · cacao nib · panela</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="section" style="padding-top:24px">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The menu</span>
+          <h2>Made to order, all day.</h2>
+        </div>
+        <p>Oat, almond and whole milk at no extra charge. Decaf available on every espresso drink.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Menu categories">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-espresso" id="t-espresso">Espresso</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-brew" id="t-brew" tabindex="-1">Brewed &amp; cold</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-tea" id="t-tea" tabindex="-1">Tea &amp; more</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-bakery" id="t-bakery" tabindex="-1">Bakery</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-espresso" aria-labelledby="t-espresso">
+        <div class="menu-grid">
+          <div class="item"><h3>Espresso</h3><span class="price">$3.25</span><p>Double shot of our Halfmoon house blend. Chocolate, cherry, brown sugar.</p></div>
+          <div class="item"><h3>Cortado</h3><span class="price">$4.25</span><p>Equal parts espresso and silky steamed milk, served in a 4 oz glass.</p></div>
+          <div class="item"><h3>Flat White</h3><span class="price">$4.75</span><p>Ristretto shots with a thin, velvety layer of microfoam.</p></div>
+          <div class="item"><h3>Cappuccino</h3><span class="price">$4.75</span><p>The classic 6 oz — a third espresso, a third milk, a third foam.</p></div>
+          <div class="item"><h3>Latte</h3><span class="price">$5.25</span><p>12 oz, hot or iced. Add vanilla bean, honey-lavender or cardamom syrup +$0.75.</p></div>
+          <div class="item"><h3>Moonlight Mocha<span class="tag">House</span></h3><span class="price">$5.75</span><p>Dark Ecuadorian chocolate, a pinch of sea salt, espresso and steamed milk.</p></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-brew" aria-labelledby="t-brew" hidden>
+        <div class="menu-grid">
+          <div class="item"><h3>Drip of the Day</h3><span class="price">$3.00</span><p>Batch-brewed every 30 minutes. Free refills if you're staying in.</p></div>
+          <div class="item"><h3>Pour Over</h3><span class="price">$5.50</span><p>Any single origin, brewed by hand on a V60. Ask us what's tasting best.</p></div>
+          <div class="item"><h3>Cold Brew</h3><span class="price">$4.75</span><p>Steeped 18 hours. Bold, smooth, low acidity.</p></div>
+          <div class="item"><h3>Nitro Cold Brew</h3><span class="price">$5.50</span><p>On tap, with a cascading creamy head — no milk needed.</p></div>
+          <div class="item"><h3>Orange Tonic<span class="tag">Seasonal</span></h3><span class="price">$5.75</span><p>Espresso over tonic water, fresh orange peel and a little rosemary.</p></div>
+          <div class="item"><h3>Affogato</h3><span class="price">$6.00</span><p>A scoop of local vanilla gelato drowned in a double shot.</p></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-tea" aria-labelledby="t-tea" hidden>
+        <div class="menu-grid">
+          <div class="item"><h3>Matcha Latte</h3><span class="price">$5.50</span><p>Ceremonial-grade matcha from Uji, whisked to order.</p></div>
+          <div class="item"><h3>Chai Latte</h3><span class="price">$5.00</span><p>Our own spice blend, simmered in-house with black tea and ginger.</p></div>
+          <div class="item"><h3>Loose-Leaf Tea</h3><span class="price">$3.75</span><p>Earl grey, jasmine green, chamomile or a rotating oolong.</p></div>
+          <div class="item"><h3>Hot Chocolate</h3><span class="price">$4.50</span><p>Made with real melted chocolate. Add a toasted marshmallow +$0.50.</p></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-bakery" aria-labelledby="t-bakery" hidden>
+        <div class="menu-grid">
+          <div class="item"><h3>Butter Croissant</h3><span class="price">$4.00</span><p>Laminated over three days. Flaky, golden, gone by noon.</p></div>
+          <div class="item"><h3>Cardamom Bun<span class="tag">Favorite</span></h3><span class="price">$4.50</span><p>Swedish-style knot with freshly ground cardamom and pearl sugar.</p></div>
+          <div class="item"><h3>Banana Bread</h3><span class="price">$3.75</span><p>Brown butter, toasted walnuts. Warmed and buttered on request.</p></div>
+          <div class="item"><h3>Savory Galette</h3><span class="price">$7.50</span><p>Seasonal vegetables, gruyère and herbs in a rye crust.</p></div>
+          <div class="item"><h3>Olive Oil Cake</h3><span class="price">$4.75</span><p>Lemon zest and a crackly sugar top. Gluten-free.</p></div>
+          <div class="item"><h3>Avocado Toast</h3><span class="price">$9.00</span><p>Sourdough, chili crisp, pickled shallot, soft egg optional.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="beans" class="section" style="padding-top:16px">
+    <div class="wrap">
+      <div class="band">
+        <div class="band-grid">
+          <div>
+            <span class="eyebrow">Roasted in-house</span>
+            <h2>Take the good stuff home.</h2>
+            <p>Every bag is roasted on our 12-kilo Diedrich in the back room, dated, and sold within a week. We buy directly from growers we've visited and pay well above Fair Trade minimums.</p>
+            <div style="margin-top:28px"><a href="#visit" class="btn btn-primary">Pick up in store</a></div>
+          </div>
+          <div class="roasts">
+            <div class="roast"><h3>Halfmoon House Blend</h3><small>Brazil &amp; Guatemala · chocolate, hazelnut · $17</small><span class="meter" aria-label="Medium-dark roast"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+            <div class="roast"><h3>Huila, Colombia</h3><small>Washed · red plum, cacao nib, panela · $20</small><span class="meter" aria-label="Medium roast"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+            <div class="roast"><h3>Guji, Ethiopia</h3><small>Natural · blueberry, jasmine, lime · $22</small><span class="meter" aria-label="Light roast"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+            <div class="roast"><h3>Night Shift Decaf</h3><small>Swiss Water · caramel, almond · $18</small><span class="meter" aria-label="Medium roast"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="section">
+    <div class="wrap story">
+      <div>
+        <span class="eyebrow">Our story</span>
+        <h2>A corner café that grew a roaster.</h2>
+        <p>Halfmoon started in 2016 as a six-seat espresso bar run by two former baristas who wanted a place that felt like a friend's kitchen. The neighbors kept showing up, so we kept adding chairs.</p>
+        <p>Today we roast our own beans, bake every morning and host open-mic nights on the first Friday of the month. The coffee got better. The kitchen-table feeling stayed.</p>
+      </div>
+      <div class="values">
+        <div class="value">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c5-3 8-7 8-12a8 8 0 0 0-16 0c0 5 3 9 8 12Z"/><path d="M12 6v10"/></svg>
+          <h3>Direct trade</h3><p>We know our growers by name and visit every harvest we can.</p>
+        </div>
+        <div class="value">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/><circle cx="12" cy="12" r="9"/></svg>
+          <h3>Low waste</h3><p>Compostable cups, refill discounts and grounds free for gardeners.</p>
+        </div>
+        <div class="value">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+          <h3>Paid fairly</h3><p>Every barista earns a living wage plus tips and health coverage.</p>
+        </div>
+        <div class="value">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg>
+          <h3>Stay a while</h3><p>Fast Wi-Fi, plenty of outlets and no laptop curfew. Really.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Kind words</span><h2>From the regulars.</h2></div></div>
+      <div class="quotes">
+        <blockquote><p>"The cardamom bun alone is worth the walk. The cortado makes it a habit."</p><cite>— Priya, regular since 2018</cite></blockquote>
+        <blockquote><p>"They remembered my order on my second visit. That's the whole review."</p><cite>— Marcus, works next door</cite></blockquote>
+        <blockquote><p>"Best pour over in the city, and nobody makes you feel silly for asking questions."</p><cite>— Elena, home brewer</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Visit</span><h2>Come say hi.</h2></div><p>Street parking on Alder, bike racks out front, and a quiet back room if you need to focus.</p></div>
+      <div class="visit">
+        <div class="card">
+          <span class="status" id="status">Checking hours…</span>
+          <h3>Hours</h3>
+          <ul class="hours" id="hours">
+            <li data-day="1"><span>Monday</span><span>7:00 am – 6:00 pm</span></li>
+            <li data-day="2"><span>Tuesday</span><span>7:00 am – 6:00 pm</span></li>
+            <li data-day="3"><span>Wednesday</span><span>7:00 am – 6:00 pm</span></li>
+            <li data-day="4"><span>Thursday</span><span>7:00 am – 6:00 pm</span></li>
+            <li data-day="5"><span>Friday</span><span>7:00 am – 9:00 pm</span></li>
+            <li data-day="6"><span>Saturday</span><span>8:00 am – 9:00 pm</span></li>
+            <li data-day="0"><span>Sunday</span><span>8:00 am – 4:00 pm</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="map" aria-hidden="true">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">
+              <rect width="320" height="180" fill="var(--cream)"/>
+              <g stroke="var(--surface)" stroke-width="10">
+                <path d="M0 60h320M0 130h320M80 0v180M210 0v180"/>
+              </g>
+              <g stroke="var(--surface)" stroke-width="4" opacity=".7"><path d="M0 95h320M145 0v180M270 0v180"/></g>
+              <rect x="222" y="70" width="40" height="52" rx="4" fill="#8fb48a" opacity=".55"/>
+              <circle cx="145" cy="78" r="16" fill="var(--accent)" opacity=".2"/>
+              <path d="M145 52c-10 0-17 7-17 16 0 12 17 26 17 26s17-14 17-26c0-9-7-16-17-16Z" fill="var(--accent)"/>
+              <circle cx="145" cy="68" r="5.5" fill="var(--surface)"/>
+            </svg>
+          </div>
+          <address>
+            <strong>Halfmoon Coffee</strong><br>
+            214 Alder Street<br>
+            Portland, OR 97205<br><br>
+            <a href="tel:+15035550142">(503) 555-0142</a> · <a href="mailto:hello@halfmooncoffee.example">hello@halfmooncoffee.example</a>
+          </address>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="signup">
+    <div class="wrap">
+      <span class="eyebrow">The Roast Note</span>
+      <h2>New beans, first.</h2>
+      <p>One short email when a fresh origin lands. No spam, ever.</p>
+      <form id="signup" novalidate>
+        <label for="email" style="position:absolute;left:-9999px">Email address</label>
+        <input id="email" type="email" placeholder="you@example.com" required autocomplete="email">
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+      <p class="note" id="note" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> Halfmoon Coffee. Brewed with care on Alder Street.</span>
+    <nav aria-label="Social">
+      <a href="#">Instagram</a><a href="#">Spotify playlist</a><a href="#visit">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // Menu tabs
+  const tabs = [...document.querySelectorAll('.tab')];
+  function select(tab) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      select(next); next.focus();
+    });
+  });
+
+  // Open/closed status
+  const hours = { 0: [8, 16], 1: [7, 18], 2: [7, 18], 3: [7, 18], 4: [7, 18], 5: [7, 21], 6: [8, 21] };
+  const now = new Date();
+  const d = now.getDay();
+  const h = now.getHours() + now.getMinutes() / 60;
+  document.querySelector(`#hours li[data-day="${d}"]`)?.classList.add('today');
+  const [o, c] = hours[d];
+  const status = document.getElementById('status');
+  const fmt = x => { const hr = x % 12 || 12; return hr + (x < 12 ? ' am' : ' pm'); };
+  if (h >= o && h < c) { status.textContent = `Open now · until ${fmt(c)}`; status.classList.add('open'); }
+  else { const nd = h < o ? d : (d + 1) % 7; status.textContent = `Closed · opens ${fmt(hours[nd][0])}${nd === d ? '' : ' tomorrow'}`; }
+
+  // Newsletter
+  document.getElementById('signup').addEventListener('submit', e => {
+    e.preventDefault();
+    const input = document.getElementById('email');
+    const note = document.getElementById('note');
+    if (!input.validity.valid || !input.value) { note.textContent = 'Please enter a valid email address.'; input.focus(); return; }
+    note.textContent = 'Thanks! Watch your inbox for the next Roast Note.';
+    input.value = '';
+  });
+
+  document.getElementById('yr').textContent = now.getFullYear();
+</script>
+</body>
+</html>

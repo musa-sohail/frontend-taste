@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tandem — Project management</title>
+<meta name="description" content="Tandem is the calm project management tool for teams who ship. Plan, track and deliver work in one place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef;
+  --surface:#ffffff;
+  --surface-2:#efece5;
+  --ink:#16150f;
+  --ink-2:#4a4840;
+  --ink-3:#85827a;
+  --line:#e2ded4;
+  --accent:#2f5bff;
+  --accent-ink:#ffffff;
+  --accent-soft:#e3e9ff;
+  --green:#1f8a5b; --green-soft:#dcf1e6;
+  --amber:#b7740b; --amber-soft:#fbecd2;
+  --rose:#c2414b;  --rose-soft:#f8dfe1;
+  --violet:#6d4ad8;--violet-soft:#e9e2fb;
+  --shadow:0 1px 2px rgba(22,21,15,.04),0 12px 32px -12px rgba(22,21,15,.14);
+  --radius:14px;
+  --sans:"Inter Tight",system-ui,-apple-system,Segoe UI,sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111110; --surface:#1a1a18; --surface-2:#232320;
+    --ink:#f2f0ea; --ink-2:#bdbab1; --ink-3:#85827a; --line:#2e2d29;
+    --accent:#6b8bff; --accent-ink:#0d0d0c; --accent-soft:#1f2747;
+    --green:#5cc794; --green-soft:#16302a; --amber:#e6a94a; --amber-soft:#3a2c14;
+    --rose:#ec7a83; --rose-soft:#3b1d21; --violet:#a891f5; --violet-soft:#2a2244;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -12px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111110; --surface:#1a1a18; --surface-2:#232320;
+  --ink:#f2f0ea; --ink-2:#bdbab1; --ink-3:#85827a; --line:#2e2d29;
+  --accent:#6b8bff; --accent-ink:#0d0d0c; --accent-soft:#1f2747;
+  --green:#5cc794; --green-soft:#16302a; --amber:#e6a94a; --amber-soft:#3a2c14;
+  --rose:#ec7a83; --rose-soft:#3b1d21; --violet:#a891f5; --violet-soft:#2a2244;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-ghost{border:1px solid var(--line);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--ink-3)}
+.btn-sm{height:36px;padding:0 14px;font-size:14px}
+
+/* Nav */
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid transparent;transition:border-color .2s}
+header.scrolled{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+.logo-mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+.logo-mark svg{width:16px;height:16px}
+.nav-links{display:flex;gap:28px;font-size:15px;color:var(--ink-2)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.theme-btn{width:36px;height:36px;border-radius:999px;display:grid;place-items:center;color:var(--ink-2);border:1px solid var(--line)}
+.theme-btn:hover{color:var(--ink)}
+.menu-btn{display:none;width:36px;height:36px;border-radius:999px;place-items:center;border:1px solid var(--line)}
+
+/* Hero */
+.hero{padding:88px 0 40px;text-align:center;position:relative}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:14px;color:var(--ink-2);margin-bottom:28px}
+.pill b{background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:12px;padding:3px 9px;border-radius:999px}
+h1{font-size:clamp(44px,7.4vw,92px);line-height:.98;letter-spacing:-.045em;font-weight:600;max-width:15ch;margin:0 auto}
+h1 .serif{font-size:1.08em;letter-spacing:-.02em}
+.hero p.lede{font-size:clamp(17px,2vw,20px);color:var(--ink-2);max-width:560px;margin:26px auto 36px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-note{margin-top:18px;font-size:13px;color:var(--ink-3)}
+
+/* Product mock */
+.mock-wrap{margin:64px auto 0;max-width:1080px;position:relative}
+.mock-wrap::before{content:"";position:absolute;inset:-60px -40px auto;height:70%;background:radial-gradient(60% 60% at 50% 40%,var(--accent-soft),transparent 70%);z-index:-1;opacity:.9}
+.mock{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;text-align:left}
+.mock-top{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.crumbs{font-size:13px;color:var(--ink-3);display:flex;gap:6px;align-items:center}
+.crumbs b{color:var(--ink);font-weight:600}
+.tabs{margin-left:auto;display:flex;gap:4px;background:var(--surface-2);padding:3px;border-radius:9px}
+.tabs button{font-size:12px;padding:5px 10px;border-radius:7px;color:var(--ink-3);font-weight:500}
+.tabs button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.mock-body{display:grid;grid-template-columns:200px 1fr;min-height:420px}
+.side{border-right:1px solid var(--line);padding:14px 10px;font-size:13px;color:var(--ink-2);display:flex;flex-direction:column;gap:2px}
+.side .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:12px 10px 6px}
+.side a{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:7px}
+.side a.on{background:var(--surface-2);color:var(--ink);font-weight:600}
+.side .sw{width:8px;height:8px;border-radius:3px}
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:16px;background:var(--bg)}
+.col-h{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;padding:2px 4px 10px}
+.col-h span{color:var(--ink-3);font-weight:500}
+.col-h .st{width:10px;height:10px;border-radius:50%;border:2px solid currentColor}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin-bottom:9px;font-size:13px;line-height:1.35;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.card .id{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-bottom:5px;display:block}
+.card .meta{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.tag{font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:5px}
+.t-blue{background:var(--accent-soft);color:var(--accent)}
+.t-green{background:var(--green-soft);color:var(--green)}
+.t-amber{background:var(--amber-soft);color:var(--amber)}
+.t-rose{background:var(--rose-soft);color:var(--rose)}
+.t-violet{background:var(--violet-soft);color:var(--violet)}
+.av{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;font-size:9.5px;font-weight:700;color:#fff;border:2px solid var(--surface)}
+.avs{display:flex}.avs .av+.av{margin-left:-6px}
+.prog{height:4px;border-radius:4px;background:var(--surface-2);margin-top:9px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.cursor{position:absolute;pointer-events:none;display:flex;align-items:flex-start;gap:2px;transition:transform 2.4s cubic-bezier(.6,.05,.3,1)}
+.cursor span{font-size:11px;font-weight:600;color:#fff;padding:2px 7px;border-radius:6px;margin-top:14px}
+
+/* Logos */
+.logos{padding:72px 0 24px;text-align:center}
+.logo-row{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 52px;margin-top:22px;color:var(--ink-3);font-weight:600;font-size:21px;letter-spacing:-.02em}
+.logo-row span:nth-child(2){font-family:var(--serif);font-style:italic;font-weight:400;font-size:25px}
+.logo-row span:nth-child(4){font-family:var(--mono);font-size:17px}
+.logo-row span:nth-child(5){text-transform:uppercase;letter-spacing:.12em;font-size:15px}
+
+/* Sections */
+section{padding:110px 0}
+.sec-head{max-width:680px;margin-bottom:56px}
+.sec-head h2,.big-h{font-size:clamp(34px,4.6vw,56px);line-height:1.02;letter-spacing:-.035em;font-weight:600;margin-top:14px}
+.sec-head p{color:var(--ink-2);font-size:18px;margin-top:18px;max-width:560px}
+
+/* Features bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.tile h3{font-size:21px;letter-spacing:-.02em;font-weight:600;margin-bottom:8px}
+.tile p{color:var(--ink-2);font-size:15px;max-width:42ch}
+.tile .viz{margin-top:auto;padding-top:28px}
+.span-4{grid-column:span 4}.span-2{grid-column:span 2}.span-3{grid-column:span 3}
+/* timeline viz */
+.tl{display:grid;gap:9px;font-size:12px}
+.tl-row{display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;color:var(--ink-3)}
+.tl-track{position:relative;height:24px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/8 - 1px),var(--line) calc(100%/8 - 1px) calc(100%/8));border-radius:6px}
+.tl-bar{position:absolute;top:3px;bottom:3px;border-radius:5px;font-size:11px;font-weight:600;padding:0 8px;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+/* automation viz */
+.auto{display:flex;flex-direction:column;gap:8px;font-size:13px}
+.rule{display:flex;align-items:center;gap:10px;background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.rule kbd{font-family:var(--mono);font-size:10.5px;padding:2px 6px;border-radius:5px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
+.rule .ar{color:var(--ink-3)}
+/* stat viz */
+.stat-big{font-size:64px;letter-spacing:-.05em;font-weight:600;line-height:1}
+.bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:18px}
+.bars i{flex:1;background:var(--accent-soft);border-radius:4px 4px 2px 2px;transition:height .8s cubic-bezier(.2,.8,.2,1)}
+.bars i:last-child{background:var(--accent)}
+/* docs viz */
+.doc{background:var(--surface-2);border-radius:10px;padding:16px;font-size:13px;color:var(--ink-2)}
+.doc h4{color:var(--ink);font-size:15px;margin-bottom:8px}
+.doc .ln{height:7px;border-radius:4px;background:var(--line);margin:7px 0}
+.mention{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:3px 8px;font-size:12px;color:var(--ink);margin-top:6px}
+/* integrations */
+.ints{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.int{aspect-ratio:1;border-radius:12px;background:var(--surface-2);display:grid;place-items:center;font-weight:700;font-size:15px;color:var(--ink-2)}
+
+/* How it works */
+.how{background:var(--ink);color:var(--bg);border-radius:28px;margin:0 16px;padding:110px 0}
+.how .eyebrow{color:color-mix(in srgb,var(--bg) 55%,transparent)}
+.how .sec-head p{color:color-mix(in srgb,var(--bg) 70%,transparent)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{border-top:1px solid color-mix(in srgb,var(--bg) 22%,transparent);padding-top:22px}
+.step .n{font-family:var(--mono);font-size:12px;color:color-mix(in srgb,var(--bg) 55%,transparent)}
+.step h3{font-size:24px;letter-spacing:-.02em;font-weight:600;margin:14px 0 10px}
+.step p{color:color-mix(in srgb,var(--bg) 70%,transparent);font-size:15.5px}
+
+/* Testimonials */
+.quote-main{font-family:var(--serif);font-size:clamp(28px,3.6vw,44px);line-height:1.15;letter-spacing:-.015em;max-width:24ch}
+.quote-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:end}
+.who{display:flex;align-items:center;gap:14px;margin-top:28px}
+.who .av{width:44px;height:44px;font-size:15px;border:0}
+.who b{display:block;font-weight:600}.who span{color:var(--ink-3);font-size:14px}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.metric{padding:26px;border-bottom:1px solid var(--line)}
+.metric:nth-child(odd){border-right:1px solid var(--line)}
+.metric:nth-last-child(-n+2){border-bottom:0}
+.metric b{display:block;font-size:40px;letter-spacing:-.04em;font-weight:600;line-height:1.05}
+.metric span{color:var(--ink-3);font-size:14px}
+.mini-quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px}
+.mq{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;font-size:15.5px;color:var(--ink-2)}
+.mq .who{margin-top:18px}.mq .who .av{width:32px;height:32px;font-size:12px}
+
+/* Pricing */
+.price-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.toggle{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;font-size:14px;font-weight:500}
+.toggle button{padding:8px 16px;border-radius:999px;color:var(--ink-2)}
+.toggle button.on{background:var(--ink);color:var(--bg)}
+.toggle em{font-style:normal;font-size:11px;color:var(--green);font-weight:600;margin-left:4px}
+.toggle button.on em{color:inherit;opacity:.75}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:flex;flex-direction:column}
+.plan.feat{border:1.5px solid var(--ink);position:relative}
+.plan.feat::after{content:"Most popular";position:absolute;top:-12px;left:28px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.plan h3{font-size:18px;font-weight:600}
+.plan .desc{color:var(--ink-3);font-size:14.5px;margin-top:4px;min-height:44px}
+.amt{display:flex;align-items:baseline;gap:6px;margin:22px 0 4px}
+.amt b{font-size:52px;letter-spacing:-.045em;font-weight:600;line-height:1}
+.amt span{color:var(--ink-3);font-size:14px}
+.billed{font-size:13px;color:var(--ink-3);min-height:20px}
+.plan .btn{margin:22px 0 26px;justify-content:center}
+.plan ul{list-style:none;display:grid;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li svg{flex:none;margin-top:3px;color:var(--green)}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:56px}
+details{border-bottom:1px solid var(--line);padding:22px 0}
+details:first-child{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;font-weight:600;font-size:18px;display:flex;justify-content:space-between;gap:20px;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary .pl{flex:none;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .25s}
+details[open] summary .pl{transform:rotate(45deg)}
+details p{color:var(--ink-2);margin-top:12px;max-width:62ch}
+
+/* CTA */
+.cta{text-align:center;padding:120px 0 130px}
+.cta h2{font-size:clamp(40px,6.4vw,80px);line-height:1;letter-spacing:-.045em;font-weight:600;max-width:14ch;margin:0 auto 22px}
+.cta p{color:var(--ink-2);font-size:18px;margin-bottom:34px}
+.signup{display:flex;gap:8px;max-width:440px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px}
+.signup input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:15px;padding:0 16px;color:var(--ink);outline:none}
+.signup input::placeholder{color:var(--ink-3)}
+.signup-msg{margin-top:14px;font-size:14px;color:var(--green);min-height:20px}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:56px 0 40px;font-size:14px;color:var(--ink-2)}
+.foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:32px}
+.foot h5{font-size:13px;color:var(--ink);font-weight:600;margin-bottom:14px}
+.foot ul{list-style:none;display:grid;gap:9px}
+.foot a:hover{color:var(--ink)}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:56px;color:var(--ink-3);font-size:13px}
+.status{display:inline-flex;align-items:center;gap:8px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.cursor{display:none}html{scroll-behavior:auto}}
+
+/* Responsive */
+@media (max-width:960px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:16px 24px 24px;gap:16px;font-size:17px}
+  .menu-btn{display:grid}
+  .mock-body{grid-template-columns:1fr}
+  .side{display:none}
+  .board{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .span-4,.span-2,.span-3{grid-column:span 6}
+  .steps,.plans,.mini-quotes{grid-template-columns:1fr}
+  .quote-grid,.faq-grid{grid-template-columns:1fr;gap:40px}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot>div:first-child{grid-column:span 2}
+  .plans{max-width:480px}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .hero{padding-top:56px}
+  section{padding:80px 0}
+  .how{margin:0 8px;padding:80px 0;border-radius:20px}
+  .nav-cta .btn-ghost{display:none}
+  .board{grid-template-columns:1fr}
+  .board>div:nth-child(n+3){display:none}
+  .tabs{display:none}
+  .tile{padding:22px}
+  .tl-row{grid-template-columns:64px 1fr}
+  .metric{padding:20px}.metric b{font-size:32px}
+  .signup{flex-direction:column;border-radius:16px;padding:8px}
+  .signup input{height:44px}
+  .signup .btn{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#" class="logo" aria-label="Tandem home">
+      <span class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="8" r="3.5" stroke="var(--bg)" stroke-width="1.8"/><circle cx="10.5" cy="8" r="3.5" stroke="var(--bg)" stroke-width="1.8"/></svg></span>
+      Tandem
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#features">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#customers">Customers</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="#" class="btn btn-ghost btn-sm">Log in</a>
+      <a href="#cta" class="btn btn-primary btn-sm">Start free</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <a href="#features" class="pill"><b>New</b> Tandem Autopilot: status updates that write themselves &rarr;</a>
+      <h1>Projects that move <span class="serif">in step.</span></h1>
+      <p class="lede">Tandem brings plans, tasks, docs and decisions into one calm workspace — so your team spends less time chasing updates and more time shipping.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn btn-primary">Start free — no card needed</a>
+        <a href="#how" class="btn btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>
+          Watch 2-min tour
+        </a>
+      </div>
+      <div class="hero-note">Free for teams up to 10 · Setup in under 5 minutes</div>
+
+      <div class="mock-wrap rv">
+        <div class="mock" id="mock">
+          <div class="mock-top">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="crumbs">Acme <span>/</span> <b>Q4 Launch</b></div>
+            <div class="tabs" role="tablist">
+              <button class="on">Board</button><button>Timeline</button><button>List</button><button>Docs</button>
+            </div>
+          </div>
+          <div class="mock-body">
+            <aside class="side">
+              <a class="on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>My work</a>
+              <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/></svg>Inbox <span style="margin-left:auto;font-size:11px;color:var(--ink-3)">4</span></a>
+              <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Cycles</a>
+              <div class="lbl">Projects</div>
+              <a class="on"><i class="sw" style="background:var(--accent)"></i>Q4 Launch</a>
+              <a><i class="sw" style="background:var(--green)"></i>Mobile v3</a>
+              <a><i class="sw" style="background:var(--amber)"></i>Billing revamp</a>
+              <a><i class="sw" style="background:var(--violet)"></i>Brand refresh</a>
+              <div class="lbl">Team</div>
+              <a><span class="avs"><i class="av" style="background:#e07a5f">MA</i><i class="av" style="background:#3d85c6">JL</i><i class="av" style="background:#81b29a">SK</i></span><span style="font-size:12px;color:var(--ink-3)">+9</span></a>
+            </aside>
+            <div class="board" id="board">
+              <div>
+                <div class="col-h" style="color:var(--ink-3)"><i class="st"></i><b style="color:var(--ink)">Backlog</b> <span>6</span></div>
+                <div class="card"><span class="id">TDM-214</span>Audit onboarding email sequence<div class="meta"><span class="tag t-violet">Growth</span><i class="av" style="background:#81b29a">SK</i></div></div>
+                <div class="card"><span class="id">TDM-221</span>Localize pricing page for DE &amp; FR<div class="meta"><span class="tag t-amber">Web</span><i class="av" style="background:#3d85c6">JL</i></div></div>
+              </div>
+              <div>
+                <div class="col-h" style="color:var(--amber)"><i class="st" style="border-style:dashed"></i><b style="color:var(--ink)">In progress</b> <span>4</span></div>
+                <div class="card"><span class="id">TDM-198</span>Ship SSO for enterprise workspaces<div class="prog"><i style="width:68%"></i></div><div class="meta"><span class="tag t-blue">Platform</span><span class="avs"><i class="av" style="background:#e07a5f">MA</i><i class="av" style="background:#3d85c6">JL</i></span></div></div>
+                <div class="card"><span class="id">TDM-205</span>Launch video storyboard<div class="meta"><span class="tag t-violet">Brand</span><i class="av" style="background:#9b72cf">RP</i></div></div>
+              </div>
+              <div>
+                <div class="col-h" style="color:var(--accent)"><i class="st" style="background:var(--accent-soft)"></i><b style="color:var(--ink)">In review</b> <span>3</span></div>
+                <div class="card"><span class="id">TDM-187</span>New dashboard empty states<div class="meta"><span class="tag t-rose">Design</span><i class="av" style="background:#f2a541">DN</i></div></div>
+                <div class="card"><span class="id">TDM-190</span>Rate-limit public API v2<div class="prog"><i style="width:92%;background:var(--green)"></i></div><div class="meta"><span class="tag t-blue">Platform</span><i class="av" style="background:#e07a5f">MA</i></div></div>
+              </div>
+              <div>
+                <div class="col-h" style="color:var(--green)"><i class="st" style="background:var(--green)"></i><b style="color:var(--ink)">Done</b> <span>18</span></div>
+                <div class="card" style="opacity:.75"><span class="id">TDM-176</span><s style="text-decoration-color:var(--ink-3)">Press kit &amp; launch blog post</s><div class="meta"><span class="tag t-green">Shipped</span><i class="av" style="background:#81b29a">SK</i></div></div>
+                <div class="card" style="opacity:.75"><span class="id">TDM-181</span><s style="text-decoration-color:var(--ink-3)">Beta feedback triage</s><div class="meta"><span class="tag t-green">Shipped</span><i class="av" style="background:#3d85c6">JL</i></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cursor" id="cursorA" style="left:52%;top:46%" aria-hidden="true">
+          <svg width="16" height="18" viewBox="0 0 16 18"><path d="M1 1l13 7-6 1.5L5 16z" fill="#e07a5f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <span style="background:#e07a5f">Musa</span>
+        </div>
+        <div class="cursor" id="cursorB" style="left:76%;top:70%" aria-hidden="true">
+          <svg width="16" height="18" viewBox="0 0 16 18"><path d="M1 1l13 7-6 1.5L5 16z" fill="#3d85c6" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <span style="background:#3d85c6">Jo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGOS -->
+  <div class="logos">
+    <div class="wrap">
+      <div class="eyebrow">Trusted by 12,000+ teams that ship on time</div>
+      <div class="logo-row">
+        <span>Northwind</span><span>Halcyon</span><span>◆ Prism</span><span>orbit.dev</span><span>Kestrel</span><span>Lumen&amp;Co</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="eyebrow">01 — The product</div>
+        <h2>Everything your team needs. <span class="serif">Nothing it doesn’t.</span></h2>
+        <p>Most tools make you manage the tool. Tandem gets out of the way, with opinionated defaults and the flexibility to bend when your process does.</p>
+      </div>
+
+      <div class="bento">
+        <div class="tile span-4 rv">
+          <h3>Timelines that stay honest</h3>
+          <p>Drag to reschedule, and dependencies shift automatically. See slippage before it becomes a fire drill.</p>
+          <div class="viz">
+            <div class="tl">
+              <div class="tl-row">Research<div class="tl-track"><div class="tl-bar t-violet" style="left:0;width:24%">Interviews</div></div></div>
+              <div class="tl-row">Design<div class="tl-track"><div class="tl-bar t-rose" style="left:18%;width:34%">Hi-fi mocks</div></div></div>
+              <div class="tl-row">Build<div class="tl-track"><div class="tl-bar t-blue" style="left:40%;width:42%">API + client</div></div></div>
+              <div class="tl-row">Launch<div class="tl-track"><div class="tl-bar t-green" style="left:80%;width:20%">GA</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tile span-2 rv">
+          <h3>Velocity, at a glance</h3>
+          <p>Cycle reports without the spreadsheet.</p>
+          <div class="viz">
+            <div class="stat-big">+38%</div>
+            <div style="font-size:13px;color:var(--ink-3)">throughput vs. last quarter</div>
+            <div class="bars" id="bars"><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:55%"></i><i style="height:61%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:92%"></i></div>
+          </div>
+        </div>
+
+        <div class="tile span-3 rv">
+          <h3>Automations in plain English</h3>
+          <p>No scripting. Pick a trigger, pick an action, done.</p>
+          <div class="viz auto">
+            <div class="rule"><kbd>WHEN</kbd> PR merged <span class="ar">&rarr;</span> <kbd>THEN</kbd> move to Done</div>
+            <div class="rule"><kbd>WHEN</kbd> due in 2 days <span class="ar">&rarr;</span> <kbd>THEN</kbd> nudge owner</div>
+            <div class="rule"><kbd>WHEN</kbd> label = bug <span class="ar">&rarr;</span> <kbd>THEN</kbd> assign on-call</div>
+          </div>
+        </div>
+
+        <div class="tile span-3 rv">
+          <h3>Docs that live next to the work</h3>
+          <p>Specs, briefs and retros link straight to tasks — so context never gets lost in a drive folder.</p>
+          <div class="viz">
+            <div class="doc">
+              <h4>Q4 Launch — Brief</h4>
+              <div class="ln" style="width:92%"></div><div class="ln" style="width:78%"></div><div class="ln" style="width:85%"></div>
+              <span class="mention"><span class="tag t-blue">TDM-198</span> Ship SSO for enterprise</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tile span-2 rv">
+          <h3>Autopilot updates</h3>
+          <p>Every Friday, Tandem drafts a status summary from real activity. You just review and send.</p>
+          <div class="viz">
+            <div class="doc" style="font-size:13px">
+              <span class="tag t-green">On track</span>
+              <p style="margin-top:10px;color:var(--ink-2);font-size:13px">7 tasks closed, SSO at 68%. One risk: localization blocked on copy review.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tile span-4 rv">
+          <h3>Plays well with your stack</h3>
+          <p>Two-way sync with the tools your team already lives in. 80+ integrations, plus an open API and webhooks.</p>
+          <div class="viz">
+            <div class="ints" style="grid-template-columns:repeat(8,1fr)">
+              <div class="int">Gh</div><div class="int">Sl</div><div class="int">Fg</div><div class="int">Gd</div><div class="int">Zp</div><div class="int">Nt</div><div class="int">Sn</div><div class="int">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <div class="how" id="how">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="eyebrow">02 — How it works</div>
+        <h2>From kickoff to shipped <span class="serif">in three moves.</span></h2>
+        <p>Teams are typically up and running in an afternoon. Import from Jira, Asana or a CSV in one click.</p>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div class="n">STEP 01</div><h3>Plan the outcome</h3><p>Write the goal, break it into milestones, and let Tandem suggest a realistic timeline from your team’s past velocity.</p></div>
+        <div class="step rv"><div class="n">STEP 02</div><h3>Work in the flow</h3><p>Boards, lists and timelines are just views of the same data. Everyone works the way they like — nobody gets out of sync.</p></div>
+        <div class="step rv"><div class="n">STEP 03</div><h3>Ship and learn</h3><p>Automatic reports surface what slipped and why, so every project makes the next one a little smoother.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOMERS -->
+  <section id="customers">
+    <div class="wrap">
+      <div class="quote-grid">
+        <div class="rv">
+          <div class="eyebrow" style="margin-bottom:22px">03 — Customers</div>
+          <blockquote class="quote-main">“We cut our weekly status meeting entirely. Tandem tells us what’s happening before anyone has to ask.”</blockquote>
+          <div class="who"><i class="av" style="background:#e07a5f">PN</i><div><b>Priya Nair</b><span>VP Engineering, Halcyon</span></div></div>
+        </div>
+        <div class="metrics rv">
+          <div class="metric"><b data-count="31">0</b><span>% faster delivery</span></div>
+          <div class="metric"><b data-count="6">0</b><span>hrs saved / person / week</span></div>
+          <div class="metric"><b data-count="98">0</b><span>% weekly active seats</span></div>
+          <div class="metric"><b>4.9</b><span>average on G2 (1,800 reviews)</span></div>
+        </div>
+      </div>
+      <div class="mini-quotes">
+        <div class="mq rv">“Finally a PM tool our designers actually open. The timeline view alone sold the team.”<div class="who"><i class="av" style="background:#3d85c6">DC</i><div><b>Dana Cho</b><span>Design Lead, Prism</span></div></div></div>
+        <div class="mq rv">“Migrated 40 projects from Jira over a weekend. Zero data loss, zero drama.”<div class="who"><i class="av" style="background:#81b29a">TO</i><div><b>Tomás Ortega</b><span>CTO, orbit.dev</span></div></div></div>
+        <div class="mq rv">“Autopilot updates are the closest thing to magic I’ve seen in a work tool this year.”<div class="who"><i class="av" style="background:#9b72cf">AB</i><div><b>Amara Bello</b><span>Head of Ops, Kestrel</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" style="padding-top:40px">
+    <div class="wrap">
+      <div class="price-head">
+        <div class="sec-head rv" style="margin-bottom:0">
+          <div class="eyebrow">04 — Pricing</div>
+          <h2>Simple plans. <span class="serif">Fair at any size.</span></h2>
+        </div>
+        <div class="toggle rv" role="group" aria-label="Billing period">
+          <button data-period="monthly">Monthly</button>
+          <button data-period="annual" class="on">Annual <em>−20%</em></button>
+        </div>
+      </div>
+      <div class="plans">
+        <div class="plan rv">
+          <h3>Starter</h3>
+          <div class="desc">For small teams getting organized.</div>
+          <div class="amt"><b>$0</b><span>forever</span></div>
+          <div class="billed">Up to 10 members</div>
+          <a href="#cta" class="btn btn-ghost">Get started</a>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Unlimited tasks &amp; boards</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>3 active projects</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Docs &amp; comments</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Core integrations</li>
+          </ul>
+        </div>
+        <div class="plan feat rv">
+          <h3>Team</h3>
+          <div class="desc">For growing teams running many projects.</div>
+          <div class="amt"><b data-monthly="12" data-annual="10">$10</b><span>per user / month</span></div>
+          <div class="billed" data-monthly="Billed monthly" data-annual="Billed annually ($120/user)">Billed annually ($120/user)</div>
+          <a href="#cta" class="btn btn-primary">Start 14-day trial</a>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Everything in Starter</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Unlimited projects &amp; timelines</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Automations &amp; Autopilot updates</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Velocity &amp; cycle reports</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Guest access</li>
+          </ul>
+        </div>
+        <div class="plan rv">
+          <h3>Enterprise</h3>
+          <div class="desc">For organizations with security and scale needs.</div>
+          <div class="amt"><b data-monthly="24" data-annual="20">$20</b><span>per user / month</span></div>
+          <div class="billed" data-monthly="Billed monthly" data-annual="Billed annually · volume discounts">Billed annually · volume discounts</div>
+          <a href="#cta" class="btn btn-ghost">Talk to sales</a>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Everything in Team</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>SAML SSO &amp; SCIM provisioning</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Audit logs &amp; data residency</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>99.99% uptime SLA</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>Dedicated success manager</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding-top:40px">
+    <div class="wrap faq-grid">
+      <div class="rv">
+        <div class="eyebrow">05 — FAQ</div>
+        <h2 class="big-h">Questions, <span class="serif">answered.</span></h2>
+        <p style="color:var(--ink-2);margin-top:18px">Can’t find what you need? <a href="#" style="text-decoration:underline;text-underline-offset:3px">Chat with our team</a> — a real human usually replies within minutes.</p>
+      </div>
+      <div class="rv">
+        <details open><summary>Can I import from my current tool?<span class="pl">+</span></summary><p>Yes. One-click importers for Jira, Asana, Trello, Linear, Monday and ClickUp bring over tasks, comments, attachments and assignees. CSV import covers everything else.</p></details>
+        <details><summary>Is the free plan really free?<span class="pl">+</span></summary><p>Really. Teams of up to 10 can use Tandem’s core features forever, with no credit card and no time limit.</p></details>
+        <details><summary>How is my data secured?<span class="pl">+</span></summary><p>Tandem is SOC 2 Type II and ISO 27001 certified. Data is encrypted in transit and at rest, and Enterprise customers can choose EU or US data residency.</p></details>
+        <details><summary>Can I change plans later?<span class="pl">+</span></summary><p>Anytime. Upgrades apply instantly and are prorated; downgrades take effect at the end of your billing period.</p></details>
+        <details><summary>Do you offer discounts for nonprofits or education?<span class="pl">+</span></summary><p>Yes — 50% off the Team plan for verified nonprofits and free Team plans for accredited schools and universities.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta" id="cta">
+    <div class="wrap rv">
+      <h2>Get your team <span class="serif">in step</span> today.</h2>
+      <p>Free for up to 10 people. Upgrade when you’re ready.</p>
+      <form class="signup" id="signup" novalidate>
+        <label for="email" style="position:absolute;left:-9999px">Work email</label>
+        <input id="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <button class="btn btn-primary" type="submit">Start free</button>
+      </form>
+      <div class="signup-msg" id="signupMsg" role="status"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#" class="logo"><span class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="8" r="3.5" stroke="var(--bg)" stroke-width="1.8"/><circle cx="10.5" cy="8" r="3.5" stroke="var(--bg)" stroke-width="1.8"/></svg></span>Tandem</a>
+        <p style="margin-top:14px;max-width:30ch;color:var(--ink-3)">The calm project management tool for teams who ship.</p>
+      </div>
+      <div><h5>Product</h5><ul><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#">Integrations</a></li><li><a href="#">Changelog</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h5>Resources</h5><ul><li><a href="#">Help center</a></li><li><a href="#">API docs</a></li><li><a href="#">Security</a></li><li><a href="#">Templates</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tandem Labs, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+      <span class="status"><i></i>All systems operational</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Header border on scroll
+  var header=document.getElementById('top');
+  addEventListener('scroll',function(){header.classList.toggle('scrolled',scrollY>8)},{passive:true});
+
+  // Mobile menu
+  var menuBtn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  menuBtn.addEventListener('click',function(){
+    var o=links.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o);
+  });
+  links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')})});
+
+  // Theme toggle
+  var root=document.documentElement,tb=document.getElementById('themeBtn');
+  try{var saved=localStorage.getItem('tandem-theme');if(saved)root.setAttribute('data-theme',saved)}catch(e){}
+  tb.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('tandem-theme',next)}catch(e){}
+  });
+
+  // Mock tabs (visual only)
+  document.querySelectorAll('.tabs button').forEach(function(b){
+    b.addEventListener('click',function(){document.querySelectorAll('.tabs button').forEach(function(x){x.classList.remove('on')});b.classList.add('on')});
+  });
+
+  // Reveal on scroll + counters
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function count(el){
+    var to=+el.dataset.count;if(reduce){el.textContent=to;return}
+    var t0=null;function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1200,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-count]').forEach(count);io.unobserve(e.target)}
+    })},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  }else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')});document.querySelectorAll('[data-count]').forEach(count)}
+
+  // Pricing toggle
+  var tg=document.querySelectorAll('.toggle button');
+  tg.forEach(function(b){b.addEventListener('click',function(){
+    tg.forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+    var p=b.dataset.period;
+    document.querySelectorAll('.amt b[data-'+p+']').forEach(function(el){el.textContent='$'+el.dataset[p]});
+    document.querySelectorAll('.billed[data-'+p+']').forEach(function(el){el.textContent=el.dataset[p]});
+  })});
+
+  // Live cursors drifting over the mock
+  if(!reduce){
+    var A=document.getElementById('cursorA'),B=document.getElementById('cursorB');
+    var pa=[[0,0],[-120,-60],[-40,80],[90,20]],pb=[[0,0],[-160,-110],[-60,-40],[30,-150]],i=0;
+    setInterval(function(){i=(i+1)%pa.length;
+      A.style.transform='translate('+pa[i][0]+'px,'+pa[i][1]+'px)';
+      B.style.transform='translate('+pb[i][0]+'px,'+pb[i][1]+'px)';
+    },2600);
+  }
+
+  // Signup
+  var f=document.getElementById('signup'),msg=document.getElementById('signupMsg'),em=document.getElementById('email');
+  f.addEventListener('submit',function(e){e.preventDefault();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){msg.style.color='var(--rose)';msg.textContent='Please enter a valid work email.';em.focus();return}
+    msg.style.color='var(--green)';msg.textContent='You’re in! Check '+em.value+' for your workspace link.';f.reset();
+  });
+})();
+</script>
+</body>
+</html>
