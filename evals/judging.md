@@ -26,4 +26,25 @@ What the judge said, unblinded:
 3. Also: swapped the slashed-zero font out of the `accessible-clean` pairing.
 
 ## Round 3: skill v2 vs baseline
-See below once run.
+Same baselines, new blind order, and the judge also got phone-sized mobile slices.
+
+| Prompt | Baseline | With skill v2 | Winner |
+|---|:-:|:-:|---|
+| School | 7 | 7 | **skill** (slight) |
+| Coffee | 6 | 8 | **skill** (clear) |
+| Dental | 6 | 7 | **skill** (slight) |
+| SaaS | 7 | 8 | **skill** (slight) |
+| **Total** | **26** | **30** | **skill wins 4/4** |
+
+What the judge said, unblinded:
+- **Coffee:** *"storefront illustration with the crow is distinctive and on-brand … B covers much more … A feels like a thin template."*
+- **SaaS:** *"builds a clear story ('handoffs') with mockups made for each feature … more brand identity."*
+- **Dental:** *"puts an actual booking widget in the hero, followed by illustrated treatment cards with prices … reads as a working clinic site."*
+- **School:** *"stronger heavy serif headline and a hero card that feels alive … campus-life illustrations are charming and consistent."*
+
+Still flagged on both sides: occasional "Photo:" gradient placeholders. The dental v2 run still used Atkinson Hyperlegible (slashed zeros), because the agent read the typography file before the swap landed.
+
+## Caveats
+- n = 4 prompts, one generation per side, and one AI judge (a different agent instance, not a human panel). Treat this as directional, not statistically significant.
+- Baselines and skill runs used the same model (Claude Opus 5.5). A weaker model would likely gain more from the skill.
+- The audit score is partly something the skill optimizes for, since it tells the agent to run the audit. The blind visual judging is the fairer test.
