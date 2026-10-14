@@ -93,17 +93,42 @@ const d = await page.evaluate(() => {
     for (const l of layers.reverse()) base = blend(l, base);
     return base;
   };
+  // What is actually painted under el? (catches sliding pills / absolutely positioned backdrops)
+  const paintedBg = (el) => {
+    el.scrollIntoView({ block: "center", behavior: "instant" });
+    const r = el.getBoundingClientRect();
+    const stack = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    const i = stack.indexOf(el);
+    if (i < 0) return null;
+    const layers = [];
+    for (const n of stack.slice(i)) {
+      const cs = getComputedStyle(n);
+      if (cs.backgroundImage !== "none") return null;
+      const c = parse(cs.backgroundColor);
+      if (c && c.a > 0) { layers.push(c); if (c.a >= 1) break; }
+    }
+    let base = { r: 255, g: 255, b: 255, a: 1 };
+    for (const l of layers.reverse()) base = blend(l, base);
+    return base;
+  };
   let checked = 0, fails = 0; const failSamples = [];
   for (const el of textEls) {
     const cs = getComputedStyle(el);
-    const fg = parse(cs.color); const bg = bgOf(el);
+    const fg = parse(cs.color);
+    let bg = bgOf(el);
     if (!fg || !bg) continue;
     const size = parseFloat(cs.fontSize), bold = +cs.fontWeight >= 700;
     const need = size >= 24 || (bold && size >= 18.66) ? 3 : 4.5;
-    const r = ratio(fg.a < 1 ? blend(fg, bg) : fg, bg);
+    let r = ratio(fg.a < 1 ? blend(fg, bg) : fg, bg);
+    if (r < need) { // re-check against the real painted backdrop before calling it a failure
+      const pb = paintedBg(el);
+      if (pb === null) continue; // image/gradient backdrop: can't judge
+      bg = pb; r = ratio(fg.a < 1 ? blend(fg, bg) : fg, bg);
+    }
     checked++;
     if (r < need) { fails++; if (failSamples.length < 5) failSamples.push(`"${el.textContent.trim().slice(0, 30)}" ${r.toFixed(2)}:1`); }
   }
+  scrollTo({ top: 0, behavior: "instant" });
 
   // fonts actually rendered
   const fams = new Set(textEls.map((el) => getComputedStyle(el).fontFamily.split(",")[0].replace(/["']/g, "").trim().toLowerCase()));
