@@ -9,12 +9,12 @@ REPO="https://github.com/musa-sohail/frontend-taste"
 if [[ "${1:-}" == "--project" ]]; then DEST="$PWD/.claude/skills/frontend-taste"; else DEST="$HOME/.claude/skills/frontend-taste"; fi
 
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd || true)"
-if [[ -n "$SRC_DIR" && -f "$SRC_DIR/skill/frontend-taste/SKILL.md" ]]; then
-  SRC="$SRC_DIR/skill/frontend-taste"
+if [[ -n "$SRC_DIR" && -f "$SRC_DIR/skills/frontend-taste/SKILL.md" ]]; then
+  SRC="$SRC_DIR/skills/frontend-taste"
 else
   TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
   git clone --depth 1 -q "$REPO" "$TMP/repo"
-  SRC="$TMP/repo/skill/frontend-taste"
+  SRC="$TMP/repo/skills/frontend-taste"
 fi
 
 mkdir -p "$(dirname "$DEST")"

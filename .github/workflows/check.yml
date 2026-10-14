@@ -8,17 +8,17 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - name: Palettes pass WCAG contrast rules
-        run: node skill/frontend-taste/scripts/palettes.mjs check
+        run: node skills/frontend-taste/scripts/palettes.mjs check
       - name: Generated palette doc is up to date
         run: |
-          node skill/frontend-taste/scripts/palettes.mjs md > /tmp/palettes.md
-          diff -u skill/frontend-taste/references/palettes.md /tmp/palettes.md
+          node skills/frontend-taste/scripts/palettes.mjs md > /tmp/palettes.md
+          diff -u skills/frontend-taste/references/palettes.md /tmp/palettes.md
       - name: Scripts parse
         run: |
-          node --check skill/frontend-taste/scripts/audit.mjs
-          node --check skill/frontend-taste/assets/micro.js
+          node --check skills/frontend-taste/scripts/audit.mjs
+          node --check skills/frontend-taste/assets/micro.js
       - name: SKILL.md has valid frontmatter
         run: |
-          head -1 skill/frontend-taste/SKILL.md | grep -q '^---$'
-          grep -q '^name: frontend-taste$' skill/frontend-taste/SKILL.md
-          grep -q '^description: ' skill/frontend-taste/SKILL.md
+          head -1 skills/frontend-taste/SKILL.md | grep -q '^---$'
+          grep -q '^name: frontend-taste$' skills/frontend-taste/SKILL.md
+          grep -q '^description: ' skills/frontend-taste/SKILL.md

@@ -7,7 +7,7 @@
    - `baseline/`: the plain prompt, no skill.
    - `with-skill/`: the same prompt with the `frontend-taste` skill loaded.
 2. Both runs produce a single `index.html`.
-3. `run-audit.mjs` renders every page in a real browser, scores it with `skill/frontend-taste/scripts/audit.mjs` (overflow at 5 screen widths, mobile nav, contrast, tap targets, type scale, motion, etc.), and saves desktop + mobile screenshots to `shots/`.
+3. `run-audit.mjs` renders every page in a real browser, scores it with `skills/frontend-taste/scripts/audit.mjs` (overflow at 5 screen widths, mobile nav, contrast, tap targets, type scale, motion, etc.), and saves desktop + mobile screenshots to `shots/`.
 4. The results land in `results.md` / `results.json`.
 
 ## Rerun it yourself

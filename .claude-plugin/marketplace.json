@@ -1,0 +1,12 @@
+{
+  "name": "frontend-taste",
+  "owner": { "name": "Musa Sohail", "url": "https://github.com/musa-sohail" },
+  "plugins": [
+    {
+      "name": "frontend-taste",
+      "source": "./",
+      "description": "Makes AI-built frontends look designed: auto-picked contrast-checked palettes, font pairings, microinteractions and mobile-first layouts.",
+      "version": "1.0.0"
+    }
+  ]
+}

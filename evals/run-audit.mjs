@@ -7,7 +7,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const audit = join(here, "../skill/frontend-taste/scripts/audit.mjs");
+const audit = join(here, "../skills/frontend-taste/scripts/audit.mjs");
 const runsDir = join(here, "runs");
 const variants = ["baseline", "with-skill"];
 const out = {};

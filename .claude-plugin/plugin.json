@@ -1,0 +1,10 @@
+{
+  "name": "frontend-taste",
+  "version": "1.0.0",
+  "description": "Makes AI-built frontends look designed: auto-picked contrast-checked palettes, font pairings, microinteractions and mobile-first layouts.",
+  "author": { "name": "Musa Sohail", "url": "https://github.com/musa-sohail" },
+  "homepage": "https://github.com/musa-sohail/frontend-taste",
+  "repository": "https://github.com/musa-sohail/frontend-taste",
+  "license": "MIT",
+  "keywords": ["frontend", "design", "ui", "css", "color-palette", "typography", "animation", "responsive", "skill"]
+}

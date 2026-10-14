@@ -6,9 +6,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "palettes:check": "node skill/frontend-taste/scripts/palettes.mjs check",
-    "palettes:md": "node skill/frontend-taste/scripts/palettes.mjs md > skill/frontend-taste/references/palettes.md",
-    "audit": "node skill/frontend-taste/scripts/audit.mjs",
+    "palettes:check": "node skills/frontend-taste/scripts/palettes.mjs check",
+    "palettes:md": "node skills/frontend-taste/scripts/palettes.mjs md > skills/frontend-taste/references/palettes.md",
+    "audit": "node skills/frontend-taste/scripts/audit.mjs",
     "evals:audit": "node evals/run-audit.mjs"
   },
   "devDependencies": {
