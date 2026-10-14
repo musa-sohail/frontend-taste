@@ -1,0 +1,10 @@
+{
+  "note": "Each prompt is run twice by the same model: once plain (baseline) and once with the frontend-taste skill loaded. Both runs must produce a single self-contained index.html.",
+  "output_rule": "Output a single self-contained index.html (inline CSS/JS; Google Fonts allowed).",
+  "prompts": [
+    { "id": "school", "prompt": "build me a school website" },
+    { "id": "coffee", "prompt": "build me a website for a coffee shop" },
+    { "id": "dental", "prompt": "build me a website for a dental clinic" },
+    { "id": "saas", "prompt": "build me a landing page for a project management SaaS" }
+  ]
+}

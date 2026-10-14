@@ -11,13 +11,19 @@
 import { pathToFileURL } from "node:url";
 import { resolve, join } from "node:path";
 import { existsSync, mkdirSync } from "node:fs";
+import { createRequire } from "node:module";
 
+// Resolve Playwright from next to this script, else from the user's project (cwd).
 let chromium;
 try {
   ({ chromium } = await import("playwright"));
 } catch {
-  console.error("audit.mjs needs Playwright:  npm i -D playwright && npx playwright install chromium");
-  process.exit(2);
+  try {
+    ({ chromium } = createRequire(join(process.cwd(), "noop.js"))("playwright"));
+  } catch {
+    console.error("audit.mjs needs Playwright in this project:  npm i -D playwright");
+    process.exit(2);
+  }
 }
 
 const args = process.argv.slice(2);
