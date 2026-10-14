@@ -118,6 +118,8 @@ const d = await page.evaluate(() => {
 
   const h1 = document.querySelectorAll("h1");
   const h1Size = h1[0] ? parseFloat(getComputedStyle(h1[0]).fontSize) : 0;
+  const h1Weight = h1[0] ? +getComputedStyle(h1[0]).fontWeight : 400;
+  const h1Family = h1[0] ? getComputedStyle(h1[0]).fontFamily.split(",")[0].replace(/["']/g, "").trim().toLowerCase() : "";
   // body size = the most common font size among visible paragraphs (ignores captions / hidden menus)
   const ps = [...document.querySelectorAll("main p, p")].filter(visible).filter((p) => p.textContent.trim().length > 40);
   const freq = {};
@@ -142,7 +144,7 @@ const d = await page.evaluate(() => {
     contrast: { checked, fails, failSamples },
     families: [...fams], loadedFonts: [...new Set(loadedFonts)],
     colorCount: colors.size, rootVars,
-    h1Count: h1.length, h1Size, bodySize, lineHeight,
+    h1Count: h1.length, h1Size, h1Weight, h1Family, bodySize, lineHeight,
     focusVisible: /:focus-visible|:focus\b/.test(cssText),
     reducedMotion: /prefers-reduced-motion/.test(cssText),
     hoverGated: /\(hover:\s*hover\)/.test(cssText),
@@ -257,7 +259,7 @@ add(A, "single h1", d.h1Count === 1, `${d.h1Count}`);
 const nonGeneric = d.families.filter((f) => !/^(arial|helvetica|times|system-ui|-apple-system|ui-sans-serif|sans-serif|serif|segoe ui|roboto|inter)$/.test(f));
 add(T, "custom typefaces (not system/Inter/Roboto/Arial only)", nonGeneric.length >= 1, d.families.join(", "), 2);
 add(T, "≤3 font families rendered", d.families.length <= 3, `${d.families.length}`, 1);
-add(T, "display pairing (≥2 families)", d.families.length >= 2, "", 1);
+add(T, "heading/body contrast (2 families, or one family with h1 ≥700)", d.families.length >= 2 || d.h1Weight >= 700, `h1: ${d.h1Family} ${d.h1Weight}`, 1);
 add(T, "h1 ≥ 2.5× body on desktop", d.h1Size >= d.bodySize * 2.5, `${d.h1Size}px / ${d.bodySize}px`, 2);
 add(T, "body ≥16px & line-height 1.4–1.9", d.bodySize >= 16 && d.lineHeight >= 1.4 && d.lineHeight <= 1.9, `${d.bodySize}px / ${d.lineHeight.toFixed(2)}`, 1);
 
