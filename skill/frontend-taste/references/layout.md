@@ -59,6 +59,23 @@ Tint shadows toward the ink hue (e.g. `rgb(27 42 39 / .14)`) rather than using p
 6. **Overlap and depth:** a stat card overlapping the hero image edge, a badge breaking a card border, or a section that tucks under the previous one with a negative margin. Use one or two of these per page.
 7. **Real-feeling content.** Use specific names, numbers, dates, and quotes. "Founded 1987 · 1,240 students · 18:1 ratio" beats "Excellence in education".
 
+## Hero archetypes (choose one per site, and vary between sites)
+
+| Archetype | What it looks like | Fits |
+|---|---|---|
+| **Split + illustrated scene** | 7/5 split; right side is an inline-SVG scene built from palette shapes | schools, kids, cafés, clinics, nonprofits |
+| **Split + product mock** | right side is a real-looking UI built in HTML/CSS (board, dashboard, chat) | SaaS, apps, fintech, devtools |
+| **Full-bleed image + overlay** | edge-to-edge photo/illustration, gradient scrim, headline bottom-left | restaurants, hotels, travel, real estate |
+| **Giant type** | the headline IS the visual: `--step-5`+ display type, one small detail | portfolios, agencies, fashion, editorial |
+| **Centered statement + bento below** | short centered headline, CTAs, then a bento grid of 4–6 tiles peeking above the fold | startups, events, product launches |
+| **Collage / scattered cards** | 3–5 rotated photo/quote/stat cards around the headline | community, camps, festivals, kids |
+| **Search/booking-first** | headline + a prominent booking or search bar as the focal element | clinics, travel, real estate, restaurants |
+| **Video/loop-style** | CSS-animated gradient or slow SVG motion behind a short headline | music, gaming, fitness |
+
+Composition guards for the hero:
+- A floating card may overlap the edge of the visual, but never cover its focal subject or a caption.
+- Use at most **two** decorative devices (e.g. underline + one floating card). Not underline + badge + card + blob + dots.
+
 ## Imagery without stock photos
 
 Don't use hotlinked random stock images that may 404 or show unrelated content. Use one of these, in order of preference:

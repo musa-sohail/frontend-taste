@@ -149,11 +149,13 @@ Position an absolutely placed `.tabs__indicator` and set its `--x` and `--w` fro
 ### 13. Hero entrance (once, on load)
 Stagger the eyebrow, headline, lead, and CTAs: `animation: rise var(--dur-4) var(--ease-out) both; animation-delay: calc(var(--i) * 90ms)`, with `@keyframes rise { from { opacity:0; transform: translateY(14px) } }`. Keep it under 1s in total.
 
-### 14. Delight touches (pick at most one or two)
+### 14. Delight touches (pick at most one or two, and make them fit the brand rather than defaulting to the first item)
 - A hand-drawn SVG underline that draws in (`stroke-dasharray` + `stroke-dashoffset`) under the hero accent word.
 - A gently floating decorative blob or shape (6–10s ease-in-out alternate, 8–12px travel).
 - A magnetic primary CTA on desktop (micro.js `data-magnetic`, max 6px pull).
 - Emoji or icon bounce on hover for kids/playful brands (`--ease-spring`).
+- Steam/smoke wisps, a ticking clock hand, or a sun rising in an SVG scene: one tiny ambient loop that belongs to the subject.
+- Live-ness: "Open now" status, today's hours highlighted, the next available slot. This is real data that makes the page feel alive.
 - View Transitions between pages: `@view-transition { navigation: auto; }`.
 
 ## Anti-patterns

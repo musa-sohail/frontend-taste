@@ -14,7 +14,7 @@ Decide and write down, as a short comment at the top of the main file:
 - **Domain & audience:** for example, "private K-12 school; audience = parents 30–50, secondary = students".
 - **Three tone adjectives:** for example, "trustworthy, warm, optimistic".
 - **Primary conversion:** for example, "Book a campus tour / Apply".
-- **Signature moment:** one memorable visual idea, for example "hero headline with a hand-drawn marigold underline + floating stat card over an arched image".
+- **Hero archetype + signature moment:** pick ONE archetype from the "Hero archetypes" table in `references/layout.md` that fits the domain, plus one memorable visual idea specific to *this* brand. Don't reach for the same arch-image + floating-card + hand-drawn-underline combination every time. That combination has become a template of its own. Ask yourself: "Would this hero work unchanged for a different business?" If yes, it isn't specific enough.
 
 ### 2. Pick the palette (don't invent one from scratch)
 - Run `node scripts/palettes.mjs pick "<the user's prompt>"` and then `node scripts/palettes.mjs css <id>`, if Node is available.
@@ -35,7 +35,7 @@ Use the matching **page recipe** in `references/layout.md` (school, restaurant, 
 - Base styles target a 375px phone. Enhance at 600/900/1200px. Use intrinsic grids (`repeat(auto-fit, minmax(min(100%, 260px), 1fr))`) and `clamp()` padding.
 - Use semantic HTML: skip link, `header/nav/main/section/footer`, one `h1`, and real `<button>`/`<a>` elements.
 - Use inline SVG icons (`currentColor`, stroke 1.75–2). **No emoji icons** unless the brand is playful/kids.
-- For imagery, use the `.ph` intentional placeholder or inline SVG illustration (see layout.md). No random hotlinked stock photos.
+- For imagery, the hero deserves a **drawn inline-SVG scene or an HTML/CSS product mock** built from the palette (a schoolhouse on a hill, a cup with steam, a kanban board). These beat an empty gradient box. Use the `.ph` placeholder only for secondary photos. No random hotlinked stock photos.
 - Write **specific, plausible copy**: names, numbers, dates, places. No lorem ipsum, no "Welcome to X".
 
 ### 6. Add microinteractions (pick 5–8 from `references/motion.md`)
