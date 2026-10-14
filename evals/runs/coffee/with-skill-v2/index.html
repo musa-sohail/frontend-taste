@@ -1,0 +1,1008 @@
+<!doctype html>
+<!--
+  BRIEF
+  Domain & audience: independent neighbourhood café + micro-roastery in Portland (SE Division St);
+    audience = locals 22–55 who walk/bike past daily, remote workers, weekend bean buyers.
+  Tone: cozy, crafted, unhurried.
+  Primary conversion: Order ahead for pickup (secondary: visit / buy beans).
+  Hero archetype: Split + illustrated scene. Signature moment: the shop front itself, drawn
+    in palette shapes, with the resident crow ("Juniper") perched on the striped awning and
+    the drum roaster glowing in the window, steam rising from the cup on the sill; paired
+    with a live "Open now · closes 6 pm" ticket computed from real Portland hours.
+  Palette: oat-honey (light). Fonts: warm-serif (Young Serif + Instrument Sans).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kettle &amp; Crow Coffee · Roastery &amp; café on SE Division, Portland</title>
+<meta name="description" content="Kettle & Crow is a neighbourhood café and micro-roastery on SE Division St, Portland. Beans roasted in-house every Tuesday and Friday. Order ahead for pickup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- 0. Tokens: Oat & Honey + warm-serif ---------- */
+:root {
+  color-scheme: light dark;
+  --bg: #FAF6EF;
+  --surface: #FFFFFF;
+  --surface2: #F2E9DA;
+  --ink: #3A2B20;
+  --muted: #6C5A4B;
+  --border: #E8DCC8;
+  --primary: #8E4F1B;
+  --on-primary: #FFFFFF;
+  --accent: #E9B872;
+  --on-accent: #3A2B20;
+  --danger: #B3401A;
+  --ok: #3F7A4A;
+
+  --font-display: "Young Serif", ui-serif, Georgia, serif;
+  --font-text: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.90rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.125rem);
+  --step-1:  clamp(1.25rem, 1.16rem + 0.45vw, 1.50rem);
+  --step-2:  clamp(1.56rem, 1.40rem + 0.80vw, 2.00rem);
+  --step-3:  clamp(1.95rem, 1.66rem + 1.45vw, 2.67rem);
+  --step-4:  clamp(2.44rem, 1.95rem + 2.45vw, 3.55rem);
+  --step-5:  clamp(3.05rem, 2.20rem + 4.20vw, 5.30rem);
+
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.5rem;
+  --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem;
+
+  --radius: 12px; --radius-lg: 24px; --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent), 0 1px 3px color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow-lg: 0 2px 4px color-mix(in oklab, var(--ink) 4%, transparent), 0 16px 40px -12px color-mix(in oklab, var(--ink) 22%, transparent);
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --dur-1: 120ms; --dur-2: 200ms; --dur-3: 320ms; --dur-4: 600ms;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1C1510; --surface: #251C15; --surface2: #2F241B;
+    --ink: #F5ECDF; --muted: #C4B29E; --border: #3E3125;
+    --primary: #E9A86A; --on-primary: #1C1510;
+    --accent: #E9B872; --on-accent: #3A2B20;
+    --danger: #F08A64; --ok: #8CCB97;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1C1510; --surface: #251C15; --surface2: #2F241B;
+  --ink: #F5ECDF; --muted: #C4B29E; --border: #3E3125;
+  --primary: #E9A86A; --on-primary: #1C1510;
+  --accent: #E9B872; --on-accent: #3A2B20;
+  --danger: #F08A64; --ok: #8CCB97;
+}
+
+/* ---------- 1. Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { min-height: 100svh; background: var(--bg); color: var(--ink); font: 400 var(--step-0)/1.65 var(--font-text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, svg, video, picture { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+a { color: inherit; }
+p, h1, h2, h3, h4, li { overflow-wrap: break-word; }
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- 2. Type ---------- */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.08; letter-spacing: -0.015em; text-wrap: balance; }
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); line-height: 1.25; letter-spacing: -0.005em; }
+p, li { text-wrap: pretty; }
+.eyebrow { display: inline-block; font: 600 var(--step--1)/1 var(--font-text); letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: var(--s-4); }
+.lead { font-size: var(--step-1); line-height: 1.5; color: var(--muted); max-width: 46ch; }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- 3. Layout ---------- */
+.container { width: min(100% - 2rem, 1200px); margin-inline: auto; }
+.container--narrow { width: min(100% - 2rem, 760px); margin-inline: auto; }
+.section { padding-block: clamp(3.5rem, 8vw, 7rem); }
+.section--alt { background: var(--surface2); }
+.section__head { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.section__head p { color: var(--muted); margin-top: var(--s-4); }
+.split { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+@media (min-width: 900px) { .split { grid-template-columns: 7fr 5fr; } .split--rev { grid-template-columns: 5fr 7fr; } .split--rev > :first-child { order: 2; } }
+.cluster { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+.skip { position: absolute; left: var(--s-4); top: -100px; z-index: 100; background: var(--primary); color: var(--on-primary); padding: var(--s-2) var(--s-4); border-radius: var(--radius); }
+.skip:focus { top: var(--s-4); }
+
+/* ---------- 4. Header & nav ---------- */
+.site-header { position: sticky; top: 0; z-index: 50; padding-block: 1rem; transition: padding var(--dur-3) var(--ease-out), background-color var(--dur-3), box-shadow var(--dur-3); }
+.site-header.is-scrolled { padding-block: .6rem; background: color-mix(in oklab, var(--bg) 85%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); box-shadow: 0 1px 0 var(--border); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+.site-nav { display: none; }
+.brand { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; min-height: 44px; }
+.brand svg { width: 38px; height: 38px; flex: none; }
+.brand b { font: 400 1.3rem/1 var(--font-display); letter-spacing: -.01em; }
+.brand small { display: block; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .25rem; }
+.nav-links { display: none; }
+.site-header .header-cta { display: none; }
+.brand span { white-space: nowrap; }
+.nav-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius); position: relative; z-index: 51; }
+.burger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform var(--dur-3) var(--ease-out), opacity var(--dur-2); }
+.burger span + span { margin-top: 5px; }
+[aria-expanded="true"] .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+[aria-expanded="true"] .burger span:nth-child(2) { opacity: 0; }
+[aria-expanded="true"] .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav { position: fixed; inset: 0 0 0 auto; z-index: 49; width: min(85vw, 360px); padding: 6rem var(--s-6) var(--s-6); background: var(--surface); box-shadow: var(--shadow-lg); transform: translateX(105%); visibility: hidden; transition: transform var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3); display: flex; flex-direction: column; gap: var(--s-6); }
+.mobile-nav.is-open { transform: none; visibility: visible; transition: transform var(--dur-3) var(--ease-out), visibility 0s; }
+.mobile-nav ul { list-style: none; padding: 0; display: grid; gap: var(--s-1); }
+.mobile-nav ul a { display: block; padding: .8rem 0; font-size: var(--step-1); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-nav.is-open li { animation: slide-in var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 50ms + 80ms); }
+.mobile-nav p { font-size: var(--step--1); color: var(--muted); }
+.mobile-nav p a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--primary); }
+@keyframes slide-in { from { opacity: 0; transform: translateX(16px); } }
+@media (min-width: 900px) {
+  .site-nav { display: block; }
+  .nav-links { display: flex; gap: var(--s-6); list-style: none; padding: 0; }
+  .nav-links a { text-decoration: none; font-weight: 500; padding-block: .6rem; }
+  .site-header .header-cta { display: inline-flex; }
+  .nav-toggle, .mobile-nav { display: none; }
+}
+
+/* ---------- 5. Components ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; min-height: 44px; padding: .8em 1.4em; border-radius: var(--radius-pill); font-weight: 600; line-height: 1.1; text-decoration: none; background: var(--primary); color: var(--on-primary);
+  box-shadow: 0 6px 16px -6px color-mix(in oklab, var(--primary) 60%, transparent);
+  transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), background-color var(--dur-2); }
+.btn svg { width: 1.1em; height: 1.1em; transition: transform var(--dur-2) var(--ease-out); }
+.btn--accent { background: var(--accent); color: var(--on-accent); box-shadow: 0 6px 16px -6px color-mix(in oklab, var(--accent) 70%, transparent); }
+.btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ink) 25%, transparent); }
+.btn:active { transform: scale(.98); transition-duration: var(--dur-1); }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.link { text-decoration: none; background: linear-gradient(currentColor 0 0) 0 100% / 0 2px no-repeat; transition: background-size var(--dur-3) var(--ease-out); }
+.link:hover, .link:focus-visible { background-size: 100% 2px; }
+.badge { display: inline-flex; align-items: center; gap: .45em; padding: .35em .8em; border-radius: var(--radius-pill); font-size: var(--step--1); font-weight: 600; background: color-mix(in oklab, var(--primary) 12%, var(--surface)); color: var(--primary); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px color-mix(in oklab, var(--primary) 55%, transparent); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn--ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+}
+
+/* ---------- 6. Hero ---------- */
+.hero { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3.5rem, 7vw, 6rem); }
+.hero .split { align-items: center; }
+.hero h1 { margin-block: var(--s-2) var(--s-5); max-width: 12ch; line-height: 1.12; }
+.hero h1 em { font-style: normal; position: relative; white-space: nowrap; color: var(--primary); }
+.hero h1 em svg { position: absolute; left: -2%; bottom: -.06em; width: 104%; height: .2em; overflow: visible; }
+.hero h1 em path { stroke: var(--accent); stroke-width: 6; fill: none; stroke-linecap: round; stroke-dasharray: 260; stroke-dashoffset: 260; animation: draw 900ms var(--ease-out) 600ms forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.hero .cluster { margin-top: var(--s-6); }
+.status { display: inline-flex; align-items: center; gap: .6em; padding: .45em .95em .45em .7em; border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--border); font-size: var(--step--1); font-weight: 500; box-shadow: var(--shadow-sm); }
+.status i { width: .6rem; height: .6rem; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in oklab, var(--ok) 20%, transparent); }
+.status.is-closed i { background: var(--muted); box-shadow: 0 0 0 4px color-mix(in oklab, var(--muted) 18%, transparent); }
+.hero-facts { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-6); margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--border); list-style: none; padding-left: 0; font-size: var(--step--1); color: var(--muted); }
+.hero-facts b { display: block; font: 400 var(--step-2)/1.1 var(--font-display); color: var(--ink); }
+.scene { position: relative; margin-bottom: var(--s-5); }
+@media (min-width: 1200px) { .scene__tag { left: calc(-1 * var(--s-6)); } }
+.scene > svg { width: 100%; height: auto; border-radius: var(--radius-lg); }
+.scene .steam path { fill: none; stroke: color-mix(in oklab, var(--ink) 40%, var(--surface)); stroke-width: 3; stroke-linecap: round; opacity: 0; animation: steam 3.6s var(--ease-in-out) infinite; }
+.scene .steam path:nth-child(2) { animation-delay: 1.2s; }
+.scene .steam path:nth-child(3) { animation-delay: 2.4s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(6px); } 35% { opacity: .9; } 100% { opacity: 0; transform: translateY(-14px); } }
+.scene .glow { animation: glow 4s ease-in-out infinite alternate; }
+@keyframes glow { from { opacity: .55; } to { opacity: .95; } }
+.scene__tag { position: absolute; left: var(--s-3); bottom: calc(-1 * var(--s-5)); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: var(--s-3) var(--s-4); display: flex; gap: var(--s-3); align-items: center; max-width: 15rem; }
+.scene__tag svg { width: 36px; height: 36px; flex: none; color: var(--primary); }
+.scene__tag p { font-size: var(--step--1); line-height: 1.35; }
+.scene__tag strong { display: block; font-size: var(--step-0); }
+.rise { animation: rise var(--dur-4) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+/* ---------- 7. Marquee strip ---------- */
+.strip { background: var(--primary); color: var(--on-primary); padding-block: var(--s-4); overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.strip__track { display: flex; gap: var(--s-7); width: max-content; animation: marquee 40s linear infinite; list-style: none; padding: 0; }
+.strip__track li { display: inline-flex; align-items: center; gap: var(--s-7); font: 400 var(--step-1)/1.2 var(--font-display); white-space: nowrap; }
+.strip__track li::after { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent); }
+@media (hover: hover) { .strip:hover .strip__track { animation-play-state: paused; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- 8. Menu (tabs + dotted leaders) ---------- */
+.menu-wrap { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+.menu-wrap > * { min-width: 0; }
+@media (min-width: 900px) { .menu-wrap { grid-template-columns: 4fr 7fr; align-items: start; } .menu-wrap .section__head { position: sticky; top: 6rem; } }
+.tabs { position: relative; display: flex; gap: var(--s-1); padding: var(--s-1); border-radius: var(--radius-pill); background: var(--surface2); width: max-content; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.tabs button { position: relative; z-index: 1; min-height: 44px; padding: .55em 1.1em; border-radius: var(--radius-pill); font-weight: 600; color: var(--muted); white-space: nowrap; transition: color var(--dur-2); }
+.tabs button[aria-selected="true"] { color: var(--on-primary); }
+.tabs__ind { position: absolute; z-index: 0; top: var(--s-1); bottom: var(--s-1); left: 0; width: var(--w, 0); transform: translateX(var(--x, 0)); background: var(--primary); border-radius: var(--radius-pill); transition: transform var(--dur-3) var(--ease-out), width var(--dur-3) var(--ease-out); }
+.panel { margin-top: var(--s-6); }
+.panel[hidden] { display: none; }
+.panel:not([hidden]) { animation: rise var(--dur-3) var(--ease-out) both; }
+.menu-list { list-style: none; padding: 0; display: grid; gap: var(--s-5); }
+.item__row { display: flex; align-items: baseline; gap: var(--s-3); }
+.item__row h3 { font-size: var(--step-1); }
+.item__row .dots { flex: 1; min-width: 1.5rem; border-bottom: 2px dotted color-mix(in oklab, var(--ink) 30%, transparent); transform: translateY(-.3em); }
+.item__row .price { font-weight: 600; font-variant-numeric: tabular-nums; }
+.menu-list p { color: var(--muted); font-size: var(--step--1); margin-top: var(--s-1); max-width: 52ch; }
+.tag { display: inline-block; margin-left: .4em; padding: .1em .55em; border-radius: var(--radius-pill); background: color-mix(in oklab, var(--accent) 35%, var(--surface)); color: var(--on-accent); font: 600 .72rem/1.6 var(--font-text); letter-spacing: .06em; text-transform: uppercase; vertical-align: middle; }
+.menu-note { margin-top: var(--s-6); font-size: var(--step--1); color: var(--muted); }
+
+/* ---------- 9. Beans (bento) ---------- */
+.beans { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.bean { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: transform var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out), border-color var(--dur-3); }
+.bean__art { aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
+.bean__art svg { width: 62%; transition: transform var(--dur-4) var(--ease-out); }
+.bean__art--a { background: color-mix(in oklab, var(--accent) 30%, var(--surface)); }
+.bean__art--b { background: color-mix(in oklab, var(--primary) 16%, var(--surface)); }
+.bean__art--c { background: var(--surface2); }
+.bean__body { padding: var(--s-5); display: grid; gap: var(--s-3); flex: 1; align-content: start; }
+.bean__meta { font-size: var(--step--1); color: var(--muted); }
+.notes { display: flex; flex-wrap: wrap; gap: var(--s-2); list-style: none; padding: 0; }
+.notes li { font-size: var(--step--1); padding: .2em .7em; border-radius: var(--radius-pill); border: 1px solid var(--border); }
+.bean__foot { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-top: auto; padding: var(--s-4) var(--s-5); border-top: 1px solid var(--border); }
+.bean__foot .price { font: 400 var(--step-2)/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.bean__foot .price small { font: 500 var(--step--1) var(--font-text); color: var(--muted); }
+.bean a.stretched { font-weight: 600; text-decoration: none; color: var(--primary); display: inline-flex; align-items: center; gap: .35em; min-height: 44px; }
+.bean a.stretched::after { content: ""; position: absolute; inset: 0; }
+.bean a.stretched svg { width: 1em; height: 1em; transition: transform var(--dur-2) var(--ease-out); }
+.bean:focus-within { outline: 3px solid var(--primary); outline-offset: 3px; }
+.bean a.stretched:focus-visible { outline: none; }
+@media (hover: hover) and (pointer: fine) {
+  .bean:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: color-mix(in oklab, var(--primary) 30%, var(--border)); }
+  .bean:hover .bean__art svg { transform: scale(1.06) rotate(-2deg); }
+  .bean:hover a.stretched svg { transform: translateX(3px); }
+}
+.roast-day { display: inline-flex; align-items: center; gap: .5em; font-size: var(--step--1); font-weight: 600; color: var(--primary); }
+.roast-day svg { width: 1.1em; height: 1.1em; }
+
+/* ---------- 10. Story ---------- */
+.story__img { position: relative; }
+.ph { position: relative; aspect-ratio: var(--ar, 4 / 5); border-radius: var(--radius-lg); overflow: hidden; display: grid; place-items: end start; padding: var(--s-4);
+  background: radial-gradient(120% 80% at 20% 10%, color-mix(in oklab, var(--accent) 55%, transparent), transparent 60%), linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--primary) 55%, var(--ink))); color: var(--on-primary); }
+.ph::before { content: ""; position: absolute; inset: 0; opacity: .18; background-image: radial-gradient(currentColor 1px, transparent 1.5px); background-size: 14px 14px; }
+.ph span { position: relative; font-size: var(--step--1); font-weight: 600; background: color-mix(in oklab, var(--ink) 40%, transparent); color: var(--surface); padding: .3em .8em; border-radius: var(--radius-pill); backdrop-filter: blur(6px); }
+.story__stamp { position: absolute; right: var(--s-3); top: -1.25rem; width: 7.5rem; height: 7.5rem; color: var(--on-accent); animation: spin 30s linear infinite; }
+@media (min-width: 1200px) { .story__stamp { right: -1.5rem; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.story__text p + p { margin-top: var(--s-4); }
+.story__text .lead { margin-bottom: var(--s-5); }
+.sign { font: 400 var(--step-1)/1.2 var(--font-display); color: var(--primary); margin-top: var(--s-5) !important; }
+.sign small { display: block; font: 500 var(--step--1) var(--font-text); color: var(--muted); margin-top: var(--s-1); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: var(--s-5); margin-top: var(--s-7); list-style: none; padding: 0; }
+@media (min-width: 600px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.stats b { display: block; white-space: nowrap; font: 400 var(--step-3)/1 var(--font-display); color: var(--primary); font-variant-numeric: tabular-nums; }
+.stats span { font-size: var(--step--1); color: var(--muted); }
+
+/* ---------- 11. Day timeline ---------- */
+.day { list-style: none; padding: 0; display: grid; gap: var(--s-5); counter-reset: d; }
+@media (min-width: 900px) { .day { grid-template-columns: repeat(5, 1fr); gap: var(--s-4); } }
+.day li { position: relative; padding-left: 2.25rem; }
+.day li::before { content: ""; position: absolute; left: .45rem; top: .35rem; width: .9rem; height: .9rem; border-radius: 50%; background: var(--bg); border: 3px solid var(--primary); }
+.day li::after { content: ""; position: absolute; left: .85rem; top: 1.5rem; bottom: calc(-1 * var(--s-5)); width: 2px; background: color-mix(in oklab, var(--primary) 30%, transparent); }
+.day li:last-child::after { display: none; }
+@media (min-width: 900px) {
+  .day li { padding-left: 0; padding-top: 2.25rem; }
+  .day li::before { left: 0; top: 0; }
+  .day li::after { left: 1.3rem; right: calc(-1 * var(--s-4)); top: .8rem; bottom: auto; width: auto; height: 2px; }
+}
+.day time { font: 400 var(--step-2)/1 var(--font-display); color: var(--primary); font-variant-numeric: tabular-nums; }
+.day h3 { margin-top: var(--s-2); font-family: var(--font-text); font-weight: 600; font-size: var(--step-0); letter-spacing: 0; }
+.day p { font-size: var(--step--1); color: var(--muted); margin-top: var(--s-1); }
+
+/* ---------- 12. Reviews band ---------- */
+.band { background: var(--ink); color: var(--bg); }
+.quote-main { font: 400 var(--step-3)/1.2 var(--font-display); letter-spacing: -.01em; max-width: 28ch; text-wrap: balance; }
+.quote-main::before { content: "\201C"; display: block; font-size: 1.8em; line-height: .6; color: var(--accent); margin-bottom: var(--s-2); }
+.cite { margin-top: var(--s-5); display: flex; align-items: center; gap: var(--s-3); font-size: var(--step--1); }
+.cite span:first-child { width: 2.75rem; height: 2.75rem; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); font-weight: 600; }
+.cite b { display: block; font-size: var(--step-0); }
+.cite small { opacity: .8; font-size: inherit; }
+.reviews { display: grid; gap: var(--s-6); margin-top: var(--s-8); padding-top: var(--s-6); border-top: 1px solid color-mix(in oklab, var(--bg) 20%, transparent); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.reviews blockquote p { font-size: var(--step-0); }
+.stars { display: flex; gap: 2px; color: var(--accent); margin-bottom: var(--s-3); }
+.stars svg { width: 1rem; height: 1rem; }
+.reviews footer { margin-top: var(--s-3); font-size: var(--step--1); opacity: .8; }
+
+/* ---------- 13. Visit ---------- */
+.visit { display: grid; gap: clamp(1.5rem, 3vw, 2rem); }
+@media (min-width: 900px) { .visit { grid-template-columns: 5fr 6fr; } }
+.hours { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.25rem, 3vw, 2rem); }
+.hours h3 { margin-bottom: var(--s-4); }
+.hours table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hours th, .hours td { padding: .6rem .5rem; text-align: left; border-bottom: 1px solid var(--border); font-weight: 400; }
+.hours td { text-align: right; }
+.hours tr.is-today { background: color-mix(in oklab, var(--accent) 25%, var(--surface)); }
+.hours tr.is-today th { font-weight: 600; }
+.hours tr.is-today th::after { content: " · today"; color: var(--primary); font-size: var(--step--1); font-weight: 600; }
+.addr { display: grid; gap: var(--s-4); margin-top: var(--s-5); font-style: normal; }
+.addr a { display: inline-flex; gap: var(--s-3); align-items: center; text-decoration: none; min-height: 44px; }
+.addr svg { width: 1.25rem; height: 1.25rem; color: var(--primary); flex: none; }
+.map { position: relative; border-radius: var(--radius-lg); overflow: hidden; min-height: 20rem; }
+.map svg { width: 100%; height: 100%; display: block; }
+.map__card { position: absolute; left: var(--s-4); bottom: var(--s-4); right: var(--s-4); max-width: 22rem; background: var(--surface); border-radius: var(--radius); padding: var(--s-4); box-shadow: var(--shadow-lg); font-size: var(--step--1); }
+.map__card b { display: block; font-size: var(--step-0); }
+
+/* ---------- 14. Order form ---------- */
+.order { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+@media (min-width: 900px) { .order { grid-template-columns: 5fr 6fr; align-items: start; } }
+.order__perks { list-style: none; padding: 0; display: grid; gap: var(--s-4); margin-top: var(--s-6); }
+.order__perks li { display: flex; gap: var(--s-3); align-items: flex-start; }
+.order__perks svg { width: 1.4rem; height: 1.4rem; flex: none; color: var(--primary); margin-top: .15rem; }
+.form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.25rem, 3vw, 2.25rem); display: grid; gap: var(--s-5); box-shadow: var(--shadow-sm); }
+.form__row { display: grid; gap: var(--s-5); align-items: start; }
+@media (min-width: 600px) { .form__row { grid-template-columns: 1fr 1fr; } }
+.field { display: grid; gap: var(--s-2); }
+.field label { font-weight: 600; font-size: var(--step--1); }
+.field input, .field select, .field textarea { width: 100%; min-height: 48px; font-size: max(16px, 1rem); padding: .75em 1em; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--bg); transition: border-color var(--dur-2), box-shadow var(--dur-2); }
+.field textarea { min-height: 5.5rem; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 18%, transparent); }
+.field :user-invalid { border-color: var(--danger); animation: shake 300ms var(--ease-out); }
+.field .hint { font-size: var(--step--1); color: var(--muted); }
+@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s-2); border: 0; padding: 0; }
+.chips legend { font-weight: 600; font-size: var(--step--1); margin-bottom: var(--s-2); }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chips span { display: inline-flex; align-items: center; min-height: 44px; padding: .4em 1em; border-radius: var(--radius-pill); border: 1.5px solid var(--border); font-weight: 500; transition: background-color var(--dur-2), border-color var(--dur-2), color var(--dur-2); }
+.chips input:checked + span { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.chips input:focus-visible + span { outline: 3px solid var(--primary); outline-offset: 2px; }
+.form .btn { justify-self: start; }
+.btn[aria-busy="true"] { pointer-events: none; opacity: .8; }
+.success { display: none; gap: var(--s-3); align-items: flex-start; padding: var(--s-4); border-radius: var(--radius); background: color-mix(in oklab, var(--ok) 14%, var(--surface)); border: 1px solid color-mix(in oklab, var(--ok) 40%, transparent); }
+.success.is-shown { display: flex; animation: rise var(--dur-3) var(--ease-out) both; }
+.success svg { width: 1.5rem; height: 1.5rem; flex: none; color: var(--ok); }
+
+/* ---------- 15. FAQ ---------- */
+.faq { border-bottom: 1px solid var(--border); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); padding: 1.1rem 0; font-weight: 600; font-size: var(--step-1); min-height: 44px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font-size: 1.5em; line-height: 1; color: var(--primary); transition: transform var(--dur-3) var(--ease-spring); }
+.faq[open] summary::after { transform: rotate(45deg); }
+.faq__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-3) var(--ease-out); }
+.faq[open] .faq__body { grid-template-rows: 1fr; }
+.faq__body > div { overflow: hidden; color: var(--muted); }
+.faq__body p { padding-bottom: 1.1rem; max-width: 62ch; }
+
+/* ---------- 16. Footer ---------- */
+.site-footer { background: var(--surface2); padding-block: var(--s-8) var(--s-6); font-size: var(--step--1); }
+.foot { display: grid; gap: var(--s-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.foot h2 { font-size: var(--step-0); font-family: var(--font-text); font-weight: 600; margin-bottom: var(--s-3); letter-spacing: 0; }
+.foot ul { list-style: none; padding: 0; display: grid; gap: var(--s-1); }
+.foot a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; text-decoration: none; }
+.foot p { color: var(--muted); max-width: 32ch; margin-top: var(--s-3); }
+.socials { display: flex; gap: var(--s-2); margin-top: var(--s-3); }
+.socials a { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border); transition: background-color var(--dur-2), color var(--dur-2); }
+.socials svg { width: 1.2rem; height: 1.2rem; }
+@media (hover: hover) { .socials a:hover { background: var(--primary); color: var(--on-primary); } }
+.socials a:focus-visible { background: var(--primary); color: var(--on-primary); }
+.foot__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--border); color: var(--muted); }
+
+/* ---------- 17. Motion ---------- */
+.js [data-reveal], .js [data-reveal-stagger] > * { opacity: 0; transform: translateY(20px); transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
+.js .is-in[data-reveal], .js .is-in[data-reveal-stagger] > * { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .hero h1 em path { stroke-dashoffset: 0; }
+  .strip__track { animation: none; flex-wrap: wrap; width: auto; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="Kettle & Crow Coffee, home">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" fill="var(--primary)"/>
+        <path d="M11 22h15v3a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z" fill="var(--on-primary)"/>
+        <path d="M26 23.5h2a2.5 2.5 0 0 1 0 5h-2.5" stroke="var(--on-primary)" stroke-width="2" fill="none"/>
+        <path d="M14 18c2-1 4-3.5 7-3.5 2.6 0 4 1.2 5.5 1.2l2.5-1.2-1.4 2.6c-1.2 1.3-3.4 1.9-5.6 1.9z" fill="var(--accent)"/>
+        <circle cx="25.4" cy="16.2" r=".9" fill="var(--primary)"/>
+      </svg>
+      <span><b>Kettle &amp; Crow</b><small>Coffee · Roastery</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="nav-links">
+        <li><a class="link" href="#menu">Menu</a></li>
+        <li><a class="link" href="#beans">Beans</a></li>
+        <li><a class="link" href="#story">Our story</a></li>
+        <li><a class="link" href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <a class="btn header-cta" href="#order">Order ahead
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button class="nav-toggle" data-nav-toggle aria-controls="mnav" aria-expanded="false" aria-label="Open menu">
+      <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mnav" aria-label="Mobile">
+  <ul>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#beans">Beans</a></li>
+    <li><a href="#story">Our story</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="btn" href="#order">Order ahead for pickup</a>
+  <p>2417 SE Division St, Portland<br><a href="tel:+15035550147">(503) 555-0147</a></p>
+</nav>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container split">
+      <div>
+        <p class="status rise" style="--i:0" id="status" aria-live="polite"><i aria-hidden="true"></i><span>Open today · 6:30 am – 6 pm</span></p>
+        <h1 id="hero-title" class="rise" style="--i:1">Small-batch coffee, roasted <em>three doors<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14 C 50 4, 120 4, 197 11"/></svg></em> down.</h1>
+        <p class="lead rise" style="--i:2">We roast every Tuesday and Friday in the back of the shop on SE Division, so the espresso in your cup is never more than ten days off the drum.</p>
+        <div class="cluster rise" style="--i:3">
+          <a class="btn" href="#order" data-magnetic>Order ahead
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="#menu">See today’s menu</a>
+        </div>
+        <ul class="hero-facts rise" style="--i:4">
+          <li><b class="num">4.8★</b>1,920 Google reviews</li>
+          <li><b>Since 2017</b>on SE Division</li>
+          <li><b>10 days</b>max bean age</li>
+        </ul>
+      </div>
+
+      <div class="scene rise" style="--i:2">
+        <svg viewBox="0 0 520 540" role="img" aria-label="Illustration of the Kettle & Crow shop front: a striped awning with a crow perched on it, the drum roaster glowing through the window, and a cup of coffee steaming on the sill.">
+          <rect width="520" height="540" rx="28" fill="color-mix(in oklab, var(--accent) 30%, var(--surface))"/>
+          <circle cx="420" cy="92" r="44" fill="var(--accent)"/>
+          <g fill="var(--surface)" opacity=".85"><ellipse cx="120" cy="78" rx="46" ry="13"/><ellipse cx="150" cy="68" rx="28" ry="13"/></g>
+          <!-- building -->
+          <rect x="52" y="130" width="416" height="350" fill="color-mix(in oklab, var(--primary) 85%, var(--ink))"/>
+          <rect x="52" y="130" width="416" height="44" fill="var(--ink)"/>
+          <text x="260" y="160" text-anchor="middle" font-family="Young Serif, Georgia, serif" font-size="22" fill="var(--accent)" letter-spacing="1">KETTLE &amp; CROW</text>
+          <!-- awning -->
+          <g>
+            <path d="M40 174 H480 L462 222 H58Z" fill="var(--surface)"/>
+            <path d="M84 174 H128 L124 222 H82Z M172 174 H216 L214 222 H170Z M260 174 H304 L304 222 H258Z M348 174 H392 L394 222 H346Z M436 174 H480 L462 222 H434Z" fill="var(--primary)"/>
+            <path d="M58 222 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0 q11 14 22 0Z" fill="var(--surface)"/>
+          </g>
+          <!-- crow perched on the sign -->
+          <g fill="var(--ink)">
+            <ellipse cx="392" cy="112" rx="22" ry="13"/>
+            <circle cx="413" cy="99" r="10"/>
+            <path d="M421 96 L438 101 L421 104Z" fill="color-mix(in oklab, var(--ink) 55%, var(--accent))"/>
+            <path d="M373 108 L344 98 L370 120Z"/>
+            <rect x="388" y="122" width="3" height="9"/><rect x="397" y="122" width="3" height="9"/>
+          </g>
+          <circle cx="415" cy="97" r="2.4" fill="var(--accent)"/>
+          <!-- window -->
+          <rect x="78" y="244" width="250" height="176" rx="6" fill="color-mix(in oklab, var(--accent) 45%, var(--surface))"/>
+          <circle class="glow" cx="160" cy="300" r="70" fill="color-mix(in oklab, var(--accent) 80%, var(--surface))"/>
+          <!-- pendant lamps -->
+          <g stroke="var(--ink)" stroke-width="2"><path d="M140 244 V268"/><path d="M250 244 V262"/></g>
+          <path d="M128 268 h24 l-6 -10 h-12z" fill="var(--ink)"/><path d="M238 262 h24 l-6 -10 h-12z" fill="var(--ink)"/>
+          <!-- roaster -->
+          <rect x="112" y="322" width="86" height="58" rx="29" fill="var(--ink)"/>
+          <circle cx="155" cy="351" r="18" fill="color-mix(in oklab, var(--accent) 65%, var(--primary))"/>
+          <rect x="146" y="290" width="18" height="34" fill="var(--ink)"/>
+          <path d="M138 290 h34 l-6 -16 h-22z" fill="color-mix(in oklab, var(--ink) 80%, var(--primary))"/>
+          <rect x="118" y="380" width="8" height="22" fill="var(--ink)"/><rect x="184" y="380" width="8" height="22" fill="var(--ink)"/>
+          <!-- counter -->
+          <rect x="222" y="352" width="106" height="50" fill="var(--primary)"/>
+          <rect x="236" y="330" width="34" height="22" rx="3" fill="var(--ink)"/>
+          <rect x="280" y="336" width="12" height="16" rx="2" fill="var(--surface)"/><rect x="298" y="336" width="12" height="16" rx="2" fill="var(--surface)"/>
+          <!-- window frame + sill -->
+          <path d="M203 244 V420" stroke="color-mix(in oklab, var(--primary) 85%, var(--ink))" stroke-width="6"/>
+          <rect x="70" y="414" width="266" height="14" rx="3" fill="var(--surface)"/>
+          <!-- cup on sill -->
+          <path d="M264 386 h40 v12 a14 14 0 0 1 -14 14 h-12 a14 14 0 0 1 -14 -14z" fill="var(--surface)"/>
+          <path d="M304 391 h4 a7 7 0 0 1 0 14 h-6" stroke="var(--surface)" stroke-width="4" fill="none"/>
+          <rect x="256" y="410" width="56" height="5" rx="2.5" fill="color-mix(in oklab, var(--surface) 80%, var(--ink))"/>
+          <g class="steam"><path d="M276 378 q-6 -10 0 -20 t0 -20"/><path d="M286 378 q6 -10 0 -20 t0 -20"/><path d="M296 378 q-6 -10 0 -20 t0 -20"/></g>
+          <!-- door -->
+          <rect x="354" y="244" width="88" height="236" rx="4" fill="var(--ink)"/>
+          <rect x="366" y="258" width="64" height="104" rx="3" fill="color-mix(in oklab, var(--accent) 45%, var(--surface))"/>
+          <rect x="370" y="290" width="56" height="26" rx="3" fill="var(--surface)"/>
+          <text x="398" y="308" text-anchor="middle" font-family="Instrument Sans, system-ui, sans-serif" font-weight="600" font-size="13" fill="var(--primary)">OPEN</text>
+          <circle cx="428" cy="392" r="4" fill="var(--accent)"/>
+          <!-- planter -->
+          <rect x="70" y="440" width="66" height="40" rx="4" fill="var(--accent)"/>
+          <g fill="color-mix(in oklab, var(--ok) 75%, var(--ink))"><circle cx="86" cy="434" r="14"/><circle cx="106" cy="426" r="16"/><circle cx="124" cy="436" r="12"/></g>
+          <!-- pavement -->
+          <rect x="0" y="480" width="520" height="60" fill="color-mix(in oklab, var(--ink) 18%, var(--surface2))"/>
+          <rect x="0" y="480" width="520" height="6" fill="color-mix(in oklab, var(--ink) 30%, var(--surface2))"/>
+          <!-- A-board -->
+          <path d="M196 468 L216 430 H262 L282 468 Z" fill="var(--ink)"/>
+          <rect x="214" y="438" width="50" height="22" rx="2" fill="color-mix(in oklab, var(--ink) 70%, var(--surface))"/>
+          <path d="M222 446 h34 M222 453 h22" stroke="var(--surface)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="scene__tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="6" ry="9" transform="rotate(30 12 12)"/><path d="M8.5 5.5c2 3 3 6 6 13"/></svg>
+          <p><strong>Roasting Friday</strong>Kayon Mountain, Ethiopia: batch #412</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip" aria-label="What we serve">
+    <ul class="strip__track">
+      <li>Roasted in-house</li><li>Oat milk at no extra charge</li><li>Pastries from Fleur Bakehouse</li><li>Dog bowls by the door</li><li>Free refills on drip</li>
+      <li aria-hidden="true">Roasted in-house</li><li aria-hidden="true">Oat milk at no extra charge</li><li aria-hidden="true">Pastries from Fleur Bakehouse</li><li aria-hidden="true">Dog bowls by the door</li><li aria-hidden="true">Free refills on drip</li>
+    </ul>
+  </div>
+
+  <!-- MENU -->
+  <section class="section" id="menu" aria-labelledby="menu-title">
+    <div class="container menu-wrap">
+      <div class="section__head">
+        <span class="eyebrow">The menu</span>
+        <h2 id="menu-title">Short menu, made properly</h2>
+        <p>Twelve drinks, a handful of bakes, no syrups we wouldn’t drink ourselves. Our house espresso is the Crow Blend; ask for the single origin of the week for +$0.75.</p>
+      </div>
+      <div>
+        <div class="tabs" role="tablist" aria-label="Menu categories">
+          <span class="tabs__ind" aria-hidden="true"></span>
+          <button role="tab" id="t-esp" aria-controls="p-esp" aria-selected="true">Espresso bar</button>
+          <button role="tab" id="t-slow" aria-controls="p-slow" aria-selected="false" tabindex="-1">Slow &amp; cold</button>
+          <button role="tab" id="t-bake" aria-controls="p-bake" aria-selected="false" tabindex="-1">Bakes</button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-esp" aria-labelledby="t-esp" tabindex="0">
+          <ul class="menu-list">
+            <li><div class="item__row"><h3>Espresso</h3><span class="dots"></span><span class="price">$3.50</span></div><p>A double of Crow Blend: milk chocolate, cherry, toasted almond.</p></li>
+            <li><div class="item__row"><h3>Cortado</h3><span class="dots"></span><span class="price">$4.25</span></div><p>Equal parts espresso and steamed milk, served in a 4.5 oz Gibraltar.</p></li>
+            <li><div class="item__row"><h3>Flat white</h3><span class="dots"></span><span class="price">$4.75</span></div><p>Ristretto double, thin velvety milk. Our baristas’ favourite.</p></li>
+            <li><div class="item__row"><h3>Honey lavender latte <span class="tag">House</span></h3><span class="dots"></span><span class="price">$5.75</span></div><p>Local Sauvie Island honey and dried lavender, steeped in-house each morning.</p></li>
+            <li><div class="item__row"><h3>Cardamom mocha</h3><span class="dots"></span><span class="price">$5.50</span></div><p>Valrhona cocoa, green cardamom, a pinch of sea salt.</p></li>
+          </ul>
+        </div>
+        <div class="panel" role="tabpanel" id="p-slow" aria-labelledby="t-slow" tabindex="0" hidden>
+          <ul class="menu-list">
+            <li><div class="item__row"><h3>Batch drip</h3><span class="dots"></span><span class="price">$3.00</span></div><p>Rotating single origin. Free refills while you’re in the shop.</p></li>
+            <li><div class="item__row"><h3>Pour-over</h3><span class="dots"></span><span class="price">$5.00</span></div><p>Brewed to order on a Kalita Wave, about four minutes. Worth it.</p></li>
+            <li><div class="item__row"><h3>Cold brew <span class="tag">Seasonal</span></h3><span class="dots"></span><span class="price">$4.50</span></div><p>Steeped 18 hours. Add a splash of oat or a float of sweet cream (+$0.75).</p></li>
+            <li><div class="item__row"><h3>Espresso tonic</h3><span class="dots"></span><span class="price">$5.25</span></div><p>Fever-Tree tonic, orange peel, a double poured over ice.</p></li>
+            <li><div class="item__row"><h3>Chai from scratch</h3><span class="dots"></span><span class="price">$4.75</span></div><p>Assam, ginger, clove and black pepper, simmered every morning.</p></li>
+          </ul>
+        </div>
+        <div class="panel" role="tabpanel" id="p-bake" aria-labelledby="t-bake" tabindex="0" hidden>
+          <ul class="menu-list">
+            <li><div class="item__row"><h3>Butter croissant</h3><span class="dots"></span><span class="price">$4.00</span></div><p>From Fleur Bakehouse, delivered at 6 am. Usually gone by 10.</p></li>
+            <li><div class="item__row"><h3>Morning bun</h3><span class="dots"></span><span class="price">$4.50</span></div><p>Orange zest, cinnamon sugar, a crackly caramel bottom.</p></li>
+            <li><div class="item__row"><h3>Brown-butter banana bread <span class="tag">Ours</span></h3><span class="dots"></span><span class="price">$3.75</span></div><p>Baked in our own oven on Tuesdays; toasted with salted butter on request.</p></li>
+            <li><div class="item__row"><h3>Savoury scone</h3><span class="dots"></span><span class="price">$4.25</span></div><p>Tillamook cheddar, chive and black pepper.</p></li>
+            <li><div class="item__row"><h3>Gluten-free almond cake</h3><span class="dots"></span><span class="price">$4.50</span></div><p>Made in a dedicated GF kitchen; ask us about cross-contact.</p></li>
+          </ul>
+        </div>
+        <p class="menu-note">Oat, almond and whole milk at no extra charge. Decaf (Swiss Water, Colombia) available for every espresso drink.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEANS -->
+  <section class="section section--alt" id="beans" aria-labelledby="beans-title">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">On the shelf this week</span>
+        <h2 id="beans-title">Three coffees we’re excited about</h2>
+        <p>Every bag is stamped with its roast date. Grind in-store for free, or ship anywhere in the US for $5.</p>
+      </div>
+      <div class="beans" data-reveal-stagger>
+        <article class="bean">
+          <div class="bean__art bean__art--a">
+            <svg viewBox="0 0 160 140" aria-hidden="true">
+              <path d="M46 30 h68 l8 100 h-84z" fill="var(--surface)"/>
+              <path d="M46 30 l6 -12 h56 l6 12z" fill="color-mix(in oklab, var(--surface) 80%, var(--ink))"/>
+              <rect x="56" y="56" width="48" height="52" rx="4" fill="var(--primary)"/>
+              <g fill="var(--accent)"><circle cx="80" cy="74" r="6"/><circle cx="72" cy="80" r="5"/><circle cx="88" cy="80" r="5"/><circle cx="76" cy="88" r="5"/><circle cx="84" cy="88" r="5"/></g>
+              <circle cx="80" cy="82" r="3.5" fill="var(--surface)"/>
+              <path d="M80 92 v10" stroke="var(--accent)" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div class="bean__body">
+            <span class="roast-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg>Roasted Fri 9 Oct</span>
+            <h3>Kayon Mountain</h3>
+            <p class="bean__meta">Guji, Ethiopia · Natural · 2,100 m</p>
+            <ul class="notes"><li>Blueberry</li><li>Jasmine</li><li>Raw honey</li></ul>
+          </div>
+          <div class="bean__foot">
+            <span class="price">$22<small> / 12 oz</small></span>
+            <a class="stretched" href="#order">Add to order<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="bean">
+          <div class="bean__art bean__art--b">
+            <svg viewBox="0 0 160 140" aria-hidden="true">
+              <path d="M46 30 h68 l8 100 h-84z" fill="var(--primary)"/>
+              <path d="M46 30 l6 -12 h56 l6 12z" fill="color-mix(in oklab, var(--primary) 70%, var(--ink))"/>
+              <rect x="56" y="56" width="48" height="52" rx="4" fill="var(--surface)"/>
+              <path d="M58 104 L72 78 L80 90 L90 70 L102 104Z" fill="color-mix(in oklab, var(--ok) 70%, var(--ink))"/>
+              <path d="M86 77 L90 70 L94 78Z" fill="var(--surface)"/>
+              <circle cx="66" cy="68" r="5" fill="var(--accent)"/>
+            </svg>
+          </div>
+          <div class="bean__body">
+            <span class="roast-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg>Roasted Tue 13 Oct</span>
+            <h3>Finca La Esperanza</h3>
+            <p class="bean__meta">Huila, Colombia · Washed · 1,750 m</p>
+            <ul class="notes"><li>Red apple</li><li>Panela</li><li>Cocoa nib</li></ul>
+          </div>
+          <div class="bean__foot">
+            <span class="price">$19<small> / 12 oz</small></span>
+            <a class="stretched" href="#order">Add to order<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="bean">
+          <div class="bean__art bean__art--c">
+            <svg viewBox="0 0 160 140" aria-hidden="true">
+              <path d="M46 30 h68 l8 100 h-84z" fill="var(--ink)"/>
+              <path d="M46 30 l6 -12 h56 l6 12z" fill="color-mix(in oklab, var(--ink) 75%, var(--surface))"/>
+              <circle cx="80" cy="82" r="26" fill="var(--accent)"/>
+              <ellipse cx="76" cy="88" rx="12" ry="8" fill="var(--ink)"/>
+              <circle cx="88" cy="80" r="6" fill="var(--ink)"/>
+              <path d="M93 79 l8 2 -8 2z" fill="var(--primary)"/>
+              <path d="M64 86 l-8 -3 7 7z" fill="var(--ink)"/>
+            </svg>
+          </div>
+          <div class="bean__body">
+            <span class="roast-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg>Roasted Tue 13 Oct</span>
+            <h3>Crow Blend</h3>
+            <p class="bean__meta">Brazil + Guatemala · Our house espresso</p>
+            <ul class="notes"><li>Milk chocolate</li><li>Cherry</li><li>Almond</li></ul>
+          </div>
+          <div class="bean__foot">
+            <span class="price">$17<small> / 12 oz</small></span>
+            <a class="stretched" href="#order">Add to order<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section" id="story" aria-labelledby="story-title">
+    <div class="container split split--rev">
+      <div class="story__text" data-reveal>
+        <span class="eyebrow">Our story</span>
+        <h2 id="story-title">A 5-kilo roaster, a crow named Juniper, and a lot of early mornings</h2>
+        <p class="lead" style="margin-top: var(--s-5)">Maya and Tomás Okafor-Reyes opened Kettle &amp; Crow in a former bike shop in March 2017.</p>
+        <p>Tomás had spent six years roasting for others; Maya ran the floor at a Seattle café. They bought a second-hand Diedrich IR-5, painted the walls oat, and started roasting in the back room before opening each morning.</p>
+        <p>Juniper, the crow, showed up the first week and never left. She gets a peanut at 7 am. We buy from the same four farms year after year and publish what we pay them on every bag.</p>
+        <p class="sign">Maya &amp; Tomás<small>Owners, and the people pulling your shot most weekends</small></p>
+        <ul class="stats">
+          <li><b data-count="9" data-suffix=" yrs">9 yrs</b><span>on SE Division</span></li>
+          <li><b data-count="14200" data-suffix=" kg">14,200 kg</b><span>roasted to date</span></li>
+          <li><b data-count="4">4</b><span>partner farms, every year</span></li>
+        </ul>
+      </div>
+      <div class="story__img" data-reveal>
+        <div class="ph" style="--ar: 4 / 5"><span>Photo: Tomás at the Diedrich roaster, Friday 7 am</span></div>
+        <svg class="story__stamp" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="58" fill="var(--accent)"/>
+          <defs><path id="ring" d="M60 60 m-42 0 a42 42 0 1 1 84 0 a42 42 0 1 1 -84 0"/></defs>
+          <text font-family="Instrument Sans, system-ui, sans-serif" font-size="11.5" font-weight="600" letter-spacing="2.4" fill="currentColor"><textPath href="#ring">ROASTED ON DIVISION · EST. 2017 ·</textPath></text>
+          <path d="M44 62 h26 v6 a10 10 0 0 1 -10 10 h-6 a10 10 0 0 1 -10 -10z" fill="currentColor"/>
+          <path d="M70 64 h3 a5 5 0 0 1 0 10 h-4" stroke="currentColor" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY -->
+  <section class="section section--alt" aria-labelledby="day-title">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">A day at the shop</span>
+        <h2 id="day-title">When to come by for what</h2>
+      </div>
+      <ol class="day" data-reveal-stagger>
+        <li><time>6:30</time><h3>Doors open</h3><p>Croissants land from Fleur. Quietest hour for a pour-over.</p></li>
+        <li><time>7:00</time><h3>Juniper’s peanut</h3><p>Watch the awning. She’s punctual.</p></li>
+        <li><time>8:00</time><h3>Roasting starts</h3><p>Tuesdays and Fridays. The whole block smells like caramel.</p></li>
+        <li><time>14:00</time><h3>Public cupping</h3><p>Saturdays, free, 8 seats. Taste next week’s coffees first.</p></li>
+        <li><time>17:30</time><h3>Last call</h3><p>Day-old bakes half price. Drip is on us after 5:30.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section band" aria-labelledby="reviews-title">
+    <div class="container">
+      <h2 id="reviews-title" class="eyebrow" style="color: var(--accent)">What the neighbours say</h2>
+      <figure data-reveal>
+        <blockquote class="quote-main"><p>The flat white is the best in Portland, and I’ve done the research. Tomás will happily talk you through the roast for twenty minutes if you let him.</p></blockquote>
+        <figcaption class="cite"><span aria-hidden="true">PN</span><span><b>Priya Natarajan</b><small>Regular since 2018 · Ladd’s Addition</small></span></figcaption>
+      </figure>
+      <div class="reviews" data-reveal-stagger>
+        <blockquote>
+          <div class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg></div>
+          <p>Order-ahead actually works. My cortado is on the shelf with my name on it at 7:42 every weekday.</p>
+          <footer>Dan Whitlock · Google</footer>
+        </blockquote>
+        <blockquote>
+          <div class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg></div>
+          <p>Came for the honey lavender latte, stayed for the Saturday cupping. Bought three bags of the Ethiopian.</p>
+          <footer>Rosa Delgado · Yelp</footer>
+        </blockquote>
+        <blockquote>
+          <div class="stars" role="img" aria-label="4 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z"/></svg></div>
+          <p>Gets busy around 9 on weekends, but the line moves. Great window seats for laptop work in the afternoon.</p>
+          <footer>Sam Oyelaran · Google</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="section" id="visit" aria-labelledby="visit-title">
+    <div class="container">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">Visit</span>
+        <h2 id="visit-title">Find us between the bike shop and the bookstore</h2>
+      </div>
+      <div class="visit">
+        <div class="hours" data-reveal>
+          <h3>Opening hours</h3>
+          <table>
+            <caption class="muted" style="text-align:left; font-size: var(--step--1); margin-bottom: var(--s-2)">Pacific time. Closed Thanksgiving &amp; Christmas Day.</caption>
+            <tbody id="hours">
+              <tr data-d="1"><th scope="row">Monday</th><td>6:30 am – 6 pm</td></tr>
+              <tr data-d="2"><th scope="row">Tuesday</th><td>6:30 am – 6 pm</td></tr>
+              <tr data-d="3"><th scope="row">Wednesday</th><td>6:30 am – 6 pm</td></tr>
+              <tr data-d="4"><th scope="row">Thursday</th><td>6:30 am – 6 pm</td></tr>
+              <tr data-d="5"><th scope="row">Friday</th><td>6:30 am – 6 pm</td></tr>
+              <tr data-d="6"><th scope="row">Saturday</th><td>7:30 am – 5 pm</td></tr>
+              <tr data-d="0"><th scope="row">Sunday</th><td>7:30 am – 5 pm</td></tr>
+            </tbody>
+          </table>
+          <address class="addr">
+            <a href="https://maps.google.com/?q=2417+SE+Division+St+Portland+OR+97202" class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>2417 SE Division St, Portland, OR 97202</a>
+            <a href="tel:+15035550147" class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>(503) 555-0147</a>
+          </address>
+        </div>
+        <div class="map" data-reveal>
+          <svg viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Simplified map: Kettle & Crow sits on SE Division St between 24th and 25th Avenue, two blocks from the 2 bus stop.">
+            <rect width="600" height="440" fill="var(--surface2)"/>
+            <g fill="color-mix(in oklab, var(--primary) 10%, var(--surface2))">
+              <rect x="20" y="20" width="150" height="150" rx="8"/><rect x="210" y="20" width="170" height="150" rx="8"/><rect x="420" y="20" width="160" height="150" rx="8"/>
+              <rect x="20" y="270" width="150" height="150" rx="8"/><rect x="420" y="270" width="160" height="150" rx="8"/>
+            </g>
+            <rect x="210" y="270" width="170" height="150" rx="8" fill="color-mix(in oklab, var(--ok) 25%, var(--surface2))"/>
+            <g fill="color-mix(in oklab, var(--ok) 55%, var(--surface2))"><circle cx="250" cy="320" r="14"/><circle cx="300" cy="370" r="18"/><circle cx="345" cy="315" r="12"/></g>
+            <g fill="var(--surface)"><rect x="0" y="190" width="600" height="60"/><rect x="180" y="0" width="22" height="440"/><rect x="392" y="0" width="22" height="440"/></g>
+            <path d="M0 220 H600" stroke="var(--accent)" stroke-width="3" stroke-dasharray="16 12"/>
+            <text x="30" y="214" font-family="Instrument Sans, system-ui, sans-serif" font-size="14" font-weight="600" fill="var(--muted)">SE DIVISION ST</text>
+            <text x="186" y="120" font-family="Instrument Sans, system-ui, sans-serif" font-size="12" font-weight="600" fill="var(--muted)" transform="rotate(-90 196 120)">SE 24TH</text>
+            <text x="398" y="120" font-family="Instrument Sans, system-ui, sans-serif" font-size="12" font-weight="600" fill="var(--muted)" transform="rotate(-90 408 120)">SE 25TH</text>
+            <rect x="460" y="176" width="44" height="22" rx="11" fill="var(--ink)"/><text x="482" y="191" text-anchor="middle" font-family="Instrument Sans, system-ui, sans-serif" font-size="12" font-weight="600" fill="var(--surface)">Bus 2</text>
+            <g transform="translate(300 160)">
+              <circle r="30" fill="color-mix(in oklab, var(--primary) 25%, transparent)"/>
+              <path d="M0 22 C -14 6 -20 -2 -20 -12 a20 20 0 0 1 40 0 C 20 -2 14 6 0 22z" fill="var(--primary)"/>
+              <circle cy="-12" r="8" fill="var(--on-primary)"/>
+            </g>
+          </svg>
+          <div class="map__card"><b>Bike racks out front, street parking on 24th</b>Ten-minute walk from Ladd’s Circle; the #2 bus stops at SE 26th.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section class="section section--alt" id="order" aria-labelledby="order-title">
+    <div class="container order">
+      <div data-reveal>
+        <span class="eyebrow">Order ahead</span>
+        <h2 id="order-title">Skip the line. Your name’s on the shelf.</h2>
+        <p class="lead" style="margin-top: var(--s-4)">Send it over, we’ll text when it’s ready. Pay at pickup.</p>
+        <ul class="order__perks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Ready in about 8 minutes, or pick a later time</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg><span>Add a bag of beans, ground for your brewer</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-3-6.2"/><path d="M20 4v5h-5"/></svg><span>Every 10th drink is free: we track it by phone number</span></li>
+        </ul>
+      </div>
+      <form class="form" id="order-form" novalidate data-reveal>
+        <div class="form__row">
+          <div class="field"><label for="f-name">Name for the cup</label><input id="f-name" name="name" autocomplete="given-name" required></div>
+          <div class="field"><label for="f-phone">Mobile number</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9()+\-\s]{7,}"><span class="hint">We text once when it’s ready.</span></div>
+        </div>
+        <div class="field">
+          <label for="f-drink">Drink</label>
+          <select id="f-drink" name="drink" required>
+            <option value="">Choose a drink</option>
+            <option>Flat white · $4.75</option><option>Cortado · $4.25</option><option>Honey lavender latte · $5.75</option>
+            <option>Cardamom mocha · $5.50</option><option>Cold brew · $4.50</option><option>Batch drip · $3.00</option><option>Chai from scratch · $4.75</option>
+          </select>
+        </div>
+        <fieldset class="chips">
+          <legend>Milk</legend>
+          <label><input type="radio" name="milk" value="whole" checked><span>Whole</span></label>
+          <label><input type="radio" name="milk" value="oat"><span>Oat</span></label>
+          <label><input type="radio" name="milk" value="almond"><span>Almond</span></label>
+          <label><input type="radio" name="milk" value="none"><span>None</span></label>
+        </fieldset>
+        <div class="form__row">
+          <div class="field">
+            <label for="f-time">Pickup</label>
+            <select id="f-time" name="time"><option>As soon as possible</option><option>In 15 minutes</option><option>In 30 minutes</option><option>In 1 hour</option></select>
+          </div>
+          <div class="field"><label for="f-note">Anything else?</label><input id="f-note" name="note" placeholder="Extra hot, half-sweet…"></div>
+        </div>
+        <button class="btn" type="submit">Place order
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <div class="success" id="order-ok" role="status" aria-live="polite">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+          <p id="order-msg">Got it! We’ll text you when it’s on the shelf.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container--narrow">
+      <div class="section__head" data-reveal>
+        <span class="eyebrow">Good to know</span>
+        <h2 id="faq-title">Questions we get at the counter</h2>
+      </div>
+      <div data-reveal>
+        <details class="faq"><summary>Is there Wi-Fi, and can I work here?</summary><div class="faq__body"><div><p>Yes: free Wi-Fi, outlets along the window bar. We ask laptops to make room for the weekend rush, so the big table is laptop-free 9 am–1 pm on Saturdays and Sundays.</p></div></div></details>
+        <details class="faq"><summary>Are dogs welcome?</summary><div class="faq__body"><div><p>On the patio, always, with a water bowl by the door. Inside we can only allow service animals.</p></div></div></details>
+        <details class="faq"><summary>Do you ship beans?</summary><div class="faq__body"><div><p>Anywhere in the US for a flat $5, free over $40. Orders placed by Monday night ship Wednesday, roasted the day before.</p></div></div></details>
+        <details class="faq"><summary>Can you cater our office?</summary><div class="faq__body"><div><p>We do coffee boxes (serves 10–12) for $38 with 24 hours’ notice, and full espresso carts for events. Email <a class="link" href="mailto:hello@kettleandcrow.coffee">hello@kettleandcrow.coffee</a>.</p></div></div></details>
+        <details class="faq"><summary>How do I join the Saturday cupping?</summary><div class="faq__body"><div><p>It’s free and first-come: eight seats at 2 pm. Put your name on the chalkboard by the register any time that week.</p></div></div></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top" aria-label="Kettle & Crow Coffee, back to top">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="var(--primary)"/><path d="M11 22h15v3a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z" fill="var(--on-primary)"/><path d="M26 23.5h2a2.5 2.5 0 0 1 0 5h-2.5" stroke="var(--on-primary)" stroke-width="2" fill="none"/><path d="M14 18c2-1 4-3.5 7-3.5 2.6 0 4 1.2 5.5 1.2l2.5-1.2-1.4 2.6c-1.2 1.3-3.4 1.9-5.6 1.9z" fill="var(--accent)"/></svg>
+          <span><b>Kettle &amp; Crow</b></span>
+        </a>
+        <p>Neighbourhood café and micro-roastery on SE Division since 2017.</p>
+        <div class="socials">
+          <a href="https://instagram.com/kettleandcrow" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="mailto:hello@kettleandcrow.coffee" aria-label="Email us"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h2>Visit</h2>
+        <ul>
+          <li><a class="link" href="https://maps.google.com/?q=2417+SE+Division+St+Portland+OR+97202">2417 SE Division St</a></li>
+          <li><a class="link" href="tel:+15035550147">(503) 555-0147</a></li>
+          <li><a class="link" href="mailto:hello@kettleandcrow.coffee">hello@kettleandcrow.coffee</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <ul>
+          <li><a class="link" href="#menu">Menu</a></li>
+          <li><a class="link" href="#beans">Beans</a></li>
+          <li><a class="link" href="#order">Order ahead</a></li>
+          <li><a class="link" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Hours</h2>
+        <p style="margin-top:0">Mon–Fri 6:30 am – 6 pm<br>Sat–Sun 7:30 am – 5 pm</p>
+      </div>
+    </div>
+    <div class="foot__base">
+      <span>© <span id="yr">2026</span> Kettle &amp; Crow Coffee LLC</span>
+      <span>Roasted in Portland, Oregon</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* micro.js (inlined) */
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  $$("[data-reveal-stagger]").forEach((el) => [...el.children].forEach((c, i) => c.style.setProperty("--i", Math.min(i, 6))));
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("is-in");
+    if (e.target.dataset.count !== undefined) countUp(e.target);
+    io.unobserve(e.target);
+  }), { rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
+  $$("[data-reveal],[data-reveal-stagger],[data-count]").forEach((el) => io.observe(el));
+  function countUp(el) {
+    const end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const fmt = (n) => (el.dataset.prefix || "") + n.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + (el.dataset.suffix || "");
+    if (reduce) return (el.textContent = fmt(end));
+    const t0 = performance.now(), dur = 1200;
+    const tick = (t) => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4); el.textContent = fmt(end * e); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  }
+  const header = document.querySelector(".site-header");
+  const onScroll = () => header?.classList.toggle("is-scrolled", scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  $$("[data-nav-toggle]").forEach((btn) => {
+    const panel = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!panel) return;
+    $$("li", panel).forEach((li, i) => li.style.setProperty("--i", i));
+    const set = (open) => {
+      btn.setAttribute("aria-expanded", open);
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      panel.classList.toggle("is-open", open);
+      document.documentElement.style.overflow = open ? "hidden" : "";
+      if (open) panel.querySelector("a,button")?.focus({ preventScroll: true });
+    };
+    btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+    panel.addEventListener("click", (e) => e.target.closest("a") && set(false));
+    addEventListener("keydown", (e) => { if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { set(false); btn.focus(); } });
+    matchMedia("(min-width: 900px)").addEventListener("change", (m) => m.matches && set(false));
+  });
+  if (!reduce && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    $$("[data-magnetic]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => { const r = el.getBoundingClientRect(); el.style.translate = `${((e.clientX - r.left) / r.width - .5) * 12}px ${((e.clientY - r.top) / r.height - .5) * 12}px`; });
+      el.addEventListener("pointerleave", () => (el.style.translate = ""));
+      el.style.transition += ", translate 250ms cubic-bezier(.22,1,.36,1)";
+    });
+  }
+})();
+
+/* Menu tabs with sliding indicator + arrow-key support */
+(() => {
+  const list = document.querySelector('[role="tablist"]'); if (!list) return;
+  const tabs = [...list.querySelectorAll('[role="tab"]')], ind = list.querySelector('.tabs__ind');
+  const move = (t) => { ind.style.setProperty('--x', t.offsetLeft + 'px'); ind.style.setProperty('--w', t.offsetWidth + 'px'); };
+  const select = (t, focus) => {
+    tabs.forEach((x) => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+    move(t); if (focus) t.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
+  });
+  const init = () => move(tabs.find((t) => t.getAttribute('aria-selected') === 'true'));
+  init(); document.fonts?.ready.then(init); addEventListener('resize', init);
+})();
+
+/* Live open/closed status + today's hours (Portland time) */
+(() => {
+  const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+  const get = (t) => parts.find((p) => p.type === t)?.value;
+  const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(get('weekday'));
+  const mins = (+get('hour') % 24) * 60 + +get('minute');
+  const weekend = day === 0 || day === 6;
+  const open = weekend ? 450 : 390, close = weekend ? 1020 : 1080;
+  const closeLabel = weekend ? '5 pm' : '6 pm', openLabel = weekend ? '7:30 am' : '6:30 am';
+  document.querySelector(`#hours tr[data-d="${day}"]`)?.classList.add('is-today');
+  const el = document.getElementById('status'), txt = el.querySelector('span');
+  if (mins >= open && mins < close) {
+    const left = close - mins;
+    txt.textContent = left <= 60 ? `Open now · closing in ${left} min` : `Open now · until ${closeLabel}`;
+  } else {
+    el.classList.add('is-closed');
+    const nextWeekend = mins >= close ? (day === 5 || day === 6) : weekend;
+    txt.textContent = `Closed · opens ${mins >= close ? 'tomorrow' : 'today'} at ${nextWeekend ? '7:30 am' : '6:30 am'}`;
+  }
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+
+/* Order form: inline validation + success (no alert) */
+(() => {
+  const f = document.getElementById('order-form'); if (!f) return;
+  const ok = document.getElementById('order-ok'), msg = document.getElementById('order-msg'), btn = f.querySelector('button[type="submit"]');
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    btn.setAttribute('aria-busy', 'true'); btn.firstChild.textContent = 'Sending… ';
+    setTimeout(() => {
+      const d = new FormData(f);
+      msg.textContent = `Thanks, ${d.get('name')}! Your ${String(d.get('drink')).split(' ·')[0].toLowerCase()} is in the queue. We’ll text ${d.get('phone')} when it’s on the shelf.`;
+      ok.classList.add('is-shown');
+      btn.removeAttribute('aria-busy'); btn.firstChild.textContent = 'Place another order ';
+      f.reset();
+    }, 700);
+  });
+})();
+</script>
+</body>
+</html>

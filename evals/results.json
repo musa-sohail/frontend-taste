@@ -383,7 +383,290 @@
           "group": "Accessibility",
           "name": "text contrast (≤2% failing)",
           "pass": true,
-          "detail": "1/173 fail \"Coffee\" 1.00:1",
+          "detail": "0/173 fail ",
+          "weight": 3
+        },
+        {
+          "group": "Accessibility",
+          "name": "focus styles",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "prefers-reduced-motion",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "img alt",
+          "pass": true,
+          "detail": "0 missing",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "landmarks header/nav/main/footer",
+          "pass": true,
+          "detail": "4/4",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "skip link",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "single h1",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "custom typefaces (not system/Inter/Roboto/Arial only)",
+          "pass": true,
+          "detail": "instrument sans, young serif",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "≤3 font families rendered",
+          "pass": true,
+          "detail": "2",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "heading/body contrast (2 families, or one family with h1 ≥700)",
+          "pass": true,
+          "detail": "h1: young serif 400",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "h1 ≥ 2.5× body on desktop",
+          "pass": true,
+          "detail": "84.8px / 18px",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "body ≥16px & line-height 1.4–1.9",
+          "pass": true,
+          "detail": "18px / 1.65",
+          "weight": 1
+        },
+        {
+          "group": "Color",
+          "name": "color discipline (≤24 distinct colors)",
+          "pass": true,
+          "detail": "9 colors",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "transitions on ≥15 elements",
+          "pass": true,
+          "detail": "83",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "hover gated by (hover:hover)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "keyframe animations",
+          "pass": true,
+          "detail": "9",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "no alert()",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no lorem ipsum",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Content",
+          "name": "≤6 emoji in text",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "current year present",
+          "pass": true,
+          "detail": "2026",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "≥6 sections",
+          "pass": true,
+          "detail": "10",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no broken images",
+          "pass": true,
+          "detail": "0",
+          "weight": 2
+        }
+      ],
+      "raw": {
+        "families": [
+          "instrument sans",
+          "young serif"
+        ],
+        "colorCount": 9,
+        "rootVars": 42,
+        "contrast": {
+          "checked": 173,
+          "fails": 0,
+          "failSamples": []
+        },
+        "overflow": {
+          "320": 0,
+          "375": 0,
+          "768": 0,
+          "1024": 0,
+          "1440": 0
+        },
+        "navWorks": {
+          "found": true,
+          "works": true,
+          "before": 1,
+          "after": 9
+        },
+        "withTransition": 83,
+        "keyframes": 9,
+        "h1Size": 84.8,
+        "bodySize": 18,
+        "emoji": 1,
+        "mobile": {
+          "targets": 40,
+          "small": 1,
+          "smallSamples": [
+            "FAQ"
+          ],
+          "minFont": 13.3625,
+          "inputsSmall": 0
+        }
+      }
+    },
+    "with-skill-v2": {
+      "score": 100,
+      "results": [
+        {
+          "group": "Foundation",
+          "name": "doctype + lang + title",
+          "pass": true,
+          "detail": "lang=\"en\"",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "meta viewport",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "meta description",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "design tokens (≥8 :root custom props)",
+          "pass": true,
+          "detail": "42 vars",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "no runtime errors",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "no horizontal overflow 320–1440px",
+          "pass": true,
+          "detail": "clean",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "fluid sizing (clamp)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "media queries present",
+          "pass": true,
+          "detail": "17",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "mobile nav toggle opens menu",
+          "pass": true,
+          "detail": "links 1→10",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "tap targets ≥40px (≤10% small)",
+          "pass": true,
+          "detail": "0/38 small ",
+          "weight": 2
+        },
+        {
+          "group": "Responsive",
+          "name": "no raw 100vh",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "inputs ≥16px on mobile",
+          "pass": true,
+          "detail": "0 small",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "text contrast (≤2% failing)",
+          "pass": true,
+          "detail": "0/187 fail ",
           "weight": 3
         },
         {
@@ -474,7 +757,7 @@
           "group": "Interaction",
           "name": "transitions on ≥15 elements",
           "pass": true,
-          "detail": "83",
+          "detail": "76",
           "weight": 2
         },
         {
@@ -488,7 +771,7 @@
           "group": "Interaction",
           "name": "keyframe animations",
           "pass": true,
-          "detail": "9",
+          "detail": "8",
           "weight": 1
         },
         {
@@ -523,7 +806,7 @@
           "group": "Content",
           "name": "≥6 sections",
           "pass": true,
-          "detail": "10",
+          "detail": "9",
           "weight": 1
         },
         {
@@ -542,11 +825,9 @@
         "colorCount": 8,
         "rootVars": 42,
         "contrast": {
-          "checked": 173,
-          "fails": 1,
-          "failSamples": [
-            "\"Coffee\" 1.00:1"
-          ]
+          "checked": 187,
+          "fails": 0,
+          "failSamples": []
         },
         "overflow": {
           "320": 0,
@@ -559,19 +840,17 @@
           "found": true,
           "works": true,
           "before": 1,
-          "after": 9
+          "after": 10
         },
-        "withTransition": 83,
-        "keyframes": 9,
+        "withTransition": 76,
+        "keyframes": 8,
         "h1Size": 84.8,
         "bodySize": 18,
         "emoji": 1,
         "mobile": {
-          "targets": 40,
-          "small": 1,
-          "smallSamples": [
-            "FAQ"
-          ],
+          "targets": 38,
+          "small": 0,
+          "smallSamples": [],
           "minFont": 13.3625,
           "inputsSmall": 0
         }
@@ -1151,6 +1430,289 @@
           "inputsSmall": 0
         }
       }
+    },
+    "with-skill-v2": {
+      "score": 100,
+      "results": [
+        {
+          "group": "Foundation",
+          "name": "doctype + lang + title",
+          "pass": true,
+          "detail": "lang=\"en\"",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "meta viewport",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "meta description",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "design tokens (≥8 :root custom props)",
+          "pass": true,
+          "detail": "41 vars",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "no runtime errors",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "no horizontal overflow 320–1440px",
+          "pass": true,
+          "detail": "clean",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "fluid sizing (clamp)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "media queries present",
+          "pass": true,
+          "detail": "20",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "mobile nav toggle opens menu",
+          "pass": true,
+          "detail": "links 1→10",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "tap targets ≥40px (≤10% small)",
+          "pass": true,
+          "detail": "1/52 small FAQ",
+          "weight": 2
+        },
+        {
+          "group": "Responsive",
+          "name": "no raw 100vh",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "inputs ≥16px on mobile",
+          "pass": true,
+          "detail": "0 small",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "text contrast (≤2% failing)",
+          "pass": true,
+          "detail": "0/208 fail ",
+          "weight": 3
+        },
+        {
+          "group": "Accessibility",
+          "name": "focus styles",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "prefers-reduced-motion",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "img alt",
+          "pass": true,
+          "detail": "0 missing",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "landmarks header/nav/main/footer",
+          "pass": true,
+          "detail": "4/4",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "skip link",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "single h1",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "custom typefaces (not system/Inter/Roboto/Arial only)",
+          "pass": true,
+          "detail": "atkinson hyperlegible, lexend",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "≤3 font families rendered",
+          "pass": true,
+          "detail": "2",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "heading/body contrast (2 families, or one family with h1 ≥700)",
+          "pass": true,
+          "detail": "h1: lexend 600",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "h1 ≥ 2.5× body on desktop",
+          "pass": true,
+          "detail": "73.6px / 18px",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "body ≥16px & line-height 1.4–1.9",
+          "pass": true,
+          "detail": "18px / 1.65",
+          "weight": 1
+        },
+        {
+          "group": "Color",
+          "name": "color discipline (≤24 distinct colors)",
+          "pass": true,
+          "detail": "10 colors",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "transitions on ≥15 elements",
+          "pass": true,
+          "detail": "131",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "hover gated by (hover:hover)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "keyframe animations",
+          "pass": true,
+          "detail": "7",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "no alert()",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no lorem ipsum",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Content",
+          "name": "≤6 emoji in text",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "current year present",
+          "pass": true,
+          "detail": "2026",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "≥6 sections",
+          "pass": true,
+          "detail": "11",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no broken images",
+          "pass": true,
+          "detail": "0",
+          "weight": 2
+        }
+      ],
+      "raw": {
+        "families": [
+          "atkinson hyperlegible",
+          "lexend"
+        ],
+        "colorCount": 10,
+        "rootVars": 41,
+        "contrast": {
+          "checked": 208,
+          "fails": 0,
+          "failSamples": []
+        },
+        "overflow": {
+          "320": 0,
+          "375": 0,
+          "768": 0,
+          "1024": 0,
+          "1440": 0
+        },
+        "navWorks": {
+          "found": true,
+          "works": true,
+          "before": 1,
+          "after": 10
+        },
+        "withTransition": 131,
+        "keyframes": 7,
+        "h1Size": 73.6,
+        "bodySize": 18,
+        "emoji": 1,
+        "mobile": {
+          "targets": 52,
+          "small": 1,
+          "smallSamples": [
+            "FAQ"
+          ],
+          "minFont": 13.3625,
+          "inputsSmall": 0
+        }
+      }
     }
   },
   "saas": {
@@ -1245,7 +1807,7 @@
           "group": "Accessibility",
           "name": "text contrast (≤2% failing)",
           "pass": false,
-          "detail": "84/232 fail \"New\" 4.28:1; \"Free for teams up to 10 · Setu\" 3.49:1; \"Acme / Q4 Launch\" 3.84:1; \"Timeline\" 3.25:1; \"List\" 3.25:1",
+          "detail": "81/229 fail \"New\" 4.28:1; \"Free for teams up to 10 · Setu\" 3.49:1; \"Acme / Q4 Launch\" 3.84:1; \"Timeline\" 3.25:1; \"List\" 3.25:1",
           "weight": 3
         },
         {
@@ -1405,8 +1967,8 @@
         "colorCount": 24,
         "rootVars": 23,
         "contrast": {
-          "checked": 232,
-          "fails": 84,
+          "checked": 229,
+          "fails": 81,
           "failSamples": [
             "\"New\" 4.28:1",
             "\"Free for teams up to 10 · Setu\" 3.49:1",
@@ -1721,6 +2283,290 @@
         "emoji": 1,
         "mobile": {
           "targets": 29,
+          "small": 2,
+          "smallSamples": [
+            "Press",
+            "FAQ"
+          ],
+          "minFont": 13.3625,
+          "inputsSmall": 0
+        }
+      }
+    },
+    "with-skill-v2": {
+      "score": 100,
+      "results": [
+        {
+          "group": "Foundation",
+          "name": "doctype + lang + title",
+          "pass": true,
+          "detail": "lang=\"en\"",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "meta viewport",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "meta description",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "design tokens (≥8 :root custom props)",
+          "pass": true,
+          "detail": "40 vars",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "no runtime errors",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "no horizontal overflow 320–1440px",
+          "pass": true,
+          "detail": "clean",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "fluid sizing (clamp)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "media queries present",
+          "pass": true,
+          "detail": "22",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "mobile nav toggle opens menu",
+          "pass": true,
+          "detail": "links 1→9",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "tap targets ≥40px (≤10% small)",
+          "pass": true,
+          "detail": "2/28 small Press, FAQ",
+          "weight": 2
+        },
+        {
+          "group": "Responsive",
+          "name": "no raw 100vh",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "inputs ≥16px on mobile",
+          "pass": true,
+          "detail": "0 small",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "text contrast (≤2% failing)",
+          "pass": true,
+          "detail": "0/208 fail ",
+          "weight": 3
+        },
+        {
+          "group": "Accessibility",
+          "name": "focus styles",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "prefers-reduced-motion",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "img alt",
+          "pass": true,
+          "detail": "0 missing",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "landmarks header/nav/main/footer",
+          "pass": true,
+          "detail": "4/4",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "skip link",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "single h1",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "custom typefaces (not system/Inter/Roboto/Arial only)",
+          "pass": true,
+          "detail": "plus jakarta sans, georgia",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "≤3 font families rendered",
+          "pass": true,
+          "detail": "2",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "heading/body contrast (2 families, or one family with h1 ≥700)",
+          "pass": true,
+          "detail": "h1: plus jakarta sans 800",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "h1 ≥ 2.5× body on desktop",
+          "pass": true,
+          "detail": "68px / 18px",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "body ≥16px & line-height 1.4–1.9",
+          "pass": true,
+          "detail": "18px / 1.65",
+          "weight": 1
+        },
+        {
+          "group": "Color",
+          "name": "color discipline (≤24 distinct colors)",
+          "pass": true,
+          "detail": "14 colors",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "transitions on ≥15 elements",
+          "pass": true,
+          "detail": "63",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "hover gated by (hover:hover)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "keyframe animations",
+          "pass": true,
+          "detail": "7",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "no alert()",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no lorem ipsum",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Content",
+          "name": "≤6 emoji in text",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "current year present",
+          "pass": true,
+          "detail": "2026",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "≥6 sections",
+          "pass": true,
+          "detail": "9",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no broken images",
+          "pass": true,
+          "detail": "0",
+          "weight": 2
+        }
+      ],
+      "raw": {
+        "families": [
+          "plus jakarta sans",
+          "georgia"
+        ],
+        "colorCount": 14,
+        "rootVars": 40,
+        "contrast": {
+          "checked": 208,
+          "fails": 0,
+          "failSamples": []
+        },
+        "overflow": {
+          "320": 0,
+          "375": 0,
+          "768": 0,
+          "1024": 0,
+          "1440": 0
+        },
+        "navWorks": {
+          "found": true,
+          "works": true,
+          "before": 1,
+          "after": 9
+        },
+        "withTransition": 63,
+        "keyframes": 7,
+        "h1Size": 68,
+        "bodySize": 18,
+        "emoji": 1,
+        "mobile": {
+          "targets": 28,
           "small": 2,
           "smallSamples": [
             "Press",
@@ -2299,6 +3145,289 @@
         "emoji": 1,
         "mobile": {
           "targets": 38,
+          "small": 1,
+          "smallSamples": [
+            "FAQ"
+          ],
+          "minFont": 13.3625,
+          "inputsSmall": 0
+        }
+      }
+    },
+    "with-skill-v2": {
+      "score": 100,
+      "results": [
+        {
+          "group": "Foundation",
+          "name": "doctype + lang + title",
+          "pass": true,
+          "detail": "lang=\"en\"",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "meta viewport",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "meta description",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Foundation",
+          "name": "design tokens (≥8 :root custom props)",
+          "pass": true,
+          "detail": "41 vars",
+          "weight": 2
+        },
+        {
+          "group": "Foundation",
+          "name": "no runtime errors",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "no horizontal overflow 320–1440px",
+          "pass": true,
+          "detail": "clean",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "fluid sizing (clamp)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "media queries present",
+          "pass": true,
+          "detail": "18",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "mobile nav toggle opens menu",
+          "pass": true,
+          "detail": "links 1→10",
+          "weight": 3
+        },
+        {
+          "group": "Responsive",
+          "name": "tap targets ≥40px (≤10% small)",
+          "pass": true,
+          "detail": "1/37 small FAQ",
+          "weight": 2
+        },
+        {
+          "group": "Responsive",
+          "name": "no raw 100vh",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Responsive",
+          "name": "inputs ≥16px on mobile",
+          "pass": true,
+          "detail": "0 small",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "text contrast (≤2% failing)",
+          "pass": true,
+          "detail": "0/150 fail ",
+          "weight": 3
+        },
+        {
+          "group": "Accessibility",
+          "name": "focus styles",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "prefers-reduced-motion",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Accessibility",
+          "name": "img alt",
+          "pass": true,
+          "detail": "0 missing",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "landmarks header/nav/main/footer",
+          "pass": true,
+          "detail": "4/4",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "skip link",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Accessibility",
+          "name": "single h1",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "custom typefaces (not system/Inter/Roboto/Arial only)",
+          "pass": true,
+          "detail": "figtree, fraunces",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "≤3 font families rendered",
+          "pass": true,
+          "detail": "2",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "heading/body contrast (2 families, or one family with h1 ≥700)",
+          "pass": true,
+          "detail": "h1: fraunces 650",
+          "weight": 1
+        },
+        {
+          "group": "Typography",
+          "name": "h1 ≥ 2.5× body on desktop",
+          "pass": true,
+          "detail": "81.6px / 18px",
+          "weight": 2
+        },
+        {
+          "group": "Typography",
+          "name": "body ≥16px & line-height 1.4–1.9",
+          "pass": true,
+          "detail": "18px / 1.65",
+          "weight": 1
+        },
+        {
+          "group": "Color",
+          "name": "color discipline (≤24 distinct colors)",
+          "pass": true,
+          "detail": "7 colors",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "transitions on ≥15 elements",
+          "pass": true,
+          "detail": "83",
+          "weight": 2
+        },
+        {
+          "group": "Interaction",
+          "name": "hover gated by (hover:hover)",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "keyframe animations",
+          "pass": true,
+          "detail": "5",
+          "weight": 1
+        },
+        {
+          "group": "Interaction",
+          "name": "no alert()",
+          "pass": true,
+          "detail": "",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no lorem ipsum",
+          "pass": true,
+          "detail": "",
+          "weight": 2
+        },
+        {
+          "group": "Content",
+          "name": "≤6 emoji in text",
+          "pass": true,
+          "detail": "1",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "current year present",
+          "pass": true,
+          "detail": "2026",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "≥6 sections",
+          "pass": true,
+          "detail": "11",
+          "weight": 1
+        },
+        {
+          "group": "Content",
+          "name": "no broken images",
+          "pass": true,
+          "detail": "0",
+          "weight": 2
+        }
+      ],
+      "raw": {
+        "families": [
+          "figtree",
+          "fraunces"
+        ],
+        "colorCount": 7,
+        "rootVars": 41,
+        "contrast": {
+          "checked": 150,
+          "fails": 0,
+          "failSamples": []
+        },
+        "overflow": {
+          "320": 0,
+          "375": 0,
+          "768": 0,
+          "1024": 0,
+          "1440": 0
+        },
+        "navWorks": {
+          "found": true,
+          "works": true,
+          "before": 1,
+          "after": 10
+        },
+        "withTransition": 83,
+        "keyframes": 5,
+        "h1Size": 81.6,
+        "bodySize": 18,
+        "emoji": 1,
+        "mobile": {
+          "targets": 37,
           "small": 1,
           "smallSamples": [
             "FAQ"
