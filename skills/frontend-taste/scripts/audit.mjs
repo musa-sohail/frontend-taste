@@ -3,7 +3,8 @@
 //
 //   node audit.mjs index.html                 human-readable report
 //   node audit.mjs index.html --json          machine-readable
-//   node audit.mjs https://site --shots out/  also save desktop + mobile full-page screenshots
+//   node audit.mjs https://site --shots out/  also save desktop + mobile screenshots (full page, hero,
+//                                             and phone-sized slices mobile-01.png… for close review)
 //
 // Scores 0–100 across: foundation, responsive, accessibility, typography, color discipline,
 // interaction/motion, content. Every check is heuristic — use it to find problems, not to win.
@@ -272,6 +273,13 @@ async function capture(viewport, prefix, extra = {}) {
     }
   });
   await p.screenshot({ path: join(shotsDir, `${prefix}-full.png`), fullPage: true });
+  if (prefix === "mobile") {
+    // phone-sized slices: a tall full-page phone shot is too thin to judge details
+    const total = await p.evaluate(() => document.documentElement.scrollHeight);
+    for (let i = 0, y = 0; y < total && i < 14; i++, y += viewport.height) {
+      await p.screenshot({ path: join(shotsDir, `mobile-${String(i + 1).padStart(2, "0")}.png`), clip: { x: 0, y, width: viewport.width, height: Math.min(viewport.height, total - y) }, fullPage: true });
+    }
+  }
   await c.close();
 }
 if (shotsDir) {
