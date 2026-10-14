@@ -51,7 +51,9 @@ Use the motion tokens (`--ease-out`, `--dur-*`) and animate only transform and o
 ### 7. Verify before you say "done"
 - Walk through `references/checklist.md`.
 - If you can run Node + Playwright: `node scripts/audit.mjs path/to/index.html`. It checks for overflow at 320–1440px, contrast, tap targets, focus styles, reduced motion, alt text, and font count. Fix every ❌.
+- **Look at it.** Run the audit with `--shots out/` (or screenshot it any way you can) and view the desktop and mobile images. The audit can't catch blown-up SVG icons, misaligned avatars, awkward headline wraps, tiny stat numbers, or cramped mock-ups, but one look at the screenshots does.
 - Re-read `references/anti-patterns.md` and remove any AI tells.
+- Don't game the audit. Its checks are heuristics; fix the real problem, not just the number.
 
 ## Non-negotiables
 - Body text contrast ≥ 4.5:1 (palettes are pre-checked; don't lighten `--muted`).
