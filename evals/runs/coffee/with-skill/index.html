@@ -15,7 +15,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Halfmoon Coffee — Roasted on Division Street, Portland</title>
 <meta name="description" content="Halfmoon Coffee is a small-batch roaster and café on SE Division St, Portland. Order ahead for pickup, browse the menu, or take home fresh-roasted beans.">
-<meta name="theme-color" content="#FAF6EF">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,7 +122,7 @@ p, li { text-wrap: pretty; }
 .logo { display: inline-flex; align-items: center; gap: var(--s-2); text-decoration: none; font-family: var(--font-display); font-size: var(--step-1); line-height: 1; min-height: 44px; }
 .logo svg { width: 34px; height: 34px; color: var(--primary); }
 .nav-links { display: none; }
-.nav-cta { display: none; }
+.btn.nav-cta { display: none; }
 .nav-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius); position: relative; z-index: 51; }
 .burger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform var(--dur-3) var(--ease-out), opacity var(--dur-2); }
 .burger span + span { margin-top: 5px; }
@@ -140,7 +139,7 @@ p, li { text-wrap: pretty; }
 @media (min-width: 900px) {
   .nav-links { display: flex; gap: var(--s-6); list-style: none; padding: 0; }
   .nav-links a { text-decoration: none; font-weight: 500; display: inline-block; padding-block: .6rem; }
-  .nav-cta { display: inline-flex; }
+  .btn.nav-cta { display: inline-flex; }
   .nav-toggle, .mobile-nav { display: none; }
 }
 
@@ -221,9 +220,9 @@ p, li { text-wrap: pretty; }
 .steam path:nth-child(2) { animation-delay: 1.4s; }
 .steam path:nth-child(3) { animation-delay: 2.8s; }
 @keyframes steam { 0% { opacity: 0; transform: translateY(14px) scaleY(.85); } 35% { opacity: .9; } 100% { opacity: 0; transform: translateY(-18px) scaleY(1.05); } }
-.blob { position: absolute; width: 38%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); right: -6%; top: 6%; z-index: -1; animation: float 8s var(--ease-in-out) infinite alternate; }
+.blob { position: absolute; width: 38%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); right: 0; top: 6%; z-index: -1; animation: float 8s var(--ease-in-out) infinite alternate; }
 @keyframes float { to { transform: translate(-8px, 12px); } }
-.roast-card { position: absolute; left: -4%; bottom: 10%; width: min(78%, 270px); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s-4) var(--s-5); box-shadow: var(--shadow-lg); }
+.roast-card { position: absolute; left: 4%; bottom: 10%; width: min(78%, 270px); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s-4) var(--s-5); box-shadow: var(--shadow-lg); }
 .roast-card .eyebrow { margin-bottom: var(--s-2); }
 .roast-card strong { font-family: var(--font-display); font-weight: 400; font-size: var(--step-1); display: block; line-height: 1.2; }
 .roast-card p { font-size: var(--step--1); color: var(--muted); margin-top: var(--s-1); }
@@ -247,7 +246,7 @@ p, li { text-wrap: pretty; }
 .card__top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); }
 .price { font-family: var(--font-display); font-size: var(--step-1); color: var(--primary); font-variant-numeric: tabular-nums; }
 .card p { color: var(--muted); }
-.card .stretched { text-decoration: none; }
+.card .stretched { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
 .card .stretched::after { content: ""; position: absolute; inset: 0; }
 .card .stretched:focus-visible { outline: none; }
 
@@ -255,7 +254,7 @@ p, li { text-wrap: pretty; }
 .story__art { position: relative; }
 .story__art .frame { aspect-ratio: 1; border-radius: var(--radius-lg); background: var(--primary); color: var(--on-primary); display: grid; place-items: center; overflow: hidden; position: relative; }
 .story__art .frame svg { width: 70%; }
-.story__art .stamp { position: absolute; right: -2%; bottom: -6%; width: 34%; min-width: 110px; aspect-ratio: 1; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; text-align: center; font-family: var(--font-display); line-height: 1.1; box-shadow: var(--shadow-lg); transform: rotate(-8deg); padding: var(--s-3); }
+.story__art .stamp { position: absolute; right: 3%; bottom: -6%; width: 34%; min-width: 110px; aspect-ratio: 1; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; text-align: center; font-family: var(--font-display); line-height: 1.1; box-shadow: var(--shadow-lg); transform: rotate(-8deg); padding: var(--s-3); }
 .story__art .stamp b { display: block; font-weight: 400; font-size: var(--step-3); }
 .story__art .stamp small { font-family: var(--font-text); font-size: var(--step--1); font-weight: 600; }
 .signoff { display: flex; align-items: center; gap: var(--s-3); margin-top: var(--s-6); }
@@ -264,6 +263,7 @@ p, li { text-wrap: pretty; }
 
 /* Menu */
 .menu-wrap { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+.menu-wrap > * { min-width: 0; }
 @media (min-width: 900px) { .menu-wrap { grid-template-columns: 4fr 8fr; align-items: start; } .menu-wrap .section__head { position: sticky; top: 6rem; } }
 .tabs { position: relative; display: flex; gap: var(--s-1); padding: var(--s-1); border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--border); width: fit-content; max-width: 100%; overflow-x: auto; margin-bottom: var(--s-6); }
 .tabs button { position: relative; z-index: 1; min-height: 44px; padding: .5em 1.1em; border-radius: var(--radius-pill); font-weight: 600; white-space: nowrap; color: var(--muted); transition: color var(--dur-2); }
@@ -284,11 +284,11 @@ p, li { text-wrap: pretty; }
 
 /* Roast band */
 .band { background: var(--primary); color: var(--on-primary); position: relative; overflow: hidden; }
-.band .eyebrow { color: var(--accent); }
+.band .eyebrow { color: var(--on-primary); opacity: .9; }
 .band .lead { color: color-mix(in oklab, var(--on-primary) 85%, transparent); }
 .steps { list-style: none; padding: 0; display: grid; gap: var(--s-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); counter-reset: step; margin-top: var(--s-7); }
 .steps li { border-top: 1px solid color-mix(in oklab, var(--on-primary) 35%, transparent); padding-top: var(--s-5); counter-increment: step; }
-.steps li::before { content: "0" counter(step); display: block; font-family: var(--font-display); font-size: var(--step-2); color: var(--accent); margin-bottom: var(--s-3); }
+.steps li::before { content: "0" counter(step); display: block; font-family: var(--font-display); font-size: var(--step-2); color: var(--on-primary); opacity: .75; margin-bottom: var(--s-3); }
 .steps h3 { margin-bottom: var(--s-2); }
 .steps p { color: color-mix(in oklab, var(--on-primary) 85%, transparent); }
 .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-6) var(--s-5); margin-top: var(--s-8); padding-top: var(--s-7); border-top: 1px solid color-mix(in oklab, var(--on-primary) 35%, transparent); }
@@ -305,7 +305,7 @@ p, li { text-wrap: pretty; }
 .bean__foot .btn { position: relative; z-index: 1; }
 .btn.is-added { background: var(--ok); color: var(--surface); }
 .sub-note { margin-top: var(--s-6); display: flex; gap: var(--s-4); align-items: flex-start; padding: var(--s-5); border-radius: var(--radius-lg); border: 1.5px dashed color-mix(in oklab, var(--primary) 45%, var(--border)); background: color-mix(in oklab, var(--accent) 10%, var(--bg)); }
-.sub-note p { color: var(--muted); }
+.sub-note p { color: var(--muted); overflow-wrap: anywhere; }
 .sub-note strong { color: var(--ink); }
 
 /* Reviews */
@@ -426,7 +426,7 @@ p, li { text-wrap: pretty; }
   <a class="btn" href="#order">Order ahead
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
-  <p class="mobile-nav__meta">1418 SE Division St, Portland<br>Open daily from 6:30am</p>
+  <div class="mobile-nav__meta">1418 SE Division St, Portland<br>Open daily from 6:30am</div>
 </div>
 
 <main id="main">
@@ -573,7 +573,7 @@ p, li { text-wrap: pretty; }
       <div data-reveal>
         <div class="tabs" role="tablist" aria-label="Menu categories">
           <span class="tabs__indicator" aria-hidden="true"></span>
-          <button role="tab" id="tab-coffee" aria-controls="panel-coffee" aria-selected="true">Espresso &amp; brew</button>
+          <button role="tab" id="tab-coffee" aria-controls="panel-coffee" aria-selected="true">Coffee</button>
           <button role="tab" id="tab-other" aria-controls="panel-other" aria-selected="false" tabindex="-1">Not coffee</button>
           <button role="tab" id="tab-bakery" aria-controls="panel-bakery" aria-selected="false" tabindex="-1">Bakery</button>
         </div>
@@ -951,7 +951,7 @@ p, li { text-wrap: pretty; }
     const isOpen = mins >= open && mins < close;
     const fmt = (m) => { const h = Math.floor(m / 60), mm = m % 60; return `${((h + 11) % 12) + 1}${mm ? ":" + String(mm).padStart(2, "0") : ""}${h < 12 ? "am" : "pm"}`; };
     document.getElementById("open-dot").classList.toggle("is-closed", !isOpen);
-    document.getElementById("open-text").textContent = isOpen ? `Open now · until ${fmt(close)}` : `Closed now · opens ${fmt(day === 5 || day === 6 ? 450 : (day === 0 ? 390 : (mins < open ? open : 390)))}`;
+    document.getElementById("open-text").textContent = isOpen ? `Open now · until ${fmt(close)}` : `Closed now · opens ${fmt(mins < open ? open : ([1,2,3,4,5].includes((day + 1) % 7) ? 390 : 450))}${mins < open ? "" : " tomorrow"}`;
     document.querySelectorAll(".hours tr").forEach((tr) => tr.classList.toggle("is-today", tr.dataset.days.split(",").includes(String(day))));
   } catch (e) {}
 

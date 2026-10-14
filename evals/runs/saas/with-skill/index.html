@@ -177,8 +177,8 @@ p, li { text-wrap: pretty; }
 .hero { padding-block: clamp(2rem, 6vw, 4.5rem) clamp(3.5rem, 8vw, 6rem); position: relative; overflow: clip; }
 .hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: min(70vw, 760px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in oklab, var(--primary) 14%, transparent), transparent); pointer-events: none; }
 .hero__grid { position: relative; display: grid; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
-@media (min-width: 1000px) { .hero__grid { grid-template-columns: 5fr 6fr; } }
-.hero h1 { margin-block: var(--s-2) var(--s-5); }
+@media (min-width: 1000px) { .hero__grid { grid-template-columns: 1fr 1fr; } }
+.hero h1 { margin-block: var(--s-2) var(--s-5); font-size: clamp(2.6rem, 1.9rem + 3.6vw, 4.5rem); }
 .accent-word { position: relative; display: inline-block; white-space: nowrap; }
 .accent-word svg { position: absolute; left: -2%; bottom: -.16em; width: 104%; height: .32em; color: var(--accent); overflow: visible; }
 .accent-word path { stroke-dasharray: 260; stroke-dashoffset: 260; animation: draw 900ms var(--ease-out) 500ms forwards; }
@@ -197,8 +197,10 @@ p, li { text-wrap: pretty; }
 /* Product mock */
 .mock { position: relative; }
 .window { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; }
-.window__bar { display: flex; align-items: center; gap: var(--s-2); padding: .65rem var(--s-4); border-bottom: 1px solid var(--border); font-size: var(--step--1); color: var(--muted); }
+.window__bar { white-space: nowrap; overflow: hidden; display: flex; align-items: center; gap: var(--s-2); padding: .65rem var(--s-4); border-bottom: 1px solid var(--border); font-size: var(--step--1); color: var(--muted); }
 .window__bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+.bar-view { display: none; }
+@media (min-width: 600px) { .bar-view { display: inline; } }
 .window__bar strong { margin-left: var(--s-2); color: var(--ink); font-weight: 700; }
 .window__bar .badge { margin-left: auto; font-size: .72rem; }
 .board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); padding: var(--s-4); background: color-mix(in oklab, var(--surface2) 55%, var(--surface)); }
@@ -217,7 +219,7 @@ p, li { text-wrap: pretty; }
 .bar > span { display: block; height: 100%; width: 100%; background: var(--primary); transform-origin: 0 50%; transform: scaleX(var(--v, .5)); }
 .task--float { border-color: color-mix(in oklab, var(--primary) 45%, var(--border)); box-shadow: var(--shadow-lg); animation: float 7s var(--ease-in-out) infinite alternate; }
 @keyframes float { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-8px) rotate(.5deg); } }
-.float-card { position: absolute; left: clamp(-1rem, -2vw, 0rem); bottom: -1.75rem; display: flex; align-items: center; gap: var(--s-3); padding: .75rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); font-size: var(--step--1); line-height: 1.3; max-width: calc(100% - 1rem); }
+.float-card { position: absolute; left: clamp(-1rem, -2vw, 0rem); bottom: -2.5rem; display: flex; align-items: center; gap: var(--s-3); padding: .75rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); font-size: var(--step--1); line-height: 1.3; max-width: calc(100% - 1rem); }
 .ring { --p: 86; width: 44px; height: 44px; flex: none; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--primary) calc(var(--p) * 1%), var(--surface2) 0); }
 .ring::after { content: ""; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); grid-area: 1 / 1; }
 .ring span { grid-area: 1 / 1; z-index: 1; font-size: .7rem; font-weight: 800; }
@@ -317,7 +319,7 @@ p, li { text-wrap: pretty; }
 @media (min-width: 900px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .stat { border-top: 1px solid color-mix(in oklab, var(--on-primary) 30%, transparent); padding-top: var(--s-4); }
 .stat strong { display: block; font: 800 var(--step-4)/1 var(--font-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-.stat span { display: block; margin-top: var(--s-2); font-size: .95rem; color: color-mix(in oklab, var(--on-primary) 86%, var(--primary)); }
+.stat > span { display: block; margin-top: var(--s-2); font-size: .95rem; color: color-mix(in oklab, var(--on-primary) 86%, var(--primary)); }
 
 /* ---------- 11. Testimonials ---------- */
 .quotes { display: grid; gap: var(--s-5); }
@@ -426,8 +428,7 @@ p, li { text-wrap: pretty; }
 <header class="site-header">
   <div class="container">
     <a class="logo" href="#top" aria-label="Plotline home">
-      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="currentColor"/><path d="M9 21.5c3-6 6.5 1.5 9.5-4.5S23 11 23 11" stroke="var(--on-primary)" stroke-width="2.4" stroke-linecap="round"/><circle cx="23" cy="11" r="2.6" fill="var(--accent)"/></svg>
-      Plotline<span class="dot">.</span>
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="currentColor"/><path d="M9 21.5c3-6 6.5 1.5 9.5-4.5S23 11 23 11" stroke="var(--on-primary)" stroke-width="2.4" stroke-linecap="round"/><circle cx="23" cy="11" r="2.6" fill="var(--accent)"/></svg><span>Plotline<span class="dot">.</span></span>
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -494,7 +495,7 @@ p, li { text-wrap: pretty; }
 
       <div class="mock rise" style="--i:2" role="img" aria-label="Plotline board view showing the Sprint 24 board for the Mobile app launch project, with tasks in To do, In progress and In review columns">
         <div class="window" aria-hidden="true">
-          <div class="window__bar"><i></i><i></i><i></i><strong>Mobile app launch</strong> · Board <span class="badge">Sprint 24</span></div>
+          <div class="window__bar"><i></i><i></i><i></i><strong>Mobile app launch</strong><span class="bar-view">· Board</span> <span class="badge">Sprint 24</span></div>
           <div class="board">
             <div class="col">
               <div class="col__head"><span>To do</span><span>4</span></div>
@@ -828,8 +829,7 @@ p, li { text-wrap: pretty; }
     <div class="footer-grid">
       <div>
         <a class="logo" href="#top" aria-label="Plotline home">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="currentColor"/><path d="M9 21.5c3-6 6.5 1.5 9.5-4.5S23 11 23 11" stroke="var(--on-primary)" stroke-width="2.4" stroke-linecap="round"/><circle cx="23" cy="11" r="2.6" fill="var(--accent)"/></svg>
-          Plotline<span class="dot">.</span>
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="currentColor"/><path d="M9 21.5c3-6 6.5 1.5 9.5-4.5S23 11 23 11" stroke="var(--on-primary)" stroke-width="2.4" stroke-linecap="round"/><circle cx="23" cy="11" r="2.6" fill="var(--accent)"/></svg><span>Plotline<span class="dot">.</span></span>
         </a>
         <p>Project planning that keeps itself up to date. Made in Lisbon and Toronto.</p>
       </div>
